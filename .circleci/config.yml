@@ -8,14 +8,14 @@ jobs:
     docker:
       # specify the version you desire here
        - image: circleci/ruby:2.4.1-node-browsers
-      environment:
-      - PG_HOST=localhost
-      - PG_PORT=5432
-      - RAILS_ENV=test
-      - RACK_ENV=test
-    - image: postgres:9.6
-      environment:
-      - POSTGRES_DB=happy_house_test
+         environment:
+         - PG_HOST=localhost
+         - PG_PORT=5432
+         - RAILS_ENV=test
+         - RACK_ENV=test
+       - image: postgres:9.6
+         environment:
+         - POSTGRES_DB=happy_house_test
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images

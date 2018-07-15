@@ -14,4 +14,4 @@ test:
 
 production:
   <<: *default
-  database: <%= ENV.fetch("DATABASE_URL") %>
+  database: <%= ENV.fetch("DATABASE_URL") { 'happy_house_production' } %>

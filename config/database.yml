@@ -7,10 +7,14 @@ default: &default
 development:
   <<: *default
   database: happy_house_development
+  username: hebron
+  password:
 
 test:
   <<: *default
   database: happy_house_test
+  username: hebron
+  password:
 
 production:
   <<: *default

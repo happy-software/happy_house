@@ -1,19 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe 'valid user' do
+  describe 'valid users' do
     let(:password) { 'andou_zine' }
     let(:user) { User.new(name: 'Hebron George', email: 'me@hebrongeorge.com',
-                          password: password, password_confirmation: password) }
+                           password: password, password_confirmation: password) }
 
     it { expect(user.valid?).to eq true }
   end
 
   describe 'email address validations' do
     let(:name) { 'Hebron George' }
-    let(:valid_addresses) { %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org
+    let(:valid_addresses) { %w[users@example.com USER@foo.COM A_US-ER@foo.bar.org
                                 first.last@foo.jq alice+bob@baz.cn] }
-    let(:invalid_addresses) { %w[user@example,com user_at_foo.org user.name@example.
+    let(:invalid_addresses) { %w[users@example,com user_at_foo.org users.name@example.
                                 foo@bar_baz.com foo@bar+baz.com] }
     let(:password) { 'there_are_a_100_billion_other_galaxies' }
     it 'allows valid emails' do
@@ -49,9 +49,9 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe 'invalid user' do
+  describe 'invalid users' do
     let(:user) { User.new(name: name, email: email,
-                          password: password, password_confirmation: password) }
+                           password: password, password_confirmation: password) }
     let(:name) { 'Hebron George' }
     let(:email) { 'me@hebrongeorge.com' }
     let(:password) { 'we_began_as_wanderers_and_we_are_wanderers_still' }

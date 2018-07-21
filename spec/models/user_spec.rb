@@ -33,6 +33,12 @@ RSpec.describe User, type: :model do
       user2 = User.new(name: 'Tony Stark', email: 'HELLO@world.net')
       expect(user2.valid?).to eq false
     end
+
+    it 'saves mixed case as downcased' do
+      user = User.new(name: name, email: 'hElLoWorLD@example.net')
+      user.save
+      expect(user.email).to eq('helloworld@example.net')
+    end
   end
 
   describe 'invalid user' do

@@ -21,5 +21,20 @@ RSpec.describe User, type: :model do
       let(:email) { '     ' }
       it { expect(user.valid?).to eq false }
     end
+
+    context 'long name' do
+      let(:name) { 'a' * 51 }
+      it { expect(user.valid?).to eq false }
+    end
+
+    context 'short name' do
+      let(:name) { 'a' * 3 }
+      it { expect(user.valid?).to eq false }
+    end
+
+    context 'long email' do
+      let(:email) { 'a' * 244 + '@example.com' }
+      it { expect(user.valid?).to eq false }
+    end
   end
 end

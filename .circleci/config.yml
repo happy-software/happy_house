@@ -53,8 +53,9 @@ jobs:
       - run:
           name: Database Setup
           command: |
-            bundle exec rake db:create
-            bundle exec rake db:structure:load
+            bundle exec rails db:create
+            bundle exec rails db:migrate
+            bundle exec rails db:structure:load
 
       # run tests!
       - run:

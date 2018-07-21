@@ -7,6 +7,34 @@ RSpec.describe User, type: :model do
     it { expect(user.valid?).to eq true }
   end
 
+  describe 'email address validations' do
+    let(:name) { 'Hebron George' }
+    let(:valid_addresses) { %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org
+                                first.last@foo.jq alice+bob@baz.cn] }
+    let(:invalid_addresses) { %w[user@example,com user_at_foo.org user.name@example.
+                                foo@bar_baz.com foo@bar+baz.com] }
+    it 'allows valid emails' do
+      valid_addresses.each do |email|
+        user = User.new(name: name, email: email)
+        expect(user.valid?).to eq(true), "#{email} should be valid"
+      end
+    end
+
+    it 'does not allow invalid emails' do
+      invalid_addresses.each do |email|
+        user = User.new(name: name, email: email)
+        expect(user.valid?).to eq(false), "#{email} should be invalid"
+      end
+    end
+
+    it 'does not allow duplicate emails' do
+      user1 = User.new(name: name, email: 'hello@world.net')
+      user1.save
+      user2 = User.new(name: 'Tony Stark', email: 'HELLO@world.net')
+      expect(user2.valid?).to eq false
+    end
+  end
+
   describe 'invalid user' do
     let(:user) { User.new(name: name, email: email) }
     let(:name) { 'Hebron George' }

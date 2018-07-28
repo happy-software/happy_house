@@ -13,7 +13,7 @@ RSpec.describe UserMailer, type: :mailer do
 
     it 'renders the body' do
       expect(mail.body.encoded).to include(edit_account_activation_url(user.activation_token, email: user.email))
-      expect(mail.body.encoded).to include("Congratulations, #{user.name}")
+      expect(mail.body.encoded).to include("Congratulations, #{user.name}!")
     end
   end
 

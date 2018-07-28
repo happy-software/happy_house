@@ -1,0 +1,6 @@
+Congratulations, <%= @user.name %>!
+
+You are one step closer to managing your home completely stress-free!
+
+Click or copy and paste this link to activate your account:
+<%= edit_account_activation_url(@user.activation_token, email: @user.email) %>

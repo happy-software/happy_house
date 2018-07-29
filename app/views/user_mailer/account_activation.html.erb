@@ -1,0 +1,8 @@
+<h1>Happy House</h1>
+
+<p>Congratulations, <%= @user.name %>!</p>
+
+<p>You are one step closer to managing your home completely stress-free!</p>
+
+<%= link_to 'Activate My Account', edit_account_activation_url(@user.activation_token, email: @user.email) %>
+

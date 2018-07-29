@@ -93,4 +93,17 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe 'account activation' do
+    let(:user) { FactoryBot.create(:user) }
+
+    it 'has an activation_token and corresponding activation_digest generated' do
+      expect(user.activation_token).to_not eq nil
+      expect(user.activation_digest).to_not eq nil
+    end
+
+    it 'activation token is equivalent to digest' do
+      expect(BCrypt::Password.new(user.activation_digest).is_password?(user.activation_token)).to eq true
+    end
+  end
 end

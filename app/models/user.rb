@@ -1,8 +1,9 @@
 class User < ApplicationRecord
 
-  attr_accessor :remember_token
+  attr_accessor :remember_token, :activation_token
 
-  before_save { self.email = email.downcase }
+  before_create :create_activation_digest
+  before_save   :downcase_email
 
   validates :name,  presence: true, length: { maximum: 50, minimum: 4 }
 
@@ -15,8 +16,7 @@ class User < ApplicationRecord
 
   # Returns the hash digest of the given string.
   def User.digest(string)
-    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-               BCrypt::Engine.cost
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
   end
 
@@ -34,9 +34,29 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
 
-  def authenticated?(remember_token)
-    return false if remember_digest.nil?
-    BCrypt::Password.new(remember_digest).is_password?(remember_token)
+  def authenticated?(attribute, token)
+    digest = self.send("#{attribute}_digest")
+    return false if digest.nil?
+    BCrypt::Password.new(digest).is_password?(token)
+  end
+
+  def activate!
+    update_columns(activated: true, activated_at: Time.zone.now)
+  end
+
+  def send_activation_email
+    UserMailer.deliver_account_activation(self).deliver_now
+  end
+
+  private
+
+  def downcase_email
+    self.email = email.downcase
+  end
+
+  def create_activation_digest
+    self.activation_token  = User.new_token
+    self.activation_digest = User.digest(activation_token)
   end
 
 end

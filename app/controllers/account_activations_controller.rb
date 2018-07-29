@@ -4,8 +4,7 @@ class AccountActivationsController < ApplicationController
     activation_token = params[:id]
 
     if user && !user.activated? && user.authenticated?(:activation, activation_token)
-      user.update_attribute(:activated,    true)
-      user.update_attribute(:activated_at, Time.zone.now)
+      user.activate!
       log_in(user)
       flash[:success] = 'Welcome home! Your account has been activated!'
       redirect_to(user)

@@ -58,6 +58,10 @@ class User < ApplicationRecord
     UserMailer.password_reset(self).deliver_now
   end
 
+  def password_reset_expired?
+    reset_sent_at < 2.hours.ago
+  end
+
   private
 
   def downcase_email

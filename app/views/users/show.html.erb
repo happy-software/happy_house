@@ -10,19 +10,20 @@
       <div>
 
         <% if @properties.count.zero? %>
-          <h1><p><%= link_to 'Add your first property!', new_property_path %></p></h1>
+          <h1><p><%= link_to 'Add your first property!', new_property_path, class: 'btn btn-primary' %></p></h1>
         <% else %>
 
           <p>Your properties:</p>
 
           <% @user.properties.each_with_index do |property, index| %>
-            <% property_with_index = (index + 1).to_s + '. ' + (property.nickname || property.address[:street_address]) %>
+            <% property_name = property.nickname.empty? ? property.address['street_address'] : property.nickname %>
+            <% property_with_index = (index + 1).to_s + '. ' + (property_name) %>
 
             <p><%= link_to property_with_index, '#' %></p>
           <% end %>
 
           <div>
-            <%= link_to 'Add another property', new_property_path %>
+            <%= link_to 'Add another property', new_property_path, class: 'btn btn-primary' %>
           </div>
       <% end %>
       </div>

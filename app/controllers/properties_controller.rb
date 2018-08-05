@@ -6,7 +6,7 @@ class PropertiesController < ApplicationController
   def create
     p = current_user.properties.new(address: properties_params[:address],
                                     nickname: properties_params[:nickname],
-                                    property_type: properties_params[:property_type].underscore)
+                                    property_type: properties_params[:property_type].parameterize.underscore)
     if p.save
       flash[:success] = 'New Happy Home added!'
       redirect_to current_user

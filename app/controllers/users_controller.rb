@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @properties = current_user.properties
   end
 
   def edit

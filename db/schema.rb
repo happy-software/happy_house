@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_29_050125) do
+ActiveRecord::Schema.define(version: 2018_08_05_051347) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "hstore"
   enable_extension "plpgsql"
+
+  create_table "properties", force: :cascade do |t|
+    t.hstore "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.string "nickname"
+    t.integer "property_type"
+    t.index ["user_id"], name: "index_properties_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -30,4 +41,5 @@ ActiveRecord::Schema.define(version: 2018_07_29_050125) do
     t.datetime "reset_sent_at"
   end
 
+  add_foreign_key "properties", "users"
 end

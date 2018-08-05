@@ -7,6 +7,18 @@
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
+
+      <div>
+        <h2>Your Homes</h2>
+
+        <% if @properties.count.zero? %>
+          <p>Add your first property!</p>
+          <%= link_to 'Add a new property', new_property_path %>
+        <% else %>
+          <p>Your properties:</p>
+        <% end %>
+      </div>
+
     </section>
   </aside>
 </div>

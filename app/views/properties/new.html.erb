@@ -1,0 +1,38 @@
+<% provide(:title, 'Add Property') %>
+
+<h1>Add Property</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@property) do |f| %>
+      <%= render 'shared/error_messages'%>
+
+      <%= f.label :nickname, 'Nickname for this property' %>
+      <%= f.text_field :nickname, class: 'form-control' %>
+
+      <%= f.fields_for :address do |a| %>
+        <%= a.label :street_address %>
+        <%= a.text_field :street_address, id: :street_address, class: 'form-control' %>
+
+        <div class="col-md-4">
+          <%= a.label :city %>
+          <%= a.text_field :city, id: :city, class: 'form-control' %>
+        </div>
+
+        <div class="col-md-2">
+          <%= a.label :state %>
+          <%= a.text_field :state, id: :state, class: 'form-control' %>
+        </div>
+
+        <div class="col-md-4">
+          <%= a.label :zip_code %>
+          <%= a.text_field :zip_code, id: :zip_code, class: 'form-control' %>
+        </div>
+      <% end %>
+
+      <%= f.label :type, 'What kind of property is this?' %>
+      <%= f.select :property_type, Property.property_types.keys.map(&:titleize), include_blank: true, class: 'form-control'%>
+      <%= f.submit 'Add New Property', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

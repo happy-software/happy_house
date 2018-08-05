@@ -4,19 +4,27 @@
   <aside class="col-md-4">
     <section class="user_info">
       <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
+        Your Happy Homes
       </h1>
 
       <div>
-        <h2>Your Homes</h2>
 
         <% if @properties.count.zero? %>
-          <p>Add your first property!</p>
-          <%= link_to 'Add a new property', new_property_path %>
+          <h1><p><%= link_to 'Add your first property!', new_property_path %></p></h1>
         <% else %>
+
           <p>Your properties:</p>
-        <% end %>
+
+          <% @user.properties.each_with_index do |property, index| %>
+            <% property_with_index = (index + 1).to_s + '. ' + (property.nickname || property.address[:street_address]) %>
+
+            <p><%= link_to property_with_index, '#' %></p>
+          <% end %>
+
+          <div>
+            <%= link_to 'Add another property', new_property_path %>
+          </div>
+      <% end %>
       </div>
 
     </section>

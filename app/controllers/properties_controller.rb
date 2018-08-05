@@ -4,7 +4,15 @@ class PropertiesController < ApplicationController
   end
 
   def create
-    debugger
+    p = current_user.properties.new(address: properties_params[:address],
+                                    nickname: properties_params[:nickname],
+                                    property_type: properties_params[:property_type].underscore)
+    if p.save
+      flash[:success] = 'New Happy Home added!'
+      redirect_to current_user
+    else
+      render 'new'
+    end
   end
 
   private

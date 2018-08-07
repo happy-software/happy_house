@@ -19,7 +19,7 @@
             <% property_name = property.nickname.empty? ? property.address['street_address'] : property.nickname %>
             <% property_with_index = (index + 1).to_s + '. ' + (property_name) %>
 
-            <p><%= link_to property_with_index, '#' %></p>
+            <p><%= link_to property_with_index, edit_property_path(property)%></p>
           <% end %>
 
           <div>

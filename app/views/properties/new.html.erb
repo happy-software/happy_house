@@ -31,7 +31,8 @@
       <% end %>
 
       <%= f.label :type, 'What kind of property is this?' %>
-      <%= f.select :property_type, Property.property_types.keys.map(&:titleize), include_blank: true, class: 'form-control'%>
+      <%= f.select :property_type, Property::PROPERTY_TYPES.map(&:to_s).map(&:titleize), include_blank: true, class: 'form-control'%>
+
       <%= f.submit 'Add New Property', class: 'btn btn-primary' %>
     <% end %>
   </div>

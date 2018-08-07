@@ -15,6 +15,20 @@ class PropertiesController < ApplicationController
     end
   end
 
+  def edit
+    @property = Property.find(params[:id])
+  end
+
+  def update
+    @property = Property.find_by(id: params[:id])
+    if @property.update_attributes(properties_params)
+      flash[:success] = 'Updated ' + @property.address['street_address']
+      redirect_to current_user
+    else
+      render 'edit'
+    end
+  end
+
   private
 
     def properties_params

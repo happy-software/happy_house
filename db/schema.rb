@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_05_051347) do
+ActiveRecord::Schema.define(version: 2018_08_07_025917) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -22,7 +22,8 @@ ActiveRecord::Schema.define(version: 2018_08_05_051347) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.string "nickname"
-    t.integer "property_type"
+    t.string "property_type"
+    t.index ["property_type"], name: "index_properties_on_property_type"
     t.index ["user_id"], name: "index_properties_on_user_id"
   end
 

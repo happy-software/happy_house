@@ -10,7 +10,7 @@
       <div>
 
         <% if @properties.count.zero? %>
-          <h1><p><%= link_to 'Add your first property!', new_property_path, class: 'btn btn-primary' %></p></h1>
+          <h1><p><%= link_to 'Add your first property!', new_property_url, class: 'btn btn-primary' %></p></h1>
         <% else %>
 
           <% @user.properties.sort_by(&:created_at).each_with_index do |property, index| %>
@@ -21,7 +21,7 @@
           <% end %>
 
           <div>
-            <%= link_to 'Add another property', new_property_path, class: 'btn btn-primary' %>
+            <%= link_to 'Add another property', new_property_url, class: 'btn btn-primary' %>
           </div>
       <% end %>
       </div>

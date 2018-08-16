@@ -27,5 +27,11 @@
   <%= f.label :property_type, 'What kind of property is this?' %>
   <%= f.select :property_type, Property::PROPERTY_TYPES.map(&:to_s).map(&:titleize), include_blank: true, class: 'form-control'%>
 
+  <%= f.fields_for :property_documents do |builder| %>
+    <%= render 'property_document_fields', f: builder %>
+  <% end %>
+
+  <%= link_to_add_fields 'Upload Document', f, :property_documents %>
+
   <%= f.submit yield(:button_text), class: 'btn btn-primary' %>
 <% end %>

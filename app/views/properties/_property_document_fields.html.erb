@@ -1,0 +1,10 @@
+<fieldset>
+  <%= f.label 'Document Type' %>
+  <%= f.text_field :type, class: 'form-control' %>
+
+  <%= f.label 'Document Name' %>
+  <%= f.text_field :name, class: 'form-control' %>
+
+  <%= f.label 'Upload Document' %>
+  <%= f.file_field :document, direct_upload: true, class: 'form-control' %>
+</fieldset>

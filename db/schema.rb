@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_14_144445) do
+ActiveRecord::Schema.define(version: 2018_08_19_195218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2018_08_14_144445) do
   end
 
   create_table "property_documents", force: :cascade do |t|
-    t.string "type"
+    t.string "document_type"
     t.string "name"
     t.bigint "property_id"
     t.datetime "created_at", null: false

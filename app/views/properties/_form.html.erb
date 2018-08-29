@@ -8,7 +8,7 @@
     <%= a.label :street_address %>
     <%= a.text_field :street_address, id: :street_address, class: 'form-control' %>
 
-    <div class="col-md-4">
+    <div class="col-md-6">
       <%= a.label :city %>
       <%= a.text_field :city, id: :city, class: 'form-control' %>
     </div>
@@ -27,11 +27,26 @@
   <%= f.label :property_type, 'What kind of property is this?' %>
   <%= f.select :property_type, Property::PROPERTY_TYPES.map(&:to_s).map(&:titleize), include_blank: true, class: 'form-control'%>
 
-  <%= f.fields_for :property_documents do |builder| %>
-    <%= render 'property_document_fields', f: builder %>
-  <% end %>
+  <div class="document_uploader">
+    <div class="alert alert-info">
+      <h1>Documents</h1>
+      <p>
+        Make that mountain of documents more managable!
+        <br>
+        You can upload them below and keep them all in one place.
+      </p>
+    </div>
 
-  <%= link_to_add_fields 'Upload Document', f, :property_documents %>
+    <%= f.fields_for :property_documents do |builder| %>
+      <%= render 'properties/property_documents/common_documents', f: builder %>
+    <% end %>
+
+    <%= f.fields_for :property_documents do |builder| %>
+      <%= render 'property_document_fields', f: builder %>
+    <% end %>
+
+    <%= link_to_add_fields 'Add Another Document', f, :property_documents %>
+  </div>
 
   <%= f.submit yield(:button_text), class: 'btn btn-primary' %>
 <% end %>

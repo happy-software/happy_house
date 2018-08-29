@@ -14,4 +14,11 @@ class Property < ApplicationRecord
   scope :condos,              -> { where(property_type: 'Condo') }
   scope :commercials,         -> { where(property_type: 'Commercial') }
 
+
+  def display_name
+    return self.address['street_address'] if self.nickname.blank?
+
+    self.nickname
+  end
+
 end

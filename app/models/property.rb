@@ -16,9 +16,7 @@ class Property < ApplicationRecord
 
 
   def display_name
-    return self.address['street_address'] if self.nickname.blank?
-
-    self.nickname
+    self.nickname.blank? ? self.address['street_address'] : self.nickname
   end
 
 end

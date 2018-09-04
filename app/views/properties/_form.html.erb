@@ -38,10 +38,6 @@
     </div>
 
     <%= f.fields_for :property_documents do |builder| %>
-      <%= render 'properties/property_documents/common_documents', f: builder %>
-    <% end %>
-
-    <%= f.fields_for :property_documents do |builder| %>
       <%= render 'property_document_fields', f: builder %>
     <% end %>
 

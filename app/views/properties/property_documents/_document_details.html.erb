@@ -1,5 +1,5 @@
 <fieldset>
   <p>Name: <%= property_document.document.name %> </p>
-  <p>Type: <%= property_document.document_type %> </p>
+  <p>Type: <%= property_document.property_document_type.name %> </p>
   <%= link_to property_document.document.name, url_for(property_document.document) %>
 </fieldset>

@@ -1,6 +1,6 @@
 <fieldset>
   <%= f.label 'Document Type' %>
-  <%= f.text_field :document_type, class: 'form-control' %>
+  <%= f.collection_select :property_document_type_id, PropertyDocumentType.order(:name), :id, :name, class: 'form-control' %>
 
   <%= f.label 'Document Name' %>
   <%= f.text_field :name, class: 'form-control' %>

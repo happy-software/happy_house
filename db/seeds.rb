@@ -5,3 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+[
+    'Title',
+    'Deed',
+    'Bill of Sale',
+    'Tax Related',
+    'Mortgage',
+    'Loan Application',
+    'Closing Disclosure',
+    'Insurance',
+    'Other',
+].each do |document_type|
+  PropertyDocumentType.where(name: document_type).first_or_create
+end

@@ -1,0 +1,31 @@
+<% provide(:title, @user.name) %>
+
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        Your Happy Homes
+      </h1>
+
+      <div>
+
+        <% if @properties.count.zero? %>
+          <h1><p><%= link_to 'Add your first property!', new_property_url, class: 'btn btn-primary' %></p></h1>
+        <% else %>
+
+          <% @user.properties.sort_by(&:created_at).each_with_index do |property, index| %>
+            <% property_name = property.nickname.empty? ? property.address['street_address'] : property.nickname %>
+            <% property_with_index = (index + 1).to_s + '. ' + (property_name) %>
+
+            <p><%= link_to property_with_index, property_path(property)%></p>
+          <% end %>
+
+          <div>
+            <%= link_to 'Add another property', new_property_url, class: 'btn btn-primary' %>
+          </div>
+        <% end %>
+      </div>
+
+    </section>
+  </aside>
+</div>

@@ -1,0 +1,14 @@
+<label>Nickname for this property:</label>
+<p><%= property.nickname %></p>
+
+<label>Address</label>
+<% property.address.map { |k, v| "#{k.titleize}: #{v}"}.each do |address_piece| %>
+  <p><%= address_piece%></p>
+<% end %>
+
+<label>Property Type</label>
+<p><%= property.property_type.titleize%></p>
+
+<div class="alert alert-info">
+  <h2><%= @property.display_name %> Documents</h2>
+</div>

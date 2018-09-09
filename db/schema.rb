@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_02_203713) do
+ActiveRecord::Schema.define(version: 2018_09_09_024037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -62,6 +62,15 @@ ActiveRecord::Schema.define(version: 2018_09_02_203713) do
     t.bigint "property_document_type_id"
     t.index ["property_document_type_id"], name: "index_property_documents_on_property_document_type_id"
     t.index ["property_id"], name: "index_property_documents_on_property_id"
+  end
+
+  create_table "tenants", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "phone_number"
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

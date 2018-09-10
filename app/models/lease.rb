@@ -1,4 +1,4 @@
 class Lease < ApplicationRecord
-  belongs_to :tenants
-  belongs_to :property
+  has_and_belongs_to_many :tenants
+  belongs_to :property_document
 end

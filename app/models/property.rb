@@ -1,6 +1,8 @@
 class Property < ApplicationRecord
   belongs_to :user
   has_many :property_documents
+  has_many :leases, through: :property_documents
+  has_many :tenants, through: :leases
 
   accepts_nested_attributes_for :property_documents, allow_destroy: true
 

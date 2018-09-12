@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_02_203713) do
+ActiveRecord::Schema.define(version: 2018_09_09_024234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -35,6 +35,22 @@ ActiveRecord::Schema.define(version: 2018_09_02_203713) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "leases", force: :cascade do |t|
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.bigint "property_document_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_document_id"], name: "index_leases_on_property_document_id"
+  end
+
+  create_table "leases_tenants", force: :cascade do |t|
+    t.bigint "lease_id"
+    t.bigint "tenant_id"
+    t.index ["lease_id"], name: "index_leases_tenants_on_lease_id"
+    t.index ["tenant_id"], name: "index_leases_tenants_on_tenant_id"
   end
 
   create_table "properties", force: :cascade do |t|
@@ -64,6 +80,15 @@ ActiveRecord::Schema.define(version: 2018_09_02_203713) do
     t.index ["property_id"], name: "index_property_documents_on_property_id"
   end
 
+  create_table "tenants", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "phone_number"
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -79,6 +104,7 @@ ActiveRecord::Schema.define(version: 2018_09_02_203713) do
     t.datetime "reset_sent_at"
   end
 
+  add_foreign_key "leases", "property_documents"
   add_foreign_key "properties", "users"
   add_foreign_key "property_documents", "properties"
 end

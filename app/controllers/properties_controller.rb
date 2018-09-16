@@ -39,6 +39,9 @@ class PropertiesController < ApplicationController
   private
 
     def properties_params
-      params.require(:property).permit(:nickname, :property_type, property_documents_attributes: [:property_document_type_id, :name, :document], address: [:street_address, :city, :state, :zip_code])
+      params.require(:property).permit(:nickname,
+                                       :property_type,
+                                       property_documents_attributes: [:property_document_type_id, :name, :document],
+                                       address: [:street_address, :city, :state, :zip_code])
     end
 end

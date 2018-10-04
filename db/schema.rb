@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_09_024234) do
+ActiveRecord::Schema.define(version: 2018_10_04_021605) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -104,7 +104,17 @@ ActiveRecord::Schema.define(version: 2018_09_09_024234) do
     t.datetime "reset_sent_at"
   end
 
+  create_table "utility_accounts", force: :cascade do |t|
+    t.string "name"
+    t.jsonb "details"
+    t.bigint "property_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_utility_accounts_on_property_id"
+  end
+
   add_foreign_key "leases", "property_documents"
   add_foreign_key "properties", "users"
   add_foreign_key "property_documents", "properties"
+  add_foreign_key "utility_accounts", "properties"
 end

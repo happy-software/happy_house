@@ -3,6 +3,7 @@ class Property < ApplicationRecord
   has_many :property_documents
   has_many :leases, through: :property_documents
   has_many :tenants, through: :leases
+  has_many :utility_accounts
 
   accepts_nested_attributes_for :property_documents, allow_destroy: true
 

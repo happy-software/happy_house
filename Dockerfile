@@ -1,5 +1,3 @@
-LABEL maintainer="Hebron George <hebrontgeorge@gmail.com>"
-
 # Use an official Ruby runtime as a parent image
 FROM ruby:2.4.1
 RUN apt-get update && apt-get upgrade -y
@@ -21,5 +19,6 @@ COPY . /app
 # Make port 3000 available to the world outside this container
 EXPOSE 3000
 
+LABEL maintainer="Hebron George <hebrontgeorge@gmail.com>"
 # Run server when the container launches
 CMD puma -C config/puma.rb

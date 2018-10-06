@@ -3,17 +3,18 @@ default: &default
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
+  host: postgres
 
 development:
   <<: *default
   database: happy_house_development
-  username: hebron
+  username: postgres
   password:
 
 test:
   <<: *default
   database: happy_house_test
-  username: hebron
+  username: postgres
   password:
 
 production:

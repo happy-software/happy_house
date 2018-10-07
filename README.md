@@ -1,24 +1,16 @@
-# README
+# Happy House
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Happy House is your personal assistant that helps 
+manage your home.
 
-Things you may want to cover:
 
-* Ruby version
+### Getting Started - Development
 
-* System dependencies
+Once the repo is cloned:
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```bash
+docker-compose up &
+docker-compose run website rails db:create
+docker-compose run website rails db:migrate
+docker-compose run website rails db:seed
+```

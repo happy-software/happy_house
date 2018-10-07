@@ -7,11 +7,11 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-       - image: circleci/ruby:2.4.1-node-browsers
+       - image: circleci/ruby:2.5.1-node-browsers
          environment:
          - PGHOST=localhost
          - PGPORT=5432
-         - PGUSER=hebron
+         - PGUSER=postgres
          - RAILS_ENV=test
          - RACK_ENV=test
 #       - image: postgres:9.6

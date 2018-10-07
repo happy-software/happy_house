@@ -11,7 +11,7 @@ jobs:
          environment:
          - PGHOST=localhost
          - PGPORT=5432
-         - PGUSER=hebron
+         - PGUSER=postgres
          - RAILS_ENV=test
          - RACK_ENV=test
 #       - image: postgres:9.6

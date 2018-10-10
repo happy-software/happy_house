@@ -38,7 +38,11 @@
     </div>
 
     <%= f.fields_for :property_documents do |builder| %>
-      <%= render 'property_document_fields', f: builder %>
+      <!--<%= render 'property_document_fields', f: builder %>-->
+      <fieldset>
+        <%= builder.label :name, 'Document Name'%>
+        <%= builder.text_field :name %>
+      </fieldset>
     <% end %>
 
     <%= link_to_add_fields 'Add Another Document', f, :property_documents %>

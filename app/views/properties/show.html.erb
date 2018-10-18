@@ -10,10 +10,7 @@
     </div>
 
     <div class="property_documents">
-      <%= render partial: 'properties/property_documents/document_details', collection: @property.property_documents %>
-      <% # @property.property_documents.each do |document| %>
-        <% #= render 'properties/property_documents/document_details', property_document: document %>
-      <% # end %>
+      <%= render partial: 'properties/property_documents/existing_document', collection: @property.property_documents %>
     </div>
   </div>
 </div>

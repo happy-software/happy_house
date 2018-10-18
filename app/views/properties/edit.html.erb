@@ -44,14 +44,9 @@
           </p>
         </div>
 
-        <%= f.fields_for :property_documents do |builder| %>
-          <!--<%= render 'property_document_fields', f: builder %>-->
-          <fieldset>
-            <%= builder.label :name, 'Document Name'%>
-            <%= builder.text_field :name %>
-          </fieldset>
-        <% end %>
-
+        <ul class="list-group">
+          <%= render partial: 'properties/property_documents/existing_document', collection: @property.property_documents %>
+        </ul>
         <%= link_to_add_fields 'Add Another Document', f, :property_documents %>
       </div>
 

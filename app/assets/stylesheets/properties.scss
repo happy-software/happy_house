@@ -1,3 +1,22 @@
 // Place all the styles related to the Properties controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.tile {
+  height: 200px;
+  width: 200px;
+  margin: 10px;
+  padding: 20px;
+  padding-top: 80px;
+  padding-left: 40px;
+  text-align: center;
+  background: #ff8df2;
+  float: left;
+  font-size: 11px;
+  text-align: left;
+}
+
+a {
+  font-size: 20px;
+  color: white;
+}

@@ -14,10 +14,11 @@
         <% else %>
 
           <% @user.properties.sort_by(&:created_at).each_with_index do |property, index| %>
-            <% property_name = property.nickname.empty? ? property.address['street_address'] : property.nickname %>
-            <% property_with_index = (index + 1).to_s + '. ' + (property_name) %>
-
-            <p><%= link_to property_with_index, property_path(property)%></p>
+            <div class="tile">
+              <h1>
+                <%= link_to property.display_name, property_path(property)%>
+              </h1>
+            </div>
           <% end %>
 
           <div>

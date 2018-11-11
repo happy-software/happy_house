@@ -9,13 +9,20 @@ module HappyHouse
         end
 
         def build_for_year(year)
-          expense_items_in_year(year).map do |expense_item|
+          expenses = expense_items_in_year(year)
+          total_cost = expenses.map { |e| e[:cost] }.sum
+          items = expenses.map do |expense_item|
             {
               name: expense_item.name,
               cost: expense_item.cost,
               date: expense_item.expense_date,
             }
           end
+
+          {
+              total_cost: total_cost,
+              expenses: items
+          }
         end
 
         private

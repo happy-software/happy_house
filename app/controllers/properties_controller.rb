@@ -36,6 +36,10 @@ class PropertiesController < ApplicationController
     @property = Property.find(params[:id])
   end
 
+  def create_expense_report
+    @property = Property.find(params[:id])
+  end
+
   private
 
     def properties_params

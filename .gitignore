@@ -31,3 +31,6 @@
 
 # Ignore rdb dump files
 dump.rdb
+
+# Ignore RubyMine files
+.idea

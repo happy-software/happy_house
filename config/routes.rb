@@ -18,9 +18,9 @@ Rails.application.routes.draw do
     resources :expense_items
   end
 
-  namespace :api do
-    namespace :v1 do
-      resources :properties
-    end
-  end
+  # namespace :api do
+  #   namespace :v1 do
+  #     resources :properties
+  #   end
+  # end
 end

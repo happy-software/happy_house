@@ -5,13 +5,17 @@
     <section class="year_picker">
       <h1>Create an Expense Report</h1>
 
-      <p>
-        Select a year to create a report:
-      </p>
+      <%= form_tag('', method: 'get') do |f| %>
+        <span>
+          <p>
+            Choose a year to create a report:
+          </p>
+          Property name is: <%= @property.display_name %>
+          <%#= f.select :expense_year, @property.property_interface.expense_years %>
 
-      <%= form_tag('/report', method: 'get') do %>
-
+        </span>
       <% end %>
+
     </section>
   </aside>
 </div>

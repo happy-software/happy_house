@@ -13,7 +13,7 @@ module HappyHouse
     end
 
     def expense_years
-      property.expense_items
+      property.expense_items.map { |e| e.expense_date.year }.uniq.sort
     end
   end
 end

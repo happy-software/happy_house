@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
-  get    '/properties/:id/expense_reports/', to: 'expense_reports#index'
+
+  # expense reports
+  get    '/properties/:id/expense_reports/',      to: 'expense_reports#index'
+  get    '/properties/:id/expense_reports/create',       to: 'expense_reports#create'
 
   resources :users,               except: [:index, :destroy]
   resources :account_activations, only: [:edit]

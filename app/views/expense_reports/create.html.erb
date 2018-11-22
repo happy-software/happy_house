@@ -1,0 +1,32 @@
+<% provide(:title, "Expense Reports | #{@year}") %>
+
+<div class="row">
+  <aside class="col-md-4">
+    <section class="year_picker">
+      <h1>Expense Report - <%= @year %></h1>
+
+      <h3>Total Cost: <%= @expense_report[:total_cost] %></h3>
+      <div>
+        <table class="table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Cost</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @expense_report[:expenses].each do |e| %>
+            <tr>
+              <td><%= e[:name] %></td>
+              <td><%= e[:date].strftime('%m/%d/%Y') %></td>
+              <td><%= e[:cost] %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      </div>
+    </section>
+  </aside>
+</div>

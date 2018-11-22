@@ -5,8 +5,7 @@ class ExpenseReportsController < ApplicationController
 
   def create
     @property = Property.find(params[:id])
-    @expense_report = @property.property_interface.build_expense_report(year: params[:expense_year])
-
-    # TODO: build create view
+    @year     = params[:expense_year]
+    @expense_report = @property.property_interface.build_expense_report(year: @year)
   end
 end

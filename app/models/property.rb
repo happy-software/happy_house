@@ -1,3 +1,5 @@
+require 'happy_house/property_interface'
+
 class Property < ApplicationRecord
 
   belongs_to :user
@@ -22,6 +24,10 @@ class Property < ApplicationRecord
 
   def display_name
     self.nickname.blank? ? self.address['street_address'] : self.nickname
+  end
+
+  def property_interface
+    @property_interface ||= HappyHouse::PropertyInterface.new(self)
   end
 
 end

@@ -1,0 +1,22 @@
+<% provide(:title, 'Expense Reports') %>
+
+<div class="row">
+  <aside class="col-md-4">
+    <section class="year_picker">
+      <h1>Create an Expense Report</h1>
+
+      <%= form_tag('expense_reports/create', method: 'get') do %>
+        <span>
+          <p>
+            Choose a year to create a report:
+          </p>
+
+          <% available_years = @property.property_interface.expense_years %>
+          <%= select_tag(:expense_year, options_for_select(available_years.map { |year| [year, year] })) %>
+          <%= submit_tag('Create Report', class: 'btn btn-primary') %>
+        </span>
+      <% end %>
+
+    </section>
+  </aside>
+</div>

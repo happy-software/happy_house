@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2018_11_10_041416) do
 
   create_table "expense_items", force: :cascade do |t|
     t.string "name"
-    t.decimal "cost"
+    t.float "cost"
     t.datetime "expense_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

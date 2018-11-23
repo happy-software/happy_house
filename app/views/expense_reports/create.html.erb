@@ -7,7 +7,7 @@
 
       <h3>Total Cost: <%= @expense_report[:total_cost] %></h3>
       <div>
-        <table class="table-striped table-hover">
+        <table class="table-striped table-hover table-bordered">
         <thead>
           <tr>
             <th>Name</th>
@@ -21,7 +21,7 @@
             <tr>
               <td><%= e[:name] %></td>
               <td><%= e[:date].strftime('%m/%d/%Y') %></td>
-              <td><%= e[:cost] %></td>
+              <td><%= number_to_currency(e[:cost]) %></td>
             </tr>
           <% end %>
         </tbody>

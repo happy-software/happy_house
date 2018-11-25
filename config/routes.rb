@@ -12,8 +12,8 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
 
   # expense reports
-  get    '/properties/:id/expense_reports/',      to: 'expense_reports#index'
-  get    '/properties/:id/expense_reports/create',       to: 'expense_reports#create'
+  get    '/properties/:id/expense_reports/',       to: 'expense_reports#index',  as: 'new_expense_report'
+  get    '/properties/:id/expense_reports/create', to: 'expense_reports#create', as: 'create_expense_report'
 
   resources :users,               except: [:index, :destroy]
   resources :account_activations, only: [:edit]

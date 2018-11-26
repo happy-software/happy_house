@@ -8,6 +8,7 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <p><%#= link_to 'Update Property', edit_property_path(@property) %></p>
+    <p><%= link_to 'Add an Expense', new_property_expense_item_path(@property) %></p>
     <p><%= link_to 'Expense Reports', new_expense_report_path(@property) %></p>
     <div class="property_details">
       <%#= render 'properties/property_details', property: @property %>

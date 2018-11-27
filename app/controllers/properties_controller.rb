@@ -33,7 +33,11 @@ class PropertiesController < ApplicationController
   end
 
   def show
-    @property = Property.find(params[:id])
+    begin
+      @property = current_user.properties.find(params[:id])
+    rescue ActiveRecord::RecordNotFound => e
+      redirect_to root_url unless @property
+    end
   end
 
   def create_expense_report

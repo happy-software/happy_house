@@ -1,4 +1,6 @@
 class ExpenseItemsController < ApplicationController
+  before_action :correct_user,   only: [:index, :new, :create]
+
   def index
     @expense_items ||= property.expense_items
   end
@@ -26,5 +28,9 @@ class ExpenseItemsController < ApplicationController
 
   def expense_item_params
     params.require(:expense_item).permit(:name, :cost, :expense_date, :property_id)
+  end
+
+  def correct_user
+    redirect_to root_url unless Property.find(params[:property_id]).user == current_user
   end
 end

@@ -1,4 +1,5 @@
 class PropertiesController < ApplicationController
+  before_action :correct_user, only: [:show]
   def new
     @property = current_user.properties.new
   end
@@ -33,11 +34,7 @@ class PropertiesController < ApplicationController
   end
 
   def show
-    begin
-      @property = current_user.properties.find(params[:id])
-    rescue ActiveRecord::RecordNotFound => e
-      redirect_to root_url unless @property
-    end
+    @property = current_user.properties.find(params[:id])
   end
 
   def create_expense_report
@@ -52,4 +49,8 @@ class PropertiesController < ApplicationController
                                        property_documents_attributes: [:property_document_type_id, :name, :document],
                                        address: [:street_address, :city, :state, :zip_code])
     end
+
+  def correct_user
+    redirect_to root_url unless Property.find(params[:id]).user == current_user
+  end
 end

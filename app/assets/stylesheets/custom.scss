@@ -3,17 +3,17 @@
 //
 ///* mixins, variables, etc. */
 //
-//$gray: #6c757d;
-//$gray-light: #eaeaea;
-//$gray-medium-light: #c3c3c3;
-//$gray-darker: #343a40;
+$gray: #6c757d;
+$gray-light: #eaeaea;
+$gray-medium-light: #c3c3c3;
+$gray-darker: #343a40;
 //
 //
-//@mixin box_sizing {
-//  -moz-box-sizing:    border-box;
-//  -webkit-box-sizing: border-box;
-//  box-sizing:         border-box;
-//}
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
 //
 ///* universal */
 //
@@ -82,44 +82,44 @@
 //  }
 //}
 //
-///* footer */
-//
-//footer {
-//  margin-top: 45px;
-//  padding-top: 5px;
-//  border-top: 1px solid $gray-medium-light;
-//  color: $gray-light;
-//
-//  a {
-//    color: $gray;
-//    &:hover {
-//      color: $gray-darker;
-//    }
-//  }
-//
-//  small {
-//    float: left;
-//  }
-//
-//  ul {
-//    float: right;
-//    list-style: none;
-//    li {
-//      float: left;
-//      margin-left: 15px;
-//    }
-//  }
-//}
+/* footer */
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid $gray-medium-light;
+  color: $gray-light;
+
+  a {
+    color: $gray;
+    &:hover {
+      color: $gray-darker;
+    }
+  }
+
+  small {
+    float: left;
+  }
+
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 15px;
+    }
+  }
+}
 //
 ///* miscellaneous */
 //
-//.debug_dump {
-//  clear: both;
-//  float: left;
-//  width: 100%;
-//  margin-top: 45px;
-//  @include box_sizing;
-//}
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
 //
 //
 ///* sidebar */

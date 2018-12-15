@@ -1,32 +1,31 @@
 <% provide(:title, @user.name) %>
 
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        Your Happy Homes
-      </h1>
+<h1>Your Happy Homes</h1>
 
-      <div>
-
-        <% if @properties.count.zero? %>
-          <h1><p><%= link_to 'Add your first property!', new_property_url, class: 'btn btn-primary' %></p></h1>
-        <% else %>
-
-          <% @user.properties.sort_by(&:created_at).each_with_index do |property, index| %>
-            <div class="tile">
-              <h1>
-                <%= link_to property.display_name, property_path(property)%>
-              </h1>
-            </div>
-          <% end %>
-
-          <div>
-            <%= link_to 'Add another property', new_property_url, class: 'btn btn-primary' %>
+<% if @properties.count.zero? %>
+  <h1><%= link_to 'Add your first property!', new_property_url, class: 'btn btn-primary' %></h1>
+<% else %>
+  <div class="row">
+    <% @user.properties.sort_by(&:created_at).each_with_index do |property, index| %>
+      <% icon_colors = ['Tomato', 'SlateBlue', 'SeaGreen', 'Salmon', 'PaleVioletRed',
+                        'Orange', 'Olive', 'MediumPurple', 'HotPink', 'Crimson'] %>
+      <div class="col-sm-12 col-md-3 mt-sm-5 mr-md-2 mt-md-0">
+        <div class="card border-primary" style="width: 18rem;">
+          <div class="mx-auto">
+            <span class="fas fa-home" style="font-size: 8rem; color: <%= icon_colors.sample %>;"></span>
           </div>
-        <% end %>
+          <div class="card-body text-center">
+            <h4 class="card-title"><%= property.display_name %></h4>
+            <h1>
+              <%= link_to 'Open', property_path(property), class: 'btn btn-primary' %>
+            </h1>
+          </div>
+        </div>
       </div>
+    <% end %>
+  </div>
 
-    </section>
-  </aside>
-</div>
+  <div class="mt-sm-2">
+    <%= link_to 'Add another property', new_property_url, class: 'btn btn-primary' %>
+  </div>
+<% end %>

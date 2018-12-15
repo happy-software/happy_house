@@ -8,7 +8,7 @@ class PropertiesController < ApplicationController
     @property = current_user.properties.new(properties_params)
     if @property.save
       flash[:success] = 'New Happy Home added!'
-      redirect_to current_user
+      redirect_to root_url
     else
       render 'new'
     end

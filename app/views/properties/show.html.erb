@@ -2,9 +2,6 @@
 
 <h1><%= @property.display_name %> - Dashboard</h1>
 
-<% icon_colors = ['Tomato', 'SlateBlue', 'SeaGreen', 'Salmon', 'PaleVioletRed',
-                  'Orange', 'Olive', 'MediumPurple', 'HotPink', 'Crimson'] %>
-
 <div class="row">
   <div class="col-md-4 col-sm-12">
     <div class="card mr-md-5" style="width: 18rem;">
@@ -14,19 +11,20 @@
 
     <div class="card-body">
       <h3 class="card-title text-center">Cost Tracking</h3>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <p class="card-text">Keep your expenses updated & organized here.</p>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">Cras justo odio</li>
-      <li class="list-group-item">Dapibus ac facilisis in</li>
-      <li class="list-group-item">Vestibulum at eros</li>
+      <li class="list-group-item"><%= link_to 'Expense Reports', new_expense_report_path(@property) %></li>
+      <li class="list-group-item"><%= link_to 'Add an Expense', new_property_expense_item_path(@property) %></li>
+      <li class="list-group-item disabled">All Expenses (coming soon...)</li>
     </ul>
     <div class="card-body">
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
+      <a href="#" data-toggle="modal" data-target="#exampleModalLong" class="btn btn-secondary">Learn More</a>
+      <%= render 'properties/cost_tracking/learn_more' %>
     </div>
   </div>
   </div>
+
   <div class="col-md-4 col-sm-12">
     <div class="card mr-md-5" style="width: 18rem;">
       <div class="mx-auto">

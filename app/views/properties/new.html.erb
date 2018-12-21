@@ -3,7 +3,7 @@
 <h1>Add Property</h1>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-sm-6 col-md-6">
     <% provide(:button_text, 'Add New Property') %>
     <%= form_for(@property) do |f| %>
       <%= render 'shared/error_messages', object: @property %>
@@ -15,23 +15,18 @@
         <%= a.label :street_address %>
         <%= a.text_field :street_address, id: :street_address, class: 'form-control' %>
 
-        <div class="col-md-6">
-          <%= a.label :city %>
-          <%= a.text_field :city, id: :city, class: 'form-control' %>
-        </div>
+        <%= a.label :city %>
+        <%= a.text_field :city, id: :city, class: 'form-control' %>
 
-        <div class="col-md-2">
-          <%= a.label :state %>
-          <%= a.text_field :state, id: :state, class: 'form-control' %>
-        </div>
+        <%= a.label :state %>
+        <%= a.text_field :state, id: :state, class: 'form-control' %>
 
-        <div class="col-md-4">
-          <%= a.label :zip_code %>
-          <%= a.text_field :zip_code, id: :zip_code, class: 'form-control' %>
-        </div>
+        <%= a.label :zip_code %>
+        <%= a.text_field :zip_code, id: :zip_code, class: 'form-control' %>
+
       <% end %>
 
-      <%= f.label :property_type, 'What kind of property is this?' %>
+      <%= f.label :property_type, 'Property Type:' %>
       <%= f.select :property_type, Property::PROPERTY_TYPES.map(&:to_s).map(&:titleize), include_blank: true, class: 'form-control'%>
 
       <%= f.submit yield(:button_text), class: 'btn btn-primary' %>

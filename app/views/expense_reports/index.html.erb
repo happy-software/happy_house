@@ -13,7 +13,8 @@
 
           <% available_years = @property.property_interface.expense_years %>
           <%= select_tag(:expense_year, options_for_select(available_years.map { |year| [year, year] })) %>
-          <%= submit_tag('Create Report', class: 'btn btn-primary') %>
+          <%= submit_tag('Create Report', class: 'btn btn-primary mt-sm-3') %>
+          <%= link_to 'Cancel', property_path(@property), class: 'btn btn-danger mt-sm-3' %>
         </span>
       <% end %>
 

@@ -1,16 +1,20 @@
 <% provide(:title, 'Add Property') %>
+<% provide(:button_text, 'Add New Property') %>
 
 <h1>Add Property</h1>
 
-<div class="row">
-  <div class="col-sm-6 col-md-6">
-    <% provide(:button_text, 'Add New Property') %>
-    <%= form_for(@property) do |f| %>
-      <%= render 'shared/error_messages', object: @property %>
+<%= form_for(@property) do |f| %>
+  <div class="row">
+    <div class="col-sm-6">
+        <%= render 'shared/error_messages', object: @property %>
 
-      <%= f.label :nickname, 'Nickname for this property' %>
-      <%= f.text_field :nickname, class: 'form-control' %>
+        <%= f.label :nickname, 'Nickname for this property' %>
+        <%= f.text_field :nickname, class: 'form-control' %>
+    </div>
+  </div>
 
+  <div class="row">
+    <div class="col-sm-6">
       <%= f.fields_for :address, OpenStruct.new(@property.address) do |a| %>
         <%= a.label :street_address %>
         <%= a.text_field :street_address, id: :street_address, class: 'form-control' %>
@@ -25,13 +29,22 @@
         <%= a.text_field :zip_code, id: :zip_code, class: 'form-control' %>
 
       <% end %>
-
-      <%= f.label :property_type, 'Property Type:' %>
-      <%= f.select :property_type, Property::PROPERTY_TYPES.map(&:to_s).map(&:titleize), include_blank: true, class: 'form-control'%>
-
-      <%= f.submit yield(:button_text), class: 'btn btn-primary' %>
-    <% end %>
-
-
+    </div>
   </div>
-</div>
+
+  <div class="row">
+    <div class="col-sm-6 mt-sm-2">
+      <%= f.label  :property_type, 'Property Type:' %>
+
+      <%= f.select :property_type,
+                   Property::PROPERTY_TYPES.map(&:to_s).map(&:titleize),
+                   {include_blank: true}, {class: 'custom-select mb-sm-3'} %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <%= f.submit yield(:button_text), class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

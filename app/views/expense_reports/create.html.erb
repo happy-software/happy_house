@@ -1,14 +1,14 @@
 <% provide(:title, "Expense Reports | #{@year}") %>
 
 <div class="row">
-  <aside class="col-md-4">
+  <aside class="col">
     <section class="year_picker">
       <h1>Expense Report - <%= @year %></h1>
 
       <h3>Total Cost: <%= @expense_report[:total_cost] %></h3>
       <div>
-        <table class="table-striped table-hover table-bordered">
-        <thead>
+        <table class="table table-striped table-hover table-bordered">
+        <thead class="thead-dark">
           <tr>
             <th>Name</th>
             <th>Date</th>

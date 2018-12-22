@@ -5,24 +5,24 @@
 <div class="row">
   <div class="col-md-4 col-sm-12">
     <div class="card mr-md-5" style="width: 18rem;">
-    <div class="mx-auto">
-      <span class="fas fa-money-bill-alt" style="font-size: 8rem; color: forestgreen;"></span>
-    </div>
+      <div class="mx-auto">
+        <span class="fas fa-money-bill-alt" style="font-size: 8rem; color: forestgreen;"></span>
+      </div>
 
-    <div class="card-body">
-      <h3 class="card-title text-center">Cost Tracking</h3>
-      <p class="card-text">Keep your expenses updated & organized here.</p>
+      <div class="card-body">
+        <h3 class="card-title text-center">Cost Tracking</h3>
+        <p class="card-text">Keep your expenses updated & organized here.</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><%= link_to 'Expense Reports', new_expense_report_path(@property) %></li>
+        <li class="list-group-item"><%= link_to 'Add an Expense', new_property_expense_item_path(@property) %></li>
+        <li class="list-group-item disabled">All Expenses (coming soon...)</li>
+      </ul>
+      <div class="card-body">
+        <a href="#" data-toggle="modal" data-target="#exampleModalLong" class="btn btn-secondary">Learn More</a>
+        <%= render 'properties/cost_tracking/learn_more' %>
+      </div>
     </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item"><%= link_to 'Expense Reports', new_expense_report_path(@property) %></li>
-      <li class="list-group-item"><%= link_to 'Add an Expense', new_property_expense_item_path(@property) %></li>
-      <li class="list-group-item disabled">All Expenses (coming soon...)</li>
-    </ul>
-    <div class="card-body">
-      <a href="#" data-toggle="modal" data-target="#exampleModalLong" class="btn btn-secondary">Learn More</a>
-      <%= render 'properties/cost_tracking/learn_more' %>
-    </div>
-  </div>
   </div>
 
   <div class="col-md-4 col-sm-12">
@@ -73,8 +73,6 @@
 <!--<div class="row">-->
   <!--<div class="col-md-6 col-md-offset-3">-->
     <!--<p><%#= link_to 'Update Property', edit_property_path(@property) %></p>-->
-    <!--<p><%= link_to 'Add an Expense', new_property_expense_item_path(@property) %></p>-->
-    <!--<p><%= link_to 'Expense Reports', new_expense_report_path(@property) %></p>-->
     <!--<div class="property_details">-->
       <!--<%#= render 'properties/property_details', property: @property %>-->
     <!--</div>-->

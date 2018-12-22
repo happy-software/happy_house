@@ -29,7 +29,7 @@
           </thead>
           <tbody>
             <% @property.property_documents.each_with_index do |document_record, index| %>
-              <% next unless @document_record.document.attached? %>
+              <% next unless document_record.document.attached? %>
               <tr>
                 <th scope="row"><%= index + 1 %></th>
                 <td><a href="<%= url_for document_record.document %>"><%= document_record.name %></a></td>

@@ -4,6 +4,7 @@
 
 <div class="row">
   <div class="col-md-4 col-sm-12">
+    <!-- Cost Tracking -->
     <div class="card mr-md-5" style="width: 18rem;">
       <div class="mx-auto">
         <span class="fas fa-money-bill-alt" style="font-size: 8rem; color: forestgreen;"></span>
@@ -26,6 +27,7 @@
   </div>
 
   <div class="col-md-4 col-sm-12">
+    <!-- Documents -->
     <div class="card mr-md-5" style="width: 18rem;">
       <div class="mx-auto">
         <span class="fas fa-file-invoice pt-sm-1" style="font-size: 8rem; color: Salmon;"></span>
@@ -33,16 +35,16 @@
 
       <div class="card-body">
         <h3 class="card-title text-center">Documents</h3>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <p class="card-text">Find all your documents in one place.</p>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">Cras justo odio</li>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
-        <li class="list-group-item">Vestibulum at eros</li>
+        <li class="list-group-item"><a href="#" data-toggle="modal" data-target=".bd-example-modal-lg">Search Documents</a></li>
+        <li class="list-group-item disabled">Add a Document (coming soon...)</li>
       </ul>
       <div class="card-body">
-        <a href="#" class="card-link">Card link</a>
-        <a href="#" class="card-link">Another link</a>
+        <a href="#" data-toggle="modal" data-target="#documentLearnMore" class="btn btn-secondary">Learn More</a>
+        <%= render 'properties/property_documents/learn_more' %>
+        <%= render 'properties/property_documents/search_listing' %>
       </div>
     </div>
   </div>

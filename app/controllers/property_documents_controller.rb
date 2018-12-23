@@ -1,0 +1,2 @@
+class PropertyDocumentsController < ApplicationController
+end

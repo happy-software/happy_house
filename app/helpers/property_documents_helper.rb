@@ -1,2 +1,0 @@
-module PropertyDocumentsHelper
-end

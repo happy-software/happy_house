@@ -1,5 +1,5 @@
 class PropertiesController < ApplicationController
-  before_action :correct_user, only: [:show]
+  before_action :correct_user, only: [:show, :upload_files]
   def new
     @property = current_user.properties.new
   end
@@ -41,13 +41,27 @@ class PropertiesController < ApplicationController
     @property = Property.find(params[:id])
   end
 
+  def upload_files
+    if current_property.update_attributes(properties_params)
+      flash[:info] = 'Successfully uploaded your documents!'
+    else
+      flash[:danger] = 'Error: Could not upload your documents!'
+    end
+
+    redirect_to property_path(current_property)
+  end
+
   private
 
+    def current_property
+      Property.find(params[:id])
+    end
+
     def properties_params
-      params.require(:property).permit(:nickname,
+      params.require(:property).permit(:nickname, :id,
                                        :property_type,
-                                       property_documents_attributes: [:property_document_type_id, :name, :document],
-                                       address: [:street_address, :city, :state, :zip_code])
+                                       address: [:street_address, :city, :state, :zip_code],
+                                       documents: [])
     end
 
   def correct_user

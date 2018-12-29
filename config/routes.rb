@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   get    '/properties/:id/expense_reports/',       to: 'expense_reports#index',  as: 'new_expense_report'
   get    '/properties/:id/expense_reports/create', to: 'expense_reports#create', as: 'create_expense_report'
 
+  # property documents
+  patch  'properties/:id/upload_files',            to: 'properties#upload_files', as: 'upload_property_documents'
+
   resources :users,               except: [:index, :destroy]
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]

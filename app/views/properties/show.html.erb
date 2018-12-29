@@ -39,12 +39,13 @@
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item"><a href="#" data-toggle="modal" data-target=".bd-example-modal-lg">Search Documents</a></li>
-        <li class="list-group-item disabled">Add a Document (coming soon...)</li>
+        <li class="list-group-item"><a href="#" data-toggle="modal" data-target="#uploadDocumentModal">Add a Document</a></li>
       </ul>
       <div class="card-body">
         <a href="#" data-toggle="modal" data-target="#documentLearnMore" class="btn btn-secondary">Learn More</a>
         <%= render 'properties/property_documents/learn_more' %>
         <%= render 'properties/property_documents/search_listing' %>
+        <%= render 'properties/property_documents/upload_document' %>
       </div>
     </div>
   </div>

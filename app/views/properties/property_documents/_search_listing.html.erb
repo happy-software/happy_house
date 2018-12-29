@@ -28,15 +28,18 @@
             </tr>
           </thead>
           <tbody>
-            <% @property.property_documents.each_with_index do |document_record, index| %>
-              <% next unless document_record.document.attached? %>
-              <tr>
-                <th scope="row"><%= index + 1 %></th>
-                <td><a href="<%= url_for document_record.document %>"><%= document_record.name %></a></td>
-                <td>-</td>
-                <td><%= document_record.created_at %></td>
-              </tr>
+            <% if @property.documents.attached? %>
+              <% @property.documents.map(&:blob).each_with_index do |document_record, index| %>
+                <tr>
+                  <th scope="row"><%= index + 1 %></th>
+                  <td><a href="<%= url_for document_record %>"><%= document_record.filename %></a></td>
+                  <td><%= number_to_human_size document_record.byte_size %></td>
+                  <td><%= document_record.created_at %></td>
+                </tr>
+              <% end %>
 
+            <% else %>
+              <tr>You have no documents uploaded for <strong><%= @property.display_name %></strong></tr>
             <% end %>
           </tbody>
         </table>

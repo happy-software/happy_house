@@ -1,6 +1,6 @@
 
 
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="uploadDocumentModalLabel" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" id="uploadDocumentModal" tabindex="-1" role="dialog" aria-labelledby="uploadDocumentModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -11,12 +11,16 @@
       </div>
 
       <div class="modal-body">
+        <%= form_for(@property, url: { action: :upload_files}) do |form| %>
+        <% #= form_tag upload_property_documents_path(@property) do |form| %>
+          <div class="custom-file mb-sm-2">
+            <% #= file_field_tag :documents, multiple: true, class: 'custom-file-input' %>
+            <%= form.file_field :documents, multiple: true, class: 'custom-file-input' %>
+            <label class="custom-file-label" for="property_documents">Choose file...</label>
+          </div>
 
-        <div class="custom-file">
-          <input type="file" class="custom-file-input" id="validatedCustomFile" required>
-          <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
-        </div>
-
+          <%= submit_tag 'Upload File(s)' %>
+        <% end %>
       </div>
     </div>
   </div>

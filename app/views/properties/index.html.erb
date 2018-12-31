@@ -9,7 +9,7 @@
     <% @user.properties.sort_by(&:created_at).each_with_index do |property, index| %>
       <% icon_colors = ['Tomato', 'SlateBlue', 'SeaGreen', 'Salmon', 'PaleVioletRed',
                         'Orange', 'Olive', 'MediumPurple', 'HotPink', 'Crimson'] %>
-      <div class="col-sm-12 col-md-3 mt-sm-5 mr-md-2 mt-md-0">
+      <div class="col-sm-12 col-md-3 mt-sm-5 mr-md-2 mt-md-2">
         <div class="card border-primary" style="width: 18rem;">
           <div class="mx-auto">
             <span class="fas fa-home" style="font-size: 8rem; color: <%= icon_colors.at(index % icon_colors.count) %>;"></span>

@@ -23,7 +23,11 @@
         <%= a.text_field :city, id: :city, class: 'form-control' %>
 
         <%= a.label :state %>
-        <%= a.text_field :state, id: :state, class: 'form-control' %>
+        <% states = [ "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS",
+                      "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY",
+                      "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV",
+                      "WI", "WY"] %>
+        <%= a.select :state, states, {include_blank: false}, {class: 'custom-select mb-sm-3'} %>
 
         <%= a.label :zip_code %>
         <%= a.text_field :zip_code, id: :zip_code, class: 'form-control' %>

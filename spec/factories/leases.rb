@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :lease do
-    tenants nil
-    start_date "2018-09-08 21:42:34"
-    end_date "2018-09-08 21:42:34"
-    property nil
+    start_date { "2019-06-15 16:51:51" }
+    end_date { "2019-06-15 16:51:51" }
+    details { "" }
+    property_document_id { 1 }
   end
 end

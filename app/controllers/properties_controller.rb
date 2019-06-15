@@ -1,4 +1,5 @@
 class PropertiesController < ApplicationController
+  before_action :correct_user, only: [:show, :upload_files]
   def new
     @property = current_user.properties.new
   end
@@ -7,7 +8,7 @@ class PropertiesController < ApplicationController
     @property = current_user.properties.new(properties_params)
     if @property.save
       flash[:success] = 'New Happy Home added!'
-      redirect_to current_user
+      redirect_to root_url
     else
       render 'new'
     end
@@ -33,15 +34,37 @@ class PropertiesController < ApplicationController
   end
 
   def show
+    @property = current_user.properties.find(params[:id])
+  end
+
+  def create_expense_report
     @property = Property.find(params[:id])
+  end
+
+  def upload_files
+    if current_property.update_attributes(properties_params)
+      flash[:info] = 'Successfully uploaded your documents!'
+    else
+      flash[:danger] = 'Error: Could not upload your documents!'
+    end
+
+    redirect_to property_path(current_property)
   end
 
   private
 
-    def properties_params
-      params.require(:property).permit(:nickname,
-                                       :property_type,
-                                       property_documents_attributes: [:property_document_type_id, :name, :document],
-                                       address: [:street_address, :city, :state, :zip_code])
+    def current_property
+      Property.find(params[:id])
     end
+
+    def properties_params
+      params.require(:property).permit(:nickname, :id,
+                                       :property_type,
+                                       address: [:street_address, :city, :state, :zip_code],
+                                       documents: [])
+    end
+
+  def correct_user
+    redirect_to root_url unless Property.find(params[:id]).user == current_user
+  end
 end

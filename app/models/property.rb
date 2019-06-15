@@ -1,8 +1,15 @@
+require 'happy_house/property_interface'
+
 class Property < ApplicationRecord
+
   belongs_to :user
   has_many :property_documents
   has_many :leases, through: :property_documents
   has_many :tenants, through: :leases
+  has_many :utility_accounts
+  has_many :expense_items
+
+  has_many_attached :documents
 
   accepts_nested_attributes_for :property_documents, allow_destroy: true
 
@@ -19,6 +26,10 @@ class Property < ApplicationRecord
 
   def display_name
     self.nickname.blank? ? self.address['street_address'] : self.nickname
+  end
+
+  def property_interface
+    @property_interface ||= HappyHouse::PropertyInterface.new(self)
   end
 
 end

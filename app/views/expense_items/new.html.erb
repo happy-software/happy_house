@@ -1,0 +1,23 @@
+<% provide(:title, 'Add Expense Item') %>
+
+<h1>Add An Expense Item</h1>
+
+<div class="row">
+  <div class="col-sm-6">
+    <%= render 'shared/error_messages', object: @expense_item %>
+
+    <%= form_for(@expense_item, url: property_expense_items_path) do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :expense_date %>
+      <%= f.date_field :expense_date, class: 'form-control' %>
+
+      <%= f.label :cost %>
+      <%= f.number_field :cost, class: 'form-control'%>
+
+      <%= f.submit 'Add Expense', class: 'btn btn-primary mt-sm-3' %>
+      <%= link_to 'Cancel', property_path(@property), class: 'btn btn-danger mt-sm-3' %>
+    <% end %>
+  </div>
+</div>

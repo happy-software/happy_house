@@ -1,10 +1,12 @@
 class LeasesController < ApplicationController
+  # before_action :correct_user,   only: [:index, :new, :create, :show, :edit, :update, :destroy]
   before_action :set_lease, only: [:show, :edit, :update, :destroy]
 
   # GET /leases
   # GET /leases.json
   def index
-    @leases = Lease.all
+    properties = current_user.properties
+    @leases = properties.flat_map(&:leases)
   end
 
   # GET /leases/1
@@ -71,4 +73,10 @@ class LeasesController < ApplicationController
     def lease_params
       params.require(:lease).permit(:start_date, :end_date, :details, :property_document_id)
     end
+
+    # def correct_user
+    #   leases = @leases
+    #
+    #   redirect_to root_url unless current_user&.properties.include?()
+    # end
 end

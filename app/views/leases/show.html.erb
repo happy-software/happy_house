@@ -2,12 +2,12 @@
 
 <p>
   <strong>Start date:</strong>
-  <%= @lease.start_date.to_s(:long) %>
+  <%= @lease.start_date&.to_s(:long) %>
 </p>
 
 <p>
   <strong>End date:</strong>
-  <%= @lease.end_date.to_s(:long) %>
+  <%= @lease.end_date&.to_s(:long) %>
 </p>
 
 <p>

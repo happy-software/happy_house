@@ -5,7 +5,7 @@ class Lease < ApplicationRecord
 
   def expired?(date=nil)
     date = date || DateTime.now
-
+    return unless self.end_date
     date > self.end_date
   end
 end

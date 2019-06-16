@@ -2,9 +2,11 @@ require 'rails_helper'
 
 RSpec.describe "leases/edit", type: :view do
   before(:each) do
+    @property = Property.create
+    @property_document = PropertyDocument.create(property: @property, property_document_type: PropertyDocumentType.create)
     @lease = assign(:lease, Lease.create!(
       :details => "",
-      :property_document_id => 1
+      :property_document_id => @property_document&.id
     ))
   end
 

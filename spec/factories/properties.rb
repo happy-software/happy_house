@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :property do
-    address ""
-    type ""
+    address {""}
+    type {""}
   end
 end

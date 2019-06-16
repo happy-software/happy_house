@@ -5,8 +5,8 @@ class LeasesController < ApplicationController
   # GET /leases
   # GET /leases.json
   def index
-    properties = current_user.properties
-    @leases = properties.flat_map(&:leases)
+    properties = current_user&.properties
+    @leases = properties&.flat_map(&:leases)
   end
 
   # GET /leases/1

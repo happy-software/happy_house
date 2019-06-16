@@ -2,12 +2,12 @@
 
 <p>
   <strong>Start date:</strong>
-  <%= @lease.start_date %>
+  <%= @lease.start_date.to_s(:long) %>
 </p>
 
 <p>
   <strong>End date:</strong>
-  <%= @lease.end_date %>
+  <%= @lease.end_date.to_s(:long) %>
 </p>
 
 <p>
@@ -17,7 +17,16 @@
 
 <p>
   <strong>Property document:</strong>
-  <%= @lease.property_document_id %>
+  <%= link_to @lease.property_document&.document&.filename, @lease.property_document&.document %>
+</p>
+
+<p>
+  <strong>Expiration Status:</strong>
+  <% if @lease.expired? %>
+    Expired
+  <% else %>
+    Current
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_lease_path(@lease) %> |

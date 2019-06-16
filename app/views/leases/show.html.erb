@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @lease.start_date&.to_s(:long) %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @lease.end_date&.to_s(:long) %>
+</p>
+
+<p>
+  <strong>Details:</strong>
+  <%= @lease.details %>
+</p>
+
+<p>
+  <strong>Property document:</strong>
+  <%= link_to @lease.property_document&.document&.filename, @lease.property_document&.document %>
+</p>
+
+<p>
+  <strong>Expiration Status:</strong>
+  <% if @lease.expired? %>
+    Expired
+  <% else %>
+    Current
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_lease_path(@lease) %> |
+<%= link_to 'Back', leases_path %>

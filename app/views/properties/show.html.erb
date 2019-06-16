@@ -51,6 +51,7 @@
   </div>
 
   <div class="col-md-4 col-sm-12">
+    <!-- Reminders -->
     <div class="card mr-md-5" style="width: 18rem;">
     <div class="mx-auto">
       <span class="fas fa-clock" style="font-size: 8rem; color: MediumPurple;"></span>
@@ -58,35 +59,18 @@
 
     <div class="card-body">
       <h3 class="card-title text-center">Reminders</h3>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <p class="card-text">Set Up Lease Expiration reminders.</p>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">Cras justo odio</li>
-      <li class="list-group-item">Dapibus ac facilisis in</li>
-      <li class="list-group-item">Vestibulum at eros</li>
+      <li class="list-group-item"><%= link_to 'Leases', leases_path %></li>
+      <!--<li class="list-group-item">Dapibus ac facilisis in</li>-->
+      <!--<li class="list-group-item">Vestibulum at eros</li>-->
     </ul>
-    <div class="card-body">
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
-    </div>
+    <!--<div class="card-body">-->
+      <!--<a href="#" class="card-link">Card link</a>-->
+      <!--<a href="#" class="card-link">Another link</a>-->
+    <!--</div>-->
   </div>
   </div>
 </div>
 
-<!--<div class="row">-->
-  <!--<div class="col-md-6 col-md-offset-3">-->
-    <!--<p><%#= link_to 'Update Property', edit_property_path(@property) %></p>-->
-    <!--<div class="property_details">-->
-      <!--<%#= render 'properties/property_details', property: @property %>-->
-    <!--</div>-->
-
-    <!--<div class="property_documents">-->
-
-      <!--&lt;!&ndash;<div class="alert alert-info">&ndash;&gt;-->
-        <!--&lt;!&ndash;<h2><%#= @property.display_name %> Documents</h2>&ndash;&gt;-->
-      <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-      <!--<%#= render partial: 'properties/property_documents/existing_document', collection: @property.property_documents %>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->

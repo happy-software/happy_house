@@ -9,4 +9,15 @@ class Lease < ApplicationRecord
     return unless self.end_date
     date > self.end_date
   end
+
+  def expiring_soon?
+    !expired? && expired?(Date.today + 3.months)
+  end
+
+  def expiration_status
+    return :expired if expired?
+    return :expiring_soon if expiring_soon?
+
+    :current
+  end
 end

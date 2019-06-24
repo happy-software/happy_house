@@ -21,6 +21,8 @@
         <td>
           <% if lease.expired?  %>
             <span class="text-danger">Expired</span>
+          <% elsif lease.expiring_soon? %>
+            <span class="text-warning">Expiring Soon!</span>
           <% else %>
             <span class="text-success">Current</span>
           <% end %>

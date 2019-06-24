@@ -22,11 +22,7 @@
 
 <p>
   <strong>Expiration Status:</strong>
-  <% if @lease.expired? %>
-    Expired
-  <% else %>
-    Current
-  <% end %>
+  <%= @lease.expiration_status&.to_s&.titleize %>
 </p>
 
 <%= link_to 'Edit', edit_lease_path(@lease) %> |

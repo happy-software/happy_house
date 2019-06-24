@@ -71,7 +71,12 @@ class LeasesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lease_params
-      params.require(:lease).permit(:start_date, :end_date, :details, :property_document_id)
+      params.require(:lease).permit(:start_date,
+                                    :end_date,
+                                    :amount,
+                                    :lease_frequency_id,
+                                    :details,
+                                    :property_document_id,)
     end
 
     # def correct_user

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_15_215151) do
+ActiveRecord::Schema.define(version: 2019_06_23_212345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -47,6 +47,12 @@ ActiveRecord::Schema.define(version: 2019_06_15_215151) do
     t.index ["property_id"], name: "index_expense_items_on_property_id"
   end
 
+  create_table "lease_frequencies", force: :cascade do |t|
+    t.string "frequency"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "leases", force: :cascade do |t|
     t.datetime "start_date"
     t.datetime "end_date"
@@ -54,6 +60,9 @@ ActiveRecord::Schema.define(version: 2019_06_15_215151) do
     t.bigint "property_document_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "amount"
+    t.bigint "lease_frequency_id"
+    t.index ["lease_frequency_id"], name: "index_leases_on_lease_frequency_id"
     t.index ["property_document_id"], name: "index_leases_on_property_document_id"
   end
 

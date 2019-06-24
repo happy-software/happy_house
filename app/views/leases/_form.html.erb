@@ -22,8 +22,9 @@
   </div>
 
   <div class="field">
-    <%= form.label :details %>
-    <%= form.text_field :details %>
+    <%= form.label :amount %>
+    <%= form.number_field :amount %>
+    <%= form.collection_select :frequency, LeaseFrequency.order(:frequency), :id, :frequency, include_blank: true %>
   </div>
 
   <div class="field">

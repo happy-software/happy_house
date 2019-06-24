@@ -19,3 +19,13 @@
 ].each do |document_type|
   PropertyDocumentType.where(name: document_type).first_or_create
 end
+
+
+# Lease Frequencies
+[
+    'Monthly',
+    'Daily',
+    'Yearly',
+].each do |frequency|
+  LeaseFrequency.where(frequency: frequency).first_or_create
+end

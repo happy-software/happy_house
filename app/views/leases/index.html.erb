@@ -13,7 +13,7 @@
   </thead>
   <tbody>
   <% if @leases&.count&.positive? %>
-    <% @leases.each do |lease| %>
+    <% @leases.sort_by(&:start_date).each do |lease| %>
       <tr>
         <td><%= link_to(lease.property_document&.name, lease) %></td>
         <td><%= lease.start_date&.to_s(:long) %></td>

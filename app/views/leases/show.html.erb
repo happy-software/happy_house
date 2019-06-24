@@ -11,12 +11,12 @@
 </p>
 
 <p>
-  <strong>Details:</strong>
-  <%= @lease.details %>
+  <strong>Amount:</strong>
+  $<%= @lease.amount.to_f.round(2) %> <%= @lease&.lease_frequency&.frequency %>
 </p>
 
 <p>
-  <strong>Property document:</strong>
+  <strong>Attached document:</strong>
   <%= link_to @lease.property_document&.document&.filename, @lease.property_document&.document %>
 </p>
 

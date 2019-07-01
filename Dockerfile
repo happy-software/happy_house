@@ -1,5 +1,5 @@
 # Use an official Ruby runtime as a parent image
-FROM ruby:2.5
+FROM ruby:2.5.1
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y libpq-dev nodejs jq

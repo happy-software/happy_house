@@ -9,8 +9,13 @@ manage your home.
 Once the repo is cloned:
 
 ```bash
-docker-compose up &
-docker-compose run website rails db:create
-docker-compose run website rails db:migrate
-docker-compose run website rails db:seed
+# To start the application
+docker-compose up
+```
+
+At first, you'll need to create a database and seed it. You can use
+docker-compose to accomplish this.
+
+```bash
+docker-compose run --rm website rails db:create db:migrate db:seed
 ```

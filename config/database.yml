@@ -13,7 +13,6 @@ development:
 
 test:
   <<: *default
-  host: 
   database: happy_house_test
   username: postgres
   password:

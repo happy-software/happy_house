@@ -34,3 +34,6 @@ dump.rdb
 
 # Ignore RubyMine files
 .idea
+
+# Ignore dotenv files
+.env*

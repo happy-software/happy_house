@@ -42,13 +42,16 @@ class PropertiesController < ApplicationController
   end
 
   def upload_files
-    if current_property.update_attributes(properties_params)
+    if current_property.update_attributes(properties_params) && create_property_documents!
       flash[:info] = 'Successfully uploaded your documents!'
+      redirect_to property_path(current_property)
     else
       flash[:danger] = 'Error: Could not upload your documents!'
-    end
 
-    redirect_to property_path(current_property)
+      # This should rescue and use the proper error status
+      # Settings this to 422, since the documents were probably unprocessable
+      redirect_back fallback_location: property_path(current_property), status: :unprocessable_entity
+    end
   end
 
   private
@@ -66,5 +69,11 @@ class PropertiesController < ApplicationController
 
   def correct_user
     redirect_to root_url unless Property.find(params[:id]).user == current_user
+  end
+
+  def create_property_documents!
+    properties_params['documents'].each do |document|
+      PropertyDocument.from_upload(current_property.id, document).save!
+    end
   end
 end

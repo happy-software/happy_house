@@ -15,7 +15,7 @@
         <% #= form_tag upload_property_documents_path(@property) do |form| %>
           <div class="custom-file mb-sm-2">
             <% #= file_field_tag :documents, multiple: true, class: 'custom-file-input' %>
-            <%= form.file_field :documents, multiple: true, class: 'custom-file-input' %>
+            <%= form.file_field :documents, multiple: true, class: 'custom-file-input', required: true %>
             <label class="custom-file-label" for="property_documents">Choose file...</label>
           </div>
 

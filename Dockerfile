@@ -1,5 +1,5 @@
 # Use an official Ruby runtime as a parent image
-FROM ruby:2.5
+FROM ruby:2.5.1
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y libpq-dev nodejs jq
@@ -15,7 +15,9 @@ WORKDIR /app
 RUN bundle install --binstubs
 
 # Make port 3000 available to the world outside this container
-EXPOSE 3000
+ENV PORT 3000
+EXPOSE $PORT
+ENTRYPOINT ["bin/entrypoint.sh"]
 
 LABEL maintainer="Hebron George <hebrontgeorge@gmail.com>"
 # Run server when the container launches

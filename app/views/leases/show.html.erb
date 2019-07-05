@@ -25,5 +25,27 @@
   <%= @lease.expiration_status&.to_s&.titleize %>
 </p>
 
+<h2>Tenants</h2>
+
+<table class="table table-striped table-hover table-bordered">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if @lease.tenants.count.positive? %>
+      <% @lease.tenants.each do |tenant| %>
+        <td><%= tenant.name %></td>
+        <td><%= tenant.email %></td>
+        <td><%= tenant.phone_number %></td>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
 <%= link_to 'Edit', edit_lease_path(@lease) %> |
 <%= link_to 'Back', leases_path %>

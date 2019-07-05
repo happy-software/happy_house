@@ -39,9 +39,11 @@
   <tbody>
     <% if @lease.tenants.count.positive? %>
       <% @lease.tenants.each do |tenant| %>
-        <td><%= tenant.name %></td>
-        <td><%= tenant.email %></td>
-        <td><%= tenant.phone_number %></td>
+        <tr>
+          <td><%= tenant.name %></td>
+          <td><%= tenant.email %></td>
+          <td><%= tenant.phone_number %></td>
+        </tr>
       <% end %>
     <% end %>
   </tbody>

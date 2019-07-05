@@ -32,10 +32,6 @@
     <%= form.number_field :property_document_id %>
   </div>
 
-  <%= form.fields_for :tenants do |builder| %>
-    <%= render 'tenant_fields', :f => builder %>
-  <% end %>
-
   <div class="actions">
     <%= form.submit %>
   </div>

@@ -1,5 +1,5 @@
 class Lease < ApplicationRecord
-  has_and_belongs_to_many :lease_tenants
+  has_many :lease_tenants
   has_many :tenants, through: :lease_tenants
   accepts_nested_attributes_for :lease_tenants
 

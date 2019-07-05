@@ -1,5 +1,6 @@
 class Tenant < ApplicationRecord
-  has_and_belongs_to_many :leases
+  has_many :lease_tenants
+  has_many :leases, through: :lease_tenants
   has_many :property_documents, through: :leases
 
   def current_leases

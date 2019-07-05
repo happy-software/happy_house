@@ -1,5 +1,8 @@
 class Lease < ApplicationRecord
-  has_and_belongs_to_many :tenants
+  has_many :lease_tenants
+  has_many :tenants, through: :lease_tenants
+  accepts_nested_attributes_for :lease_tenants
+
   belongs_to :property_document
   has_one :property, through: :property_document
   belongs_to :lease_frequency

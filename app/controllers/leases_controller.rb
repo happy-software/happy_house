@@ -1,17 +1,11 @@
 class LeasesController < ApplicationController
-  # before_action :correct_user,   only: [:index, :new, :create, :show, :edit, :update, :destroy]
-  before_action :set_property
-  before_action :set_lease, only: [:show, :edit, :update, :destroy]
+  before_action :set_property, only: [:index, :new, :create]
+  before_action :set_property_and_lease, only: [:show, :edit, :update, :destroy]
 
   # GET /properties/:property_id/leases
   # GET /properties/:property_id/leases.json
   def index
-    @leases = @property.leases.with_eager_loaded_contract
-  end
-
-  # GET /properties/:property_id/leases/1
-  # GET /properties/:property_id/leases/1.json
-  def show
+    @leases = @property.leases
   end
 
   # GET /properties/:property_id/leases/new
@@ -19,12 +13,8 @@ class LeasesController < ApplicationController
     @lease = Lease.new
   end
 
-  # GET /properties/:property_id/leases/1/edit
-  def edit
-  end
-
-  # POST /leases
-  # POST /leases.json
+  # POST /properties/:property_id/leases
+  # POST /properties/:property_id/leases.json
   def create
     @lease = @property.leases.new(lease_params)
 
@@ -37,6 +27,15 @@ class LeasesController < ApplicationController
         format.json { render json: @lease.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # GET /properties/:property_id/leases/1
+  # GET /properties/:property_id/leases/1.json
+  def show
+  end
+
+  # GET /properties/:property_id/leases/1/edit
+  def edit
   end
 
   # PATCH/PUT /properties/:property_id/leases/1
@@ -65,8 +64,10 @@ class LeasesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_lease
-      @lease = Lease.find(params[:id])
+    def set_property_and_lease
+      # Use a single query to load everything
+      @lease = Lease.eager_load(:property).find(params[:id])
+      @property = @lease.property
     end
 
     def set_property

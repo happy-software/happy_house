@@ -17,7 +17,9 @@
 
 <p>
   <strong>Attached document:</strong>
-  <%= link_to @lease.property_document&.document&.filename, @lease.property_document&.document %>
+  <% if @lease.contract.attached? %>
+    <%= link_to @lease.contract.blob.filename, url_for(@lease.contract) %>
+  <% end %>
 </p>
 
 <p>
@@ -49,5 +51,5 @@
   </tbody>
 </table>
 
-<%= link_to 'Edit', edit_lease_path(@lease) %> |
-<%= link_to 'Back', leases_path %>
+<%= link_to 'Edit', edit_property_lease_path(@property, @lease) %> |
+<%= link_to 'Back', property_leases_path %>

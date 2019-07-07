@@ -15,9 +15,6 @@ class Lease < ApplicationRecord
   # https://semaphoreci.com/blog/2017/08/09/faster-rails-eliminating-n-plus-one-queries.html
   scope :with_eager_loaded_contract, -> { eager_load(contract_attachment: :blob) }
 
-  # Ensure that a lease has a property, if not, this will not return the lease
-  scope :with_property, -> { eager_load(:property) }
-
   def expired?(date=nil)
     date = date || DateTime.now
     return unless self.end_date

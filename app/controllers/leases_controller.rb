@@ -1,6 +1,6 @@
 class LeasesController < ApplicationController
-  before_action :set_property, only: [:index, :new, :create]
-  before_action :set_property_and_lease, only: [:show, :edit, :update, :destroy]
+  before_action :set_property
+  before_action :set_lease, only: [:show, :edit, :update, :destroy]
 
   # GET /properties/:property_id/leases
   # GET /properties/:property_id/leases.json
@@ -64,9 +64,8 @@ class LeasesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_property_and_lease
-      @lease = Lease.with_property.find(params[:id])
-      @property = @lease.property
+    def set_lease
+      @lease = @property.leases.find(params[:id])
     end
 
     def set_property

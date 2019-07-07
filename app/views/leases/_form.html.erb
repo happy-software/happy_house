@@ -1,4 +1,4 @@
-<%= form_with(model: lease, local: true) do |form| %>
+<%= form_with(model: @property, local: true) do |form| %>
   <% if lease.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(lease.errors.count, "error") %> prohibited this lease from being saved:</h2>
@@ -28,8 +28,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :property_document_id %>
-    <%= form.number_field :property_document_id %>
+    <%= form.label :contract %>
+    <%= form.file_field :contract %>
   </div>
 
   <div class="actions">

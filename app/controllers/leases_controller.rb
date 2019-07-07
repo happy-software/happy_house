@@ -74,9 +74,7 @@ class LeasesController < ApplicationController
       params.require(:lease).permit(:start_date,
                                     :end_date,
                                     :amount,
-                                    :lease_frequency_id,
-                                    :details,
-                                    :property_document_id,)
+                                    :contract)
     end
 
     # def correct_user

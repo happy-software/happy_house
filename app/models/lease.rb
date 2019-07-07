@@ -1,11 +1,15 @@
 class Lease < ApplicationRecord
+  belongs_to :property
+
+  has_one_attached :contract
   has_many :lease_tenants
   has_many :tenants, through: :lease_tenants
+
   accepts_nested_attributes_for :lease_tenants
 
-  belongs_to :property_document
-  has_one :property, through: :property_document
-  belongs_to :lease_frequency
+  # belongs_to :property_document
+  # has_one :property, through: :property_document
+  # belongs_to :lease_frequency
 
   def expired?(date=nil)
     date = date || DateTime.now

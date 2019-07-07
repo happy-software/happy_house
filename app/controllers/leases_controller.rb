@@ -5,7 +5,7 @@ class LeasesController < ApplicationController
   # GET /properties/:property_id/leases
   # GET /properties/:property_id/leases.json
   def index
-    @leases = @property.leases
+    @leases = @property.leases.with_eager_loaded_contract
   end
 
   # GET /properties/:property_id/leases/new

@@ -8,10 +8,15 @@ class Lease < ApplicationRecord
 
   accepts_nested_attributes_for :lease_tenants
 
+  # Eager loaded queries ensure that the relationships are established
+  #
   # Ensure that we are able to load contracts that have an attached contract
   # in a single query, as opposed to n+1 queries
   # https://semaphoreci.com/blog/2017/08/09/faster-rails-eliminating-n-plus-one-queries.html
   scope :with_eager_loaded_contract, -> { eager_load(contract_attachment: :blob) }
+
+  # Ensure that a lease has a property, if not, this will not return the lease
+  scope :with_property, -> { eager_load(:property) }
 
   def expired?(date=nil)
     date = date || DateTime.now

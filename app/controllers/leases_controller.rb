@@ -65,8 +65,7 @@ class LeasesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_property_and_lease
-      # Use a single query to load everything
-      @lease = Lease.eager_load(:property).find(params[:id])
+      @lease = Lease.with_property.find(params[:id])
       @property = @lease.property
     end
 

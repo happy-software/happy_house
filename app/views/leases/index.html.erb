@@ -10,7 +10,7 @@
   </tr>
   </thead>
   <tbody>
-  <% if @leases.exists? %>
+  <% if @leases.present? %>
     <% @leases.sort_by(&:start_date).each do |lease| %>
       <tr>
         <td><%= link_to(lease.contract.blob.filename, [@property, lease]) %></td>
@@ -36,4 +36,4 @@
 
 <br>
 
-<%= link_to 'New Lease', new_property_lease_path %>
+<%= link_to 'New Lease', new_property_lease_path(@property) %>

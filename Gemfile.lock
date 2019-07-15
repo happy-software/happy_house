@@ -103,6 +103,8 @@ GEM
       dotenv (= 2.7.4)
       railties (>= 3.2, < 6.1)
     erubi (1.7.1)
+    et-orbi (1.2.1)
+      tzinfo
     execjs (2.7.0)
     factory_bot (4.11.1)
       activesupport (>= 3.0.0)
@@ -112,6 +114,9 @@ GEM
     faker (1.9.1)
       i18n (>= 0.7)
     ffi (1.9.25)
+    fugit (1.2.2)
+      et-orbi (~> 1.1, >= 1.1.8)
+      raabro (~> 1.1)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     i18n (1.1.0)
@@ -155,6 +160,7 @@ GEM
       pry (>= 0.10.4)
     public_suffix (3.0.3)
     puma (3.12.0)
+    raabro (1.1.6)
     rack (2.0.5)
     rack-cors (1.0.2)
     rack-protection (2.0.3)
@@ -227,6 +233,9 @@ GEM
       connection_pool (~> 2.2, >= 2.2.2)
       rack-protection (>= 1.5.0)
       redis (>= 3.3.5, < 5)
+    sidekiq-cron (1.1.0)
+      fugit (~> 1.1)
+      sidekiq (>= 4.2.1)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -290,6 +299,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   selenium-webdriver
   sidekiq
+  sidekiq-cron
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)

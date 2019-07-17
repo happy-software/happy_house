@@ -18,7 +18,7 @@ RUN apt-get install -y libpq-dev nodejs jq
 
 # Try doing the bundle stuff first
 COPY Gemfile Gemfile.lock $APP_DIR
-RUN bundle install --binstubs
+RUN bundle install
 
 # Copy the current directory contents into the container at /app
 COPY . $APP_DIR

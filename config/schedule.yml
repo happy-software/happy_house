@@ -1,0 +1,4 @@
+print_hello_world:
+  cron: '0 * * * *'
+  class: 'HelloWorldWorker'
+  queue: default

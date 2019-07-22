@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  require 'sidekiq/web'
+  require 'sidekiq/cron/web'
+  mount Sidekiq::Web => '/sidekiq'
+
   get 'password_resets/new'
   get 'password_resets/edit'
   root 'static_pages#home'

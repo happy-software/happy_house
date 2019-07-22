@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [[ $# -eq 0 ]]; then
+  docker-compose run --rm website rspec spec
+else
+  docker-compose run --rm website rspec "$@"
+fi

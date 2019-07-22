@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   require 'sidekiq/cron/web'
   mount Sidekiq::Web => '/sidekiq'
 
-  resources :leases
   get 'password_resets/new'
   get 'password_resets/edit'
   root 'static_pages#home'
@@ -28,6 +27,7 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :properties,          only: [:new, :create, :edit, :update, :index, :show] do
     resources :expense_items
+    resources :leases
   end
 
   # namespace :api do

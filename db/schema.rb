@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_05_204556) do
+ActiveRecord::Schema.define(version: 2019_07_06_034035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -71,15 +71,10 @@ ActiveRecord::Schema.define(version: 2019_07_05_204556) do
     t.datetime "updated_at", null: false
     t.decimal "amount"
     t.bigint "lease_frequency_id"
+    t.bigint "property_id"
     t.index ["lease_frequency_id"], name: "index_leases_on_lease_frequency_id"
     t.index ["property_document_id"], name: "index_leases_on_property_document_id"
-  end
-
-  create_table "leases_tenants", force: :cascade do |t|
-    t.bigint "lease_id"
-    t.bigint "tenant_id"
-    t.index ["lease_id"], name: "index_leases_tenants_on_lease_id"
-    t.index ["tenant_id"], name: "index_leases_tenants_on_tenant_id"
+    t.index ["property_id"], name: "index_leases_on_property_id"
   end
 
   create_table "properties", force: :cascade do |t|
@@ -144,6 +139,7 @@ ActiveRecord::Schema.define(version: 2019_07_05_204556) do
   add_foreign_key "expense_items", "properties"
   add_foreign_key "lease_tenants", "leases"
   add_foreign_key "lease_tenants", "tenants"
+  add_foreign_key "leases", "properties"
   add_foreign_key "leases", "property_documents"
   add_foreign_key "properties", "users"
   add_foreign_key "property_documents", "properties"

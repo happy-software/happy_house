@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Leases</h1>
 
 <table class="table table-striped table-hover table-bordered">
@@ -12,10 +10,10 @@
   </tr>
   </thead>
   <tbody>
-  <% if @leases&.count&.positive? %>
+  <% if @leases.present? %>
     <% @leases.sort_by(&:start_date).each do |lease| %>
       <tr>
-        <td><%= link_to(lease.property_document&.name, lease) %></td>
+        <td><%= link_to(lease.contract.blob.filename, [@property, lease]) %></td>
         <td><%= lease.start_date&.to_s(:long) %></td>
         <td><%= lease.end_date&.to_s(:long) %></td>
         <td>
@@ -38,4 +36,4 @@
 
 <br>
 
-<%= link_to 'New Lease', new_lease_path %>
+<%= link_to 'New Lease', new_property_lease_path(@property) %>

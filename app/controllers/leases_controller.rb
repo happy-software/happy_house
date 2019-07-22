@@ -32,6 +32,15 @@ class LeasesController < ApplicationController
   # GET /properties/:property_id/leases/1
   # GET /properties/:property_id/leases/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render :pdf => "Lease #{@lease.start_date.year} - #{@lease.property.display_name}",
+               :layout => "pdf.html",
+               :page_size => 'A4',
+               :template => "leases/show.html.erb"
+      end
+    end
   end
 
   # GET /properties/:property_id/leases/1/edit

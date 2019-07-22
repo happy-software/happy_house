@@ -1,25 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe "leases/edit", type: :view do
-  before(:each) do
-    @property = Property.create
-    @property_document = PropertyDocument.create(property: @property, property_document_type: PropertyDocumentType.create)
-    @lease_frequency   = LeaseFrequency.create(frequency: 'every_second')
-    @lease = assign(:lease, Lease.create!(
-      :details => "",
-      :property_document_id => @property_document&.id,
-      :lease_frequency_id   => @lease_frequency&.id,
-    ))
+  let(:user) { create(:user) }
+  let(:property) { create(:property, user: user) }
+  let(:lease_frequency) { LeaseFrequency.create(frequency: 'every_month') }
+  let(:lease) { Lease.create!(property_id: property.id, lease_frequency_id: lease_frequency.id, details: '') }
+
+  before do
+    assign(:property, property)
+    assign(:lease, lease)
   end
 
   it "renders the edit lease form" do
     render
 
-    assert_select "form[action=?][method=?]", lease_path(@lease), "post" do
-
-      # assert_select "input[name=?]", "lease[details]"
-
-      assert_select "input[name=?]", "lease[property_document_id]"
+    assert_select "form[action=?][method=?]", property_lease_path(property, lease), "post" do
+      assert_select "input[name=?]", "lease[contract]"
     end
   end
 end

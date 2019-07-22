@@ -1,22 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe "leases/index", type: :view do
-  before(:each) do
-    @property = Property.create
-    @property_document = PropertyDocument.create(property: @property, property_document_type: PropertyDocumentType.create)
-    @lease_frequency   = LeaseFrequency.create(frequency: 'every_second')
-    assign(:leases, [
-      Lease.create!(
-        :details => "",
-        :property_document_id => @property_document&.id,
-        :lease_frequency_id   => @lease_frequency&.id,
-      ),
-      Lease.create!(
-        :details => "",
-        :property_document_id => @property_document&.id,
-        :lease_frequency_id   => @lease_frequency&.id,
-      )
-    ])
+  let(:user) { create(:user) }
+  let(:property) { create(:property, user: user) }
+  let(:lease_frequency) { create(:lease_frequency) }
+  let(:first_lease) { Lease.create!(property_id: property.id, lease_frequency_id: lease_frequency.id, details: '') }
+  let(:second_lease) { Lease.create!(property_id: property.id, lease_frequency_id: lease_frequency.id, details: '') }
+  
+  let(:fake_attachment) { fixture_file_upload(Rails.root.join('public', 'apple-touch-icon.png'), 'image/png') }
+
+
+  before do
+    first_lease.contract.attach(fake_attachment)
+    second_lease.contract.attach(fake_attachment)
+    assign(:property, property)
+    assign(:leases, [first_lease, second_lease])
   end
 
   it "renders a list of leases" do

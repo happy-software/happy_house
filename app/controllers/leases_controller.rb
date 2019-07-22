@@ -1,37 +1,27 @@
 class LeasesController < ApplicationController
-  # before_action :correct_user,   only: [:index, :new, :create, :show, :edit, :update, :destroy]
+  before_action :set_property
   before_action :set_lease, only: [:show, :edit, :update, :destroy]
 
-  # GET /leases
-  # GET /leases.json
+  # GET /properties/:property_id/leases
+  # GET /properties/:property_id/leases.json
   def index
-    properties = current_user&.properties
-    @leases = properties&.flat_map(&:leases)
+    @leases = @property.leases.with_eager_loaded_contract
   end
 
-  # GET /leases/1
-  # GET /leases/1.json
-  def show
-  end
-
-  # GET /leases/new
+  # GET /properties/:property_id/leases/new
   def new
     @lease = Lease.new
   end
 
-  # GET /leases/1/edit
-  def edit
-  end
-
-  # POST /leases
-  # POST /leases.json
+  # POST /properties/:property_id/leases
+  # POST /properties/:property_id/leases.json
   def create
-    @lease = Lease.new(lease_params)
+    @lease = @property.leases.new(lease_params)
 
     respond_to do |format|
       if @lease.save
-        format.html { redirect_to @lease, notice: 'Lease was successfully created.' }
-        format.json { render :show, status: :created, location: @lease }
+        format.html { redirect_to [@property, @lease], notice: 'Lease was successfully created.' }
+        format.json { render :show, status: :created, location: [@property, @lease] }
       else
         format.html { render :new }
         format.json { render json: @lease.errors, status: :unprocessable_entity }
@@ -39,13 +29,22 @@ class LeasesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /leases/1
-  # PATCH/PUT /leases/1.json
+  # GET /properties/:property_id/leases/1
+  # GET /properties/:property_id/leases/1.json
+  def show
+  end
+
+  # GET /properties/:property_id/leases/1/edit
+  def edit
+  end
+
+  # PATCH/PUT /properties/:property_id/leases/1
+  # PATCH/PUT /properties/:property_id/leases/1.json
   def update
     respond_to do |format|
       if @lease.update(lease_params)
-        format.html { redirect_to @lease, notice: 'Lease was successfully updated.' }
-        format.json { render :show, status: :ok, location: @lease }
+        format.html { redirect_to [@property, @lease], notice: 'Lease was successfully updated.' }
+        format.json { render :show, status: :ok, location: [@property, @lease] }
       else
         format.html { render :edit }
         format.json { render json: @lease.errors, status: :unprocessable_entity }
@@ -53,12 +52,12 @@ class LeasesController < ApplicationController
     end
   end
 
-  # DELETE /leases/1
-  # DELETE /leases/1.json
+  # DELETE /properties/:property_id/leases/1
+  # DELETE /properties/:property_id/leases/1.json
   def destroy
     @lease.destroy
     respond_to do |format|
-      format.html { redirect_to leases_url, notice: 'Lease was successfully destroyed.' }
+      format.html { redirect_to property_leases_url, notice: 'Lease was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -66,7 +65,11 @@ class LeasesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_lease
-      @lease = Lease.find(params[:id])
+      @lease = @property.leases.find(params[:id])
+    end
+
+    def set_property
+      @property = Property.find(params[:property_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -75,13 +78,6 @@ class LeasesController < ApplicationController
                                     :end_date,
                                     :amount,
                                     :lease_frequency_id,
-                                    :details,
-                                    :property_document_id,)
+                                    :contract)
     end
-
-    # def correct_user
-    #   leases = @leases
-    #
-    #   redirect_to root_url unless current_user&.properties.include?()
-    # end
 end

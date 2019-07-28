@@ -38,4 +38,5 @@ class LeaseType < ApplicationRecord
   #     someone else known as the “sublessee”. The sublessor is responsible for the sublessee to: Vacate the premises,
   #     Any damage created by the sublessee, and Payment (If the sublessee does not pay, the landlord remains to be
   #     owed the amount states in the master lease agreement).
+  has_many :leases
 end

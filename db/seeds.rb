@@ -29,3 +29,12 @@ end
 ].each do |frequency|
   LeaseFrequency.where(frequency: frequency).first_or_create
 end
+
+# Lease Types
+[
+    'Commercial',
+    'Month to Month',
+    'Roommate',
+    'Standard Residential',
+    'Sub-Lease',
+].each { |type| LeaseType.where(name: type).first_or_create }

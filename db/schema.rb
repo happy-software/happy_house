@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_28_014251) do
+ActiveRecord::Schema.define(version: 2019_07_28_021053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -78,7 +78,9 @@ ActiveRecord::Schema.define(version: 2019_07_28_014251) do
     t.decimal "amount"
     t.bigint "lease_frequency_id"
     t.bigint "property_id"
+    t.bigint "lease_type_id"
     t.index ["lease_frequency_id"], name: "index_leases_on_lease_frequency_id"
+    t.index ["lease_type_id"], name: "index_leases_on_lease_type_id"
     t.index ["property_document_id"], name: "index_leases_on_property_document_id"
     t.index ["property_id"], name: "index_leases_on_property_id"
   end

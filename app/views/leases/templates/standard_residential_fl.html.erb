@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <h1>Standard Residential Florida Lease Agreement</h1>
+    <strong>Leassor(s)/Landlord(s):</strong>
+
+    <strong>Tenant(s):</strong>
+    <% @lease_details[:tenants].each do |tenant| %>
+      <p><%=tenant.name%></p>
+    <% end %>
+  </body>
+</html>

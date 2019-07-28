@@ -1,6 +1,19 @@
 class Lease < ApplicationRecord
-  belongs_to :property
+  # A lease is a document between a landlord and tenant that outlines an agreement for the renting of property or space.
+  # A lease will detail the monthly rent, property description, and responsibilities of each of the party.
+  # During the course of the lease, if the landlord or tenant violates any of its terms they could default and be
+  # liable for damages to the other party.
+  #
+  # There are 5 common lease types:
+  #   1. Commercial
+  #   2. Month-to-Month Rental Agreement
+  #   3. Roommate Lease
+  #   4. Standard Residential Lease Agreement
+  #   5. Sub-Lease Agreement
+  belongs_to :lease_type
   belongs_to :lease_frequency
+
+  belongs_to :property
 
   has_one_attached :contract
   has_many :lease_tenants

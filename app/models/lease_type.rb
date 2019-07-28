@@ -1,4 +1,6 @@
 class LeaseType < ApplicationRecord
+  # Description copied from: https://rentalleaseagreements.com/#By-Type
+  #
   # Five (5) Types of Lease Agreements
   #   Commercial Lease Agreement:
   #     For any type of commercial space for traditional business use such as industrial,

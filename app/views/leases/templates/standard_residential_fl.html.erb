@@ -2,8 +2,11 @@
 <html>
   <head></head>
   <body>
-    <h1>Standard Residential Florida Lease Agreement</h1>
-    <strong>Leassor(s)/Landlord(s):</strong>
+    <h1 style="text-align:center">RESIDENTIAL LEASE AGREEMENT</h1>
+
+    <p>
+      This lease (the "Lease") dated <u><%= @lease_details[:lease_creation_date] %></u>
+    </p>
 
     <strong>Tenant(s):</strong>
     <% @lease_details[:tenants].each do |tenant| %>

@@ -4,7 +4,7 @@ module HappyHouse
       attr_reader :lease_details
 
       def initialize(lease_details)
-        @lease_details = lease_details
+        @lease_details = lease_details.with_indifferent_access
       end
 
       def generate!
@@ -26,7 +26,7 @@ module HappyHouse
       end
 
       def state
-        lease_details[:property].address['state'].to_s.downcase
+        lease_details[:state].to_s.downcase
       end
 
       def lease_type

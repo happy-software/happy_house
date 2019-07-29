@@ -31,6 +31,7 @@ module HappyHouse
         new_starting_date: new_starting_date,
         new_ending_date:   new_ending_date,
         rent_amount:       rent_amount,
+        lease_creation_date: Date.current.to_s,
       }
     end
 

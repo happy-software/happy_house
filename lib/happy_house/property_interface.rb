@@ -25,13 +25,16 @@ module HappyHouse
 
       {
         street_address:    @property.address['street_address'],
+        city:              @property.address['city'],
         state:             @property.address['state'],
         zip_code:          @property.address['zip_code'],
         tenants:           tenants,
-        new_starting_date: new_starting_date,
-        new_ending_date:   new_ending_date,
+        starting_date:     new_starting_date,
+        ending_date:       new_ending_date,
         rent_amount:       rent_amount,
         lease_creation_date: Date.current.to_s,
+        landlord_name:     @property.user.name,
+        landlord_email:    @property.user.email,
       }
     end
 

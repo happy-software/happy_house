@@ -15,6 +15,15 @@ class Lease < ApplicationRecord
   # https://semaphoreci.com/blog/2017/08/09/faster-rails-eliminating-n-plus-one-queries.html
   scope :with_eager_loaded_contract, -> { eager_load(contract_attachment: :blob) }
 
+  def self.build_lease!(property, lease_details)
+    l = Lease.new
+    l.property = property
+    l.tenants  = lease_details[:tenants]
+    l.start_date = lease_details[:start_date]
+    l.end_date   = lease_details[:end_date]
+    # TODO Still need to attach document somehow
+  end
+
   def expired?(date=nil)
     date = date || DateTime.now
     return unless self.end_date

@@ -61,6 +61,14 @@ class LeasesController < ApplicationController
     end
   end
 
+  def renew
+    property = set_property
+    property.property_interface.renew_lease!()
+    # respond_to do |format|
+    #   @lease.property.property_interface.renew_lease!
+    # end
+  end
+
   # DELETE /properties/:property_id/leases/1
   # DELETE /properties/:property_id/leases/1.json
   def destroy

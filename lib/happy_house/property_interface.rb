@@ -23,7 +23,7 @@ module HappyHouse
       new_ending_date   = new_starting_date + 1.year
       rent_amount       = lease.amount.to_f
 
-      {
+      @lease_details = {
         street_address:    @property.address['street_address'],
         city:              @property.address['city'],
         state:             @property.address['state'],
@@ -36,6 +36,9 @@ module HappyHouse
         landlord_name:     @property.user.name,
         landlord_email:    @property.user.email,
       }
+
+      lease_pdf = lease_generator.new(@lease_details).generate!
+      Lease.build_lease!(property, @lease_details, lease_pdf)
     end
 
     def lease_generator

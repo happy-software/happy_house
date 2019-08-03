@@ -1,15 +1,15 @@
 module HappyHouse
   module Leases
     class Generator
-      attr_reader :lease_details
+      attr_reader :lease_details, :pdf, :template
 
       def initialize(lease_details)
         @lease_details = lease_details.with_indifferent_access
       end
 
       def generate!
-        template = get_template
-        output = ERB.new(template).result(binding)
+        @template = get_template
+        create_pdf!
       end
 
       private
@@ -23,6 +23,11 @@ module HappyHouse
                                   'leases',
                                   'templates',
                                   "#{lease_type}_#{state}.html.erb")).read
+      end
+
+      def create_pdf!
+        @output = ERB.new(@template).result(binding)
+        @pdf ||= WickedPdf.new.pdf_from_string(@output)
       end
 
       def state

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <h1 style="text-align:center">RESIDENTIAL LEASE AGREEMENT</h1>
+
+    <p>
+      This lease (the "Lease") dated <u><%= @lease_details[:lease_creation_date] %></u> between
+    </p>
+
+    <p><strong><%= @lease_details[:landlord_name] %></strong> (collectively and individually the "Landlord") </p>
+    <p>-AND-</p>
+
+    <% @lease_details[:tenants].each do |tenant| %>
+    <p><strong><%= tenant.name %></strong></p>
+    <% end %>
+
+    <p>(the "Tenant")</p>
+    <p>(individually the "Party" and collectively the "Parties")</p>
+
+    <p>
+      In consideration of the Landlord leasing certain premises to the Tenant and other valuable consideration,
+      the receipt and sufficiency of which consideration is hereby acknowledged, the Parties agree as follows:
+    </p>
+
+
+    <ol>
+      <h4>Leased Property</h4>
+      <li>
+        The Landlord agrees to rent to the Tenant the townhouse, municipally described as
+        <%= "#{@lease_details[:street_address]}, #{@lease_details[:city]}, #{@lease_details[:state]}, #{@lease_details[:zip_code]}" %>
+         (the "Property"), for use as residential premises only. Neither the Property nor any part of the Property
+        will be used at any time during the term of this Lease by Tenant for the purpose of carrying on any business,
+        profession, or trade of any kind, or for the purpose other than as a private single-family residence.
+      </li>
+      <li>
+        Subject to the provisions of this Lease, apart from the Tenant, no other persons will live in the Property
+        without the prior written permission of the Landlord, except for: Immediate family members.
+      </li>
+      <li>
+        No guests of the Tenants may occupy the Property for longer than one week without the prior written
+        consent of the Landlord.
+      </li>
+      <li>
+        A reasonable number of pets or animals are allowed to be kept in or about the Property. If, at the sole
+        discretion of the Landlord, this privilege is abused, or if the pets damage the Property, or if the pets cause
+        problems or interfere with the use and enjoyment of the Property for the other tenants, the Landlord may revoke
+        this privilege upon thirty (30) days' notice.
+      </li>
+      <li>
+        Subject to the provisions of this Lease, the Tenant is entitled to the use of parking on or about the Property.
+      </li>
+      <li>
+        The Tenant and members of Tenant's household will not smoke anywhere in the Property nor permit any guests or
+        visitors to smoke in the Property.
+      </li>
+
+      <h4>Term</h4>
+      <li>
+        The term of the Lease commences at <%= @lease_details[:starting_date] %> and ends at <%= @lease_details[:ending_date] %>.
+      </li>
+      <li>
+        Any notice to terminate this tenancy must comply with the applicable legislation of the State of Florida
+        (the "Act").
+      </li>
+
+      <h4>Rent</h4>
+      <li>
+        Subject to the provisions of this Lease, the rent for the Property is $<%= @lease_details[:rent_amount] %> per
+        month (the "Rent").
+      </li>
+      <li>
+        The Tenant will pay the Rent on or before the First of each and every month of the term of this Lease to the Landlord
+        by check, direct debit from a bank or other financial institution, mobile payment using a mobile money transfer
+        service or Venmo, PayPal.
+      </li>
+      <li>
+        The Landlord may increase the Rent for the Property upon providing to the Tenant the greater of 30 days'
+        notice and any notice required by the Act.
+      </li>
+      <li>
+        The Tenant will be charged an additional amount of $120.00 per infraction, for any Rent that is received after
+        the latter of the due date and the expiration of any grace period under the Act, if any.
+      </li>
+
+      <h4>Pet Fee</h4>
+      <li>
+        On execution of this Lease, the Tenant will pay the Landlord a non-refundable pet fee of $50.00 per month
+        (the "Pet Fee").
+      </li>
+
+      <h4>Quiet Enjoyment</h4>
+      <li>
+        The Landlord covenants that on paying the Rent and performing the covenants contained in this Lease, the Tenant
+        will peacefully and quietly have, hold, and enjoy the Property for the agreed term.
+      </li>
+
+      <h4>Inspections</h4>
+      <li>
+        The Parties will complete, sign and date an inspection report at the beginning and at the end of this tenancy.
+      </li>
+      <li>
+        At all reasonable times during the term of this Lease and any renewal of this Lease, the Landlord and its agents
+        may enter the Property to make inspections or repairs, or to show the Property to prospective tenants or
+        purchasers in compliance with the Act.
+      </li>
+
+      <h4>Renewal of Lease</h4>
+      <li>
+        Upon giving written notice no later than 60 days before the expiration of the term of this Lease, the Tenant may
+        renew this Lease for an additional term. All terms of the renewed lease will be the same except for this renewal
+        clause and the amount of the rent. If the Parties cannot agree as to the amount of the Rent, the amount of the
+        Rent will be determined by mediation.
+      </li>
+
+      <h4>Tenant Improvements</h4>
+      <li>
+        The Tenant will obtain written permission from the Landlord before doing any of the following:
+        <br /><br />
+        a. applying adhesive materials, or inserting nails or hooks in walls or ceilings other than two small picture hooks per wall;
+        <br />
+        b. painting, wallpapering, redecorating or in any way significantly altering the appearance of the Property;
+        <br/>
+        c. removing or adding walls, or performing any structural alterations;
+        <br />
+        d. installing a waterbed(s);
+        <br />
+        e. changing the amount of heat or power normally used on the Property as well as installing additional
+        electrical wiring or heating units;
+        <br />
+        f. placing or exposing or allowing to be placed or exposed anywhere inside or outside the Property any placard,
+        notice or sign for advertising or any other purpose; or
+        <br />
+        g. affixing to or erecting upon or near the Property any radio or TV antenna or tower.
+      </li>
+
+      <h4>Utilities and Other Charges</h4>
+      <li>
+        The Tenant is responsible for the payment of all utilities in relation to the Property.
+      </li>
+
+      <h4>Insurance</h4>
+      <li>
+        The Tenant is hereby advised and understands that the personal property of the Tenant is not insured
+        by the Landlord for either damage or loss, and the Landlord assumes no liability for any such loss.
+      </li>
+
+      <h4>Attorney Fees</h4>
+      <li>
+        In the event that any action is filed in relation to this Lease, the unsuccessful Party in the action will pay
+        to the successful Party, in addition to all the sums that either Party may be called on to pay, a reasonable sum
+        for the successful Party's attorney fees.
+      </li>
+
+      <h4>Governing Law</h4>
+      <li>
+        This Lease will be construed in accordance with and exclusively governed by the laws of the State of
+        Florida.
+      </li>
+
+      <h4>Severability</h4>
+      <li>
+        If there is a conflict between any provision of this Lease and the Act, the Act will prevail and such
+        provisions of the Lease will be amended or deleted as necessary in order to comply with the Act.
+        Further, any provisions that are required by the Act are incorporated into this Lease.
+      </li>
+      <li>
+        The invalidity or unenforceability of any provisions of this Lease will not affect the validity or
+        enforceability of any other provision of this Lease. Such other provisions remain in full force and
+        effect.
+      </li>
+
+      <h4>Amendment of Lease</h4>
+      <li>
+        This Lease may only be amended or modified by a written document executed by the Parties.
+      </li>
+
+      <h4>Assignment and Subletting</h4>
+      <li>
+        The Tenant will not assign this Lease, or sublet or grant any concession or license to use the Property
+        or any part of the Property. Any assignment, subletting, concession, or license, whether by operation
+        of law or otherwise, will be void and will, at Landlord's option, terminate this Lease.
+      </li>
+
+      <h4>Damage to Property</h4>
+      <li>
+        If the Property should be damaged other than by the Tenant's negligence or willful act or that of the
+        Tenant's employee, family, agent, or visitor and the Landlord decides not to rebuild or repair the
+        Property, the Landlord may end this Lease by giving appropriate notice.
+      </li>
+
+      <h4>Maintenance</h4>
+      <li>
+        The Tenant will, at its sole expense, keep and maintain the Property and appurtenances in good and
+        sanitary condition and repair during the term of this Lease and any renewal of this Lease.
+      </li>
+      <li>
+        Major maintenance and repair of the Property involving anticipated or actual costs in excess of
+        $100.00 per incident not due to the Tenant's misuse, waste, or neglect or that of the Tenant's employee,
+        family, agent, or visitor, will be the responsibility of the Landlord or the Landlord's assigns.
+      </li>
+      <li>
+        The Tenant will also perform the following maintenance in respect to the Property: Appliances,
+        fixtures, or any other items not directly attached to the home.
+      </li>
+
+      <h4>Care and Use of Property</h4>
+      <li>
+        The Tenant will promptly notify the Landlord of any damage, or of any situation that may significantly
+        interfere with the normal use of the Property or to any furnishings supplied by the Landlord.
+      </li>
+      <li>
+        The Tenant will not engage in any illegal trade or activity on or about the Property.
+      </li>
+      <li>
+        The Parties will comply with standards of health, sanitation, fire, housing and safety as required by
+        law.
+      </li>
+      <li>
+        The Parties will use reasonable efforts to maintain the Property in such a condition as to prevent the
+        accumulation of moisture and the growth of mold. The Tenant will promptly notify the Landlord in
+        writing of any moisture accumulation that occurs or of any visible evidence of mold discovered by the
+        Tenant. The Landlord will promptly respond to any such written notices from the Tenant.
+      </li>
+      <li>
+        If the Tenant is absent from the Property and the Property is unoccupied for a period of 4 consecutive
+        days or longer, the Tenant will arrange for regular inspection by a competent person. The Landlord
+        will be notified in advance as to the name, address and phone number of the person doing the
+        inspections.
+      </li>
+      <li>
+        At the expiration of the term of this Lease, the Tenant will quit and surrender the Property in as good a
+        state and condition as they were at the commencement of this Lease, reasonable use and wear and tear
+        excepted.
+      </li>
+
+      <h4>Prohibited Activities and Materials</h4>
+      <li>
+        The Tenant will not keep or have on the property any article or thing of a dangerous, flammable or
+        explosive character that might unreasonably increase the danger of fire on the Property or that might
+        be considered hazardous by any responsible insurance company.
+      </li>
+      <li>
+        The Tenant will not perform any activity on the Property or have on the property any article or thing
+        that the Landlord's insurance company considers increases any insured risk such that the insurance
+        company denies coverage or increases the insurance premium.
+      </li>
+      <li>
+        The Tenant is prohibited from:
+        <br /><br />
+        a. the storage of expensive articles on the Property if it creates an increased security risk; and
+        <br />
+        b. the growing of, or storage of, medical marijuana on the Property.
+      </li>
+      <li>
+        The Tenant will not perform any activity on the Property that the Landlord feels significantly increases
+        the use of electricity, heat, water, sewer or other utilities on the Property.
+      </li>
+
+      <h4>Rules and Regulations</h4>
+      <li>
+        The Tenant will obey all rules and regulations of the Landlord regarding the Property.
+      </li>
+
+      <h4>Lead Warning</h4>
+      <li>
+        Housing built before 1978 may contain lead based paint. Lead from paint, paint chips, and dust can
+        pose health hazards if not taken care of properly. Lead exposure is especially harmful to young
+        children and pregnant women. Before renting pre-1978 housing, lessors must disclose the presence of
+        known lead-based paint hazards in the dwelling. <strong>Lessees must also receive a federally approved
+        pamphlet on lead poisoning prevention.</strong>
+      </li>
+
+      <h4>Address for Notice</h4>
+      <li>
+        For any matter relating to this tenancy, the Tenant may be contacted at the Property or through the
+        phone number below. After this tenancy has been terminated, the contact information of the Tenant is:
+
+        <% @lease_details[:tenants].each do |tenant| %>
+        <p>Name:  <%= tenant.name %></p>
+        <p>Email: <%= tenant.email %></p>
+        <p>Phone: <%=tenant.phone_number %></p>
+        <% end %>
+      </li>
+      <li>
+        For any matter relating to this tenancy, whether during or after this tenancy has been terminated, the
+        Landlord's address for notice is:
+        <p>Name:  <%= @lease_details[:landlord_name] %></p>
+        <p>Email: <%= @lease_details[:landlord_email] %></p>
+      </li>
+
+      <h4>General Provisions</h4>
+      <li>
+        All monetary amounts stated or referred to in this Lease are based in the United States dollar.
+      </li>
+      <li>
+        Any waiver by the Landlord of any failure by the Tenant to perform or observe the provisions of this
+        Lease will not operate as a waiver of the Landlord's rights under this Lease in respect of any
+        subsequent defaults, breaches or non-performance and will not defeat or affect in any way the
+        Landlord's rights in respect of any subsequent default or breach.
+      </li>
+      <li>
+        This Lease will extend to and be binding upon and inure to the benefit of the respective heirs,
+        executors, administrators, successors and assigns, as the case may be, of each Party. All covenants are
+        to be construed as conditions of this Lease.
+      </li>
+      <li>
+        All sums payable by the Tenant to the Landlord pursuant to any provision of this Lease will be deemed
+        to be additional rent and will be recovered by the Landlord as rental arrears.
+      </li>
+      <li>
+        Where there is more than one Tenant executing this Lease, all Tenants are jointly and severally liable
+        for each other's acts, omissions and liabilities pursuant to this Lease.
+      </li>
+      <li>
+        Locks may not be added or changed without the prior written agreement of both Parties, or unless the
+        changes are made in compliance with the Act.
+      </li>
+      <li>
+        The Tenant will be charged an additional amount of $120.00 for each N.S.F. check or checks returned
+        by the Tenant's financial institution.
+      </li>
+      <li>
+        If the Tenant moves out prior to the natural expiration of this Lease, a re-rent levy of $2,000.00 will be
+        charged to the Tenant.
+      </li>
+      <li>
+        Headings are inserted for the convenience of the Parties only and are not to be considered when
+        interpreting this Lease. Words in the singular mean and include the plural and vice versa. Words in the
+        masculine mean and include the feminine and vice versa.
+      </li>
+      <li>
+        This Lease and the Tenant's leasehold interest under this Lease are and will be subject, subordinate,
+        and inferior to any liens or encumbrances now or hereafter placed on the Property by the Landlord, all
+        advances made under any such liens or encumbrances, the interest payable on any such liens or
+        encumbrances, and any and all renewals or extensions such liens or encumbrances.
+      </li>
+      <li>
+        This Lease may be executed in counterparts. Facsimile signatures are binding and are considered to be
+        original signatures.
+      </li>
+      <li>
+        This Lease constitutes the entire agreement between the Parties. Any prior understanding or
+        representation of any kind preceding the date of this Lease will not be binding on either Party except to
+        the extent incorporated in this Lease.
+      </li>
+      <li>
+        The Tenant will indemnify and save the Landlord, and the owner of the Property where different from
+        the Landlord, harmless from all liabilities, fines, suits, claims, demands and actions of any kind or
+        nature for which the Landlord will or may become liable or suffer by reason of any breach, violation or
+        non-performance by the Tenant or by any person for whom the Tenant is responsible, of any covenant,
+        term, or provisions hereof or by reason of any act, neglect or default on the part of the Tenant or other
+        person for whom the Tenant is responsible. Such indemnification in respect of any such breach,
+        violation or non-performance, damage to property, injury or death occurring during the term of the
+        Lease will survive the termination of the Lease, notwithstanding anything in this Lease to the contrary.
+      </li>
+      <li>
+        The Tenant agrees that the Landlord will not be liable or responsible in any way for any personal
+        injury or death that may be suffered or sustained by the Tenant or by any person for whom the Tenant
+        is responsible who may be on the Property of the Landlord or for any loss of or damage or injury to
+        any property, including cars and contents thereof belonging to the Tenant or to any other person for
+        whom the Tenant is responsible.
+      </li>
+      <li>
+        The Tenant is responsible for any person or persons who are upon or occupying the Property or any
+        other part of the Landlord's premises at the request of the Tenant, either express or implied, whether
+        for the purposes of visiting the Tenant, making deliveries, repairs or attending upon the Property for
+        any other reason. Without limiting the generality of the foregoing, the Tenant is responsible for all
+        members of the Tenant's family, guests, servants, tradesmen, repairmen, employees, agents, invitees or
+        other similar persons.
+      </li>
+      <li>
+        During the last 30 days of this Lease, the Landlord or the Landlord's agents will have the privilege of
+        displaying the usual 'For Sale' or 'For Rent' or 'Vacancy' signs on the Property.
+      </li>
+      <li>
+        Time is of the essence in this Lease.
+      </li>
+    </ol>
+
+  <p>
+    In witness whereof <%= @lease_details[:tenants].map(&:name).join(", ") %> and <%= @lease_details[:landlord_name] %>
+    have duly affixed their signatures on this __________ day of ________________.
+  </p>
+
+  <p>
+    The Tenant acknowledges receiving a duplicate copy of this Lease signed by the Tenant and the Landlord
+    on the _____ day of ______________________.
+  </p>
+
+
+  <p>
+    Tenant Signature: _______________________________________________________
+  </p>
+  </body>
+</html>

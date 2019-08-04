@@ -15,6 +15,24 @@ class Lease < ApplicationRecord
   # https://semaphoreci.com/blog/2017/08/09/faster-rails-eliminating-n-plus-one-queries.html
   scope :with_eager_loaded_contract, -> { eager_load(contract_attachment: :blob) }
 
+  def self.build_lease!(property, lease_details, lease_pdf)
+    l = build_lease(property, lease_details, lease_pdf)
+    l.save!
+    l
+  end
+
+  def self.build_lease(property, lease_details, lease_pdf)
+    l = Lease.new
+    l.property = property
+    l.tenants  = lease_details[:tenants]
+    l.start_date = lease_details[:starting_date]
+    l.amount     = lease_details[:rent_amount]
+    l.end_date   = lease_details[:ending_date]
+    l.lease_frequency_id = 1 # hardcoding just to get it working for now, I was having some weird error pop up
+    l.contract.attach(io: StringIO.new(lease_pdf), filename: "lease_#{l.start_date}_#{Date.current}", content_type: "application/pdf")
+    l
+  end
+
   def expired?(date=nil)
     date = date || DateTime.now
     return unless self.end_date

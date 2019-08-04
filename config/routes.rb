@@ -27,7 +27,9 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :properties,          only: [:new, :create, :edit, :update, :index, :show] do
     resources :expense_items
-    resources :leases
+    resources :leases do
+      get '/renew', to: 'leases#renew', as: 'renew_current_lease'
+    end
   end
 
   # namespace :api do

@@ -12,7 +12,7 @@
     <p>-AND-</p>
 
     <% @lease_details[:tenants].each do |tenant| %>
-    <p><strong>tenant.name</strong></p>
+    <p><strong><%= tenant.name %></strong></p>
     <% end %>
 
     <p>(the "Tenant")</p>

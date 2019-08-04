@@ -63,10 +63,14 @@ class LeasesController < ApplicationController
 
   def renew
     property = set_property
-    property.property_interface.renew_lease!()
-    # respond_to do |format|
-    #   @lease.property.property_interface.renew_lease!
-    # end
+    new_lease = property.property_interface.renew_lease!
+
+    respond_to do |format|
+      if new_lease
+        format.html { redirect_to [@property, new_lease], notice: 'New Lease created!' }
+        format.json { render :show, status: :ok, location: [@property, new_lease] }
+      end
+    end
   end
 
   # DELETE /properties/:property_id/leases/1

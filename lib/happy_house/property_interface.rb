@@ -14,7 +14,7 @@ module HappyHouse
     end
 
     def expense_years
-      property.expense_items.map { |e| e.expense_date.year }.uniq.sort
+      property.expense_items.map { |e| e.expense_date.year }.uniq.sort.reverse
     end
 
     def renew_lease!(lease=property.leases.newest)

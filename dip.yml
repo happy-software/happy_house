@@ -16,7 +16,7 @@ interaction:
   psql:
     service: db
     # The following is set to mirror `config/database.yml`
-    command: psql -h db -U postgres -d qa-dash-dev
+    command: psql -h db -U postgres -d happy_house_development
 
 provision:
   - dip compose down --volumes

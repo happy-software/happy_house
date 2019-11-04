@@ -1,0 +1,23 @@
+version: '2'
+
+interaction:
+  bash:
+    service: website
+    command: '/bin/bash'
+  rake:
+    service: website
+    command: bundle exec rake
+  rails:
+    service: website
+    command: bundle exec rails
+  rspec:
+    service: website
+    command: bundle exec rspec
+  psql:
+    service: db
+    # The following is set to mirror `config/database.yml`
+    command: psql -h db -U postgres -d qa-dash-dev
+
+provision:
+  - dip compose down --volumes
+  - dip compose up -d postgres redis

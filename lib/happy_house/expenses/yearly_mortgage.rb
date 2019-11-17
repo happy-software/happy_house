@@ -1,0 +1,3 @@
+class YearlyMortgage
+
+end

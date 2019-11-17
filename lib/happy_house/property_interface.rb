@@ -13,6 +13,10 @@ module HappyHouse
       HappyHouse::Taxes::ExpenseReports::Builder.new(property).build_for_year(year)
     end
 
+    def build_yearly_mortgage_payment(year)
+      HappyHouse::Expenses::YearlyMortgage.build
+    end
+
     def expense_years
       property.expense_items.map { |e| e.expense_date.year }.uniq.sort.reverse
     end

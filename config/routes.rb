@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   # expense reports
   get    '/properties/:id/expense_reports/',       to: 'expense_reports#index',  as: 'new_expense_report'
   get    '/properties/:id/expense_reports/create', to: 'expense_reports#create', as: 'create_expense_report'
+  get    '/properties/:id/mortgage_expenses/',     to: 'mortgage_expenses#index', as: 'new_mortgage_expense'
+  post   '/properties/:id/mortgage_expenses/',     to: 'mortgage_expenses#create', as: 'create_yearly_mortgage_expense'
 
   # property documents
   patch  'properties/:id/upload_files',            to: 'properties#upload_files', as: 'upload_property_documents'

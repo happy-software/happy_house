@@ -1,5 +1,6 @@
 require 'happy_house/taxes/expense_reports/builder'
 require 'happy_house/leases/generator'
+require 'happy_house/expenses/yearly_mortgage'
 
 module HappyHouse
   class PropertyInterface
@@ -11,6 +12,13 @@ module HappyHouse
 
     def build_expense_report(year: Date.current.year)
       HappyHouse::Taxes::ExpenseReports::Builder.new(property).build_for_year(year)
+    end
+
+    def build_yearly_mortgage_payment(params)
+      raise ArgumentError.new("Missing year")            unless year = params[:year]
+      raise ArgumentError.new("Missing monthly_payment") unless monthly_amount = params[:monthly_payment]
+
+      HappyHouse::Expenses::YearlyMortgage.create_new_mortgage_payments!(property, year, monthly_amount)
     end
 
     def expense_years

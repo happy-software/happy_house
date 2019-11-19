@@ -13,7 +13,7 @@ class MortgageExpensesController < ApplicationController
   private
 
   def create_mortgage_params
-    @create_mortgage_params ||= params.require(:property).permit(:year, :monthly_payment)
+    @create_mortgage_params ||= params.permit(:id, :year, :monthly_payment)
   end
 
   def correct_user

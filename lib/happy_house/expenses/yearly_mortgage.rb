@@ -5,5 +5,11 @@ module HappyHouse
         ExpenseItem.create_yearly_mortgage_payments!(property, year, amount)
       end
     end
+
+    class YearlyHoa
+      def self.create_new_hoa_payments!(property, year, amount)
+        ExpenseItem.create_yearly_hoa_payments!(property, year, amount)
+      end
+    end
   end
 end

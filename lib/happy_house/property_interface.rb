@@ -14,6 +14,13 @@ module HappyHouse
       HappyHouse::Taxes::ExpenseReports::Builder.new(property).build_for_year(year)
     end
 
+    def build_yearly_hoa_payments(params)
+      raise ArgumentError.new("Missing year")            unless year = params[:year]
+      raise ArgumentError.new("Missing monthly_payment") unless monthly_amount = params[:monthly_payment]
+
+      HappyHouse::Expenses::YearlyHoa.create_new_hoa_payments!(property, year, monthly_amount)
+    end
+
     def build_yearly_mortgage_payment(params)
       raise ArgumentError.new("Missing year")            unless year = params[:year]
       raise ArgumentError.new("Missing monthly_payment") unless monthly_amount = params[:monthly_payment]

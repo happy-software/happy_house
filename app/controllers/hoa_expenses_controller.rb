@@ -12,7 +12,7 @@ class HoaExpensesController < ApplicationController
       flash[:success] = "Created 12 home owner's association expense items for #{create_hoa_expenses_params[:year]}"
       redirect_to property_path
     else
-      flash[:danger] = "Could not create 12 mortgage expense items for #{create_hoa_expenses_params[:year]}"
+      flash[:danger] = "Could not create 12 home owner's association items for #{create_hoa_expenses_params[:year]}"
       redirect_to property_path
     end
   end
@@ -20,7 +20,7 @@ class HoaExpensesController < ApplicationController
   private
 
   def create_hoa_expenses_params
-    @create_mortgage_params ||= params.permit(:id, :year, :monthly_payment)
+    @create_hoa_expenses_params ||= params.permit(:id, :year, :monthly_payment)
   end
 
   def correct_user

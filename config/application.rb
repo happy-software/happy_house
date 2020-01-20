@@ -16,6 +16,10 @@ module HappyHouse
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
+    # Auto-load lib
+    config.autoload_paths   << config.root.join('lib')
+    config.eager_load_paths << config.root.join('lib')
+
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins 'http://localhost:3000'

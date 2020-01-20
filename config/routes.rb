@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   get    '/properties/:id/hoa_expenses/',          to: 'hoa_expenses#index',  as: 'new_hoa_expense'
   post   '/properties/:id/hoa_expenses/',          to: 'hoa_expenses#create', as: 'create_yearly_hoa_expense'
 
+  post '/mms', to: 'mms#process_message'
+
   # property documents
   patch  'properties/:id/upload_files',            to: 'properties#upload_files', as: 'upload_property_documents'
 

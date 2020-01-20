@@ -52,7 +52,7 @@ jobs:
       - run:
           name: Database Setup
           command: |
-            bundle exec rails db:create db:schema:load
+            bundle exec rails db:create db:schema:load db:migrate
 
       # run tests!
       - run:

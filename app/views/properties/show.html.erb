@@ -17,7 +17,8 @@
       <ul class="list-group list-group-flush">
         <li class="list-group-item"><%= link_to 'Expense Reports', new_expense_report_path(@property) %></li>
         <li class="list-group-item"><%= link_to 'Add an Expense', new_property_expense_item_path(@property) %></li>
-        <li class="list-group-item disabled">All Expenses (coming soon...)</li>
+        <li class="list-group-item disabled"><%= link_to 'Mortgage Payments (beta)', new_mortgage_expense_path(@property) %></li>
+        <li class="list-group-item disabled"><%= link_to 'HOA Payments (beta)', new_hoa_expense_path(@property) %></li>
       </ul>
       <div class="card-body">
         <a href="#" data-toggle="modal" data-target="#exampleModalLong" class="btn btn-secondary">Learn More</a>

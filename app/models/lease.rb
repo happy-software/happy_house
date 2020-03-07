@@ -14,6 +14,7 @@ class Lease < ApplicationRecord
   # in a single query, as opposed to n+1 queries
   # https://semaphoreci.com/blog/2017/08/09/faster-rails-eliminating-n-plus-one-queries.html
   scope :with_eager_loaded_contract, -> { eager_load(contract_attachment: :blob) }
+  scope :current, -> { where("start_date >= ? AND end_date <= ?", DateTime.now) }
 
   def self.build_lease!(property, lease_details, lease_pdf)
     l = build_lease(property, lease_details, lease_pdf)

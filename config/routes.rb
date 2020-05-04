@@ -34,6 +34,9 @@ Rails.application.routes.draw do
     resources :leases do
       get '/renew', to: 'leases#renew', as: 'renew_current_lease'
     end
+    resources :tenants do
+      # get '/current', to: ''
+    end
   end
 
   # namespace :api do

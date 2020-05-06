@@ -20,6 +20,22 @@ class ExpenseItemsController < ApplicationController
     end
   end
 
+  def edit
+    Rails.logger.debug("Params in edit action for Expense Item: #{params}")
+    @expense_item = property.expense_items.find(params[:id])
+  end
+
+  def update
+    @expense_item = property.expense_items.find(params[:id])
+
+    if @expense_item&.update_attributes(expense_item_params)
+      flash[:success] = "Updated Expense Item: #{@expense_item.name}"
+      redirect_to @expense_item.property
+    else
+      render 'edit'
+    end
+  end
+
   private
 
   def property

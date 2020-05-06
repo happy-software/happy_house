@@ -19,7 +19,7 @@
         <tbody>
           <% @expense_report[:expenses].each do |e| %>
             <tr>
-              <td><%= e[:name] %></td>
+              <td><%= link_to e[:name], edit_property_expense_item_path(@property, e[:id]) %></td>
               <td><%= e[:date].strftime('%m/%d/%Y') %></td>
               <td><%= number_to_currency(e[:cost]) %></td>
             </tr>

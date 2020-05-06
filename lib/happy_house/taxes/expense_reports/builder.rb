@@ -13,6 +13,7 @@ module HappyHouse
           total_cost = expenses.map { |e| e[:cost] }.sum
           items = expenses.map do |expense_item|
             {
+              id:   expense_item.id,
               name: expense_item.name,
               cost: expense_item.cost,
               date: expense_item.expense_date,

@@ -5,7 +5,7 @@
 <div class="row">
   <div class="col-sm-6">
     <%= render 'shared/error_messages', object: @expense_item %>
-<h1>Here's the expense item id: <%= @expense_item.id %></h1>
+    
     <%= form_for([@expense_item.property, @expense_item]) do |f| %>
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control' %>

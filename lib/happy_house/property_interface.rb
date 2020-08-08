@@ -15,6 +15,10 @@ module HappyHouse
       property.save!
     end
 
+    def user
+      property.user
+    end
+
     def build_expense_report(year: Date.current.year)
       HappyHouse::Taxes::ExpenseReports::Builder.new(property).build_for_year(year)
     end

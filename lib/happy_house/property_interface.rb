@@ -10,6 +10,11 @@ module HappyHouse
       @property = property
     end
 
+    def transfer_ownership(new_owner)
+      property.user = new_owner
+      property.save!
+    end
+
     def build_expense_report(year: Date.current.year)
       HappyHouse::Taxes::ExpenseReports::Builder.new(property).build_for_year(year)
     end

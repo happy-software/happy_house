@@ -16,6 +16,14 @@
       <%= f.label :cost %>
       <%= f.number_field :cost, class: 'form-control', step: :any %>
 
+      <ul>
+        <% @expense_item.attachments.each do |file| %>
+          <li>
+            <%= image_tag file.preview(resize_to_limit: [100,00]) %>
+          </li>
+        <% end %>
+      </ul>
+
       <%= f.submit 'Update Expense', class: 'btn btn-primary mt-sm-3' %>
       <%= link_to 'Cancel', property_path(@property), class: 'btn btn-danger mt-sm-3' %>
     <% end %>

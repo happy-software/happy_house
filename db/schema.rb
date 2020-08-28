@@ -13,7 +13,6 @@
 ActiveRecord::Schema.define(version: 2019_07_06_034035) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "hstore"
   enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -78,7 +77,7 @@ ActiveRecord::Schema.define(version: 2019_07_06_034035) do
   end
 
   create_table "properties", force: :cascade do |t|
-    t.hstore "address"
+    t.jsonb "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"

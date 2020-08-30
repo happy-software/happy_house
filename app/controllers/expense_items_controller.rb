@@ -21,12 +21,10 @@ class ExpenseItemsController < ApplicationController
   end
 
   def show
-    Rails.logger.debug("Params in show action for Expense Item: #{params}")
     @expense_item = property.expense_items.find(params[:id])
   end
 
   def edit
-    Rails.logger.debug("Params in edit action for Expense Item: #{params}")
     @expense_item = property.expense_items.find(params[:id])
   end
 

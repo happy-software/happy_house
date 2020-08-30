@@ -20,6 +20,11 @@ class ExpenseItemsController < ApplicationController
     end
   end
 
+  def show
+    Rails.logger.debug("Params in show action for Expense Item: #{params}")
+    @expense_item = property.expense_items.find(params[:id])
+  end
+
   def edit
     Rails.logger.debug("Params in edit action for Expense Item: #{params}")
     @expense_item = property.expense_items.find(params[:id])
@@ -43,7 +48,7 @@ class ExpenseItemsController < ApplicationController
   end
 
   def expense_item_params
-    params.require(:expense_item).permit(:name, :cost, :expense_date, :property_id)
+    params.require(:expense_item).permit(:name, :cost, :expense_date, :property_id, attachments: [])
   end
 
   def correct_user

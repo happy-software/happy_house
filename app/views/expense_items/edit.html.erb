@@ -16,12 +16,14 @@
       <%= f.label :cost %>
       <%= f.number_field :cost, class: 'form-control', step: :any %>
 
+      <h3>Attachments</h3>
       <ul>
-        <% @expense_item.attachments.each do |file| %>
+        <% @expense_item.attachments.each do |f| %>
           <li>
-            <%= image_tag file.preview(resize_to_limit: [100,00]) %>
+              <a href="<%= url_for(f) %>"><%= f.filename %></a>
           </li>
         <% end %>
+        <%= f.file_field(:attachments, multiple: true) %>
       </ul>
 
       <%= f.submit 'Update Expense', class: 'btn btn-primary mt-sm-3' %>

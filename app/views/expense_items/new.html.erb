@@ -6,7 +6,8 @@
   <div class="col-sm-6">
     <%= render 'shared/error_messages', object: @expense_item %>
 
-    <%= form_for(@expense_item, url: property_expense_items_path) do |f| %>
+    <%#= form_for(@expense_item, url: property_expense_items_path) do |f| %>
+    <%= form_with model: @expense_item do |f| %>
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control' %>
 

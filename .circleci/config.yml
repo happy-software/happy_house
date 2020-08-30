@@ -44,7 +44,12 @@ jobs:
           name: bundler dependencies
           command: |
             gem update --system
+
+      - run:
+          name: bundler debug
+          command: |
             bundle -v
+            gem list bundler
 
       - run:
           name: install dependencies

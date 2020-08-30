@@ -44,6 +44,7 @@ jobs:
           name: bundler dependencies
           command: |
             gem update --system
+            bundle -v
 
       - run:
           name: install dependencies

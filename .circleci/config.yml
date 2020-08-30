@@ -50,6 +50,8 @@ jobs:
           command: |
             bundle -v
             gem list bundler
+            gem uninstall bundler
+            gem install bundler -v 2.0.2
 
       - run:
           name: install dependencies

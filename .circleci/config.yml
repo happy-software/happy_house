@@ -51,6 +51,7 @@ jobs:
             bundle -v
             gem list bundler
             gem install bundler -v 2.0.2
+            bundle -v
 
       - run:
           name: install dependencies

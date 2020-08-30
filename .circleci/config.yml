@@ -13,7 +13,7 @@ jobs:
          - PGUSER=circle-ci
          - RAILS_ENV=test
          - RACK_ENV=test
-         - BUNDLE_VERSION=2.0.2
+         - BUNDLER_VERSION=2.0.2
 #       - image: postgres:9.6
 #         environment:
 #         - POSTGRES_DB=happy_house_test

@@ -12,7 +12,7 @@ gem 'puma'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 6.0'
 
-gem 'bootstrap', '~> 4.1.3'
+gem 'bootstrap'
 gem 'autoprefixer-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -78,7 +78,7 @@ gem 'wkhtmltopdf-binary'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'bcrypt', '~> 3.1'
+gem 'bcrypt'
 gem 'faker'
 gem 'will_paginate'
 # gem 'bootstrap-will_paginate'

@@ -323,7 +323,7 @@ DEPENDENCIES
   mini_magick (~> 4.8)
   pg (~> 1.1)
   pry-rails
-  puma (~> 4.0)
+  puma
   rack-cors
   rails!
   rspec-rails

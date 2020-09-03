@@ -8,5 +8,5 @@ class ExpenseItem < ApplicationRecord
   validates :cost,  presence: true
   validates :expense_date, presence: true
 
-  has_many_attached :attachments
+  has_many_attached :attachments, service: :amazon
 end

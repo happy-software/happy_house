@@ -84,3 +84,6 @@ gem 'will_paginate'
 # gem 'bootstrap-will_paginate'
 
 gem 'rack-cors', require: 'rack/cors'
+
+gem 'chartkick'
+gem 'groupdate'

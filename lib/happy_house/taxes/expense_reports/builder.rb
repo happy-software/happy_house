@@ -22,14 +22,14 @@ module HappyHouse
 
           {
               total_cost: total_cost,
-              expenses: items
+              expenses: items,
           }
         end
 
         private
 
         def expense_items_in_year(year)
-          @expense_reports ||= property.expense_items.where("extract(year from expense_date) = ?", year)
+          @expense_reports ||= property.expense_items.where("extract(year from expense_date) = ?", year).order(:expense_date)
         end
       end
     end

@@ -41,6 +41,16 @@ module HappyHouse
       property.expense_items.map { |e| e.expense_date.year }.uniq.sort.reverse
     end
 
+    def yearly_expense_summary
+      s = property.expense_items.group_by_year(:expense_date, format: "%Y").sum(:cost)
+      s.update(s) { |_,v| "%.2f" % v }
+    end
+
+    def monthly_expense_summary(year)
+      s = property.expense_items.where("extract(year from expense_date) = ?", year).group_by_month(:expense_date, format: "%b %Y").sum(:cost)
+      s.update(s) {|_,v| "%.2f" % v}
+    end
+
     def renew_lease!(lease=property.leases.newest)
       tenants           = lease.tenants
       new_starting_date = lease.end_date

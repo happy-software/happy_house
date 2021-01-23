@@ -5,6 +5,9 @@
     <section class="year_picker">
       <h1>Expense Report - <%= @year %></h1>
 
+      <h3>Overview</h3>
+      <%=  column_chart @year_summary, xtitle: 'Month', ytitle: 'Cost ($)' %>
+
       <h3>Total Cost: <%= number_to_currency(@expense_report[:total_cost]) %></h3>
       <div>
         <table class="table table-striped table-hover table-bordered">

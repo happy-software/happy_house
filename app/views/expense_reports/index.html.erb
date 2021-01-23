@@ -3,24 +3,24 @@
 <div class="row">
   <aside class="col">
     <section class="year_picker">
-      <h1>Create an Expense Report</h1>
+      <h1>Expense Reports</h1>
+
+      <h3>Overview</h3>
+      <%= column_chart @yearly_expense_summary, xtitle: "Year", ytitle: "Cost ($)" %>
 
       <%= form_tag('expense_reports/create', method: 'get') do %>
         <span>
 
-          <% available_years = @property.property_interface.expense_years %>
-          <% if available_years.count.zero? %>
+          <% if @available_years.count.zero? %>
             <p>
-              Add some expense items for <%= @property.display_name %> before creating an Expense Report.
+              Add some expense items for <%= @property_name %> before creating an Expense Report.
             </p>
 
             <%= link_to 'Add an Expense', new_property_expense_item_path(@property), class: 'btn btn-primary' %>
             <%= link_to 'Cancel', property_path(@property), class: 'btn btn-danger' %>
           <% else %>
-            <p>
-              Choose a year to create a report:
-            </p>
-            <%= select_tag(:expense_year, options_for_select(available_years.map { |year| [year, year] })) %>
+            <p>Choose a year for details:</p>
+            <%= select_tag(:expense_year, options_for_select(@available_years.map { |year| [year, year] })) %>
             <%= submit_tag('Create Report', class: 'btn btn-primary mt-sm-3') %>
             <%= link_to 'Cancel', property_path(@property), class: 'btn btn-danger mt-sm-3' %>
           <% end %>

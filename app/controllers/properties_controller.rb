@@ -36,11 +36,7 @@ class PropertiesController < ApplicationController
   def show
     @property = current_user.properties.find(params[:id])
   end
-
-  def create_expense_report
-    @property = Property.find(params[:id])
-  end
-
+  
   def upload_files
     if current_property.update_attributes(properties_params)
       flash[:info] = 'Successfully uploaded your documents!'

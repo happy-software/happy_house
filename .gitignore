@@ -40,3 +40,4 @@ dump.rdb
 
 # Ignore local env files
 .env.*.local
+.env*

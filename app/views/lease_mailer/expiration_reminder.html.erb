@@ -7,5 +7,5 @@
 <p>
   Your property (<%= @property.display_name %>) has a lease that's about to expire!
 
-  To renew the lease, follow this link: <%= property_lease_renew_current_lease_path(@property.id, @lease.id, id: @lease.id) %>
+  To renew the lease, follow this link: <%= @url %>
 </p>

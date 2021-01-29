@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'noreply@my-happy-house.herokuapp.com'
+  default from: 'noreply@happyhouse.live'
   layout 'mailer'
 end

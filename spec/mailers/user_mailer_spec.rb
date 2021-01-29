@@ -8,7 +8,7 @@ RSpec.describe UserMailer, type: :mailer do
     it 'renders the headers' do
       expect(mail.subject).to eq('Happy House - Activate Your Account')
       expect(mail.to).to eq([user.email])
-      expect(mail.from).to eq(['noreply@my-happy-house.herokuapp.com'])
+      expect(mail.from).to eq(['noreply@happyhouse.live'])
     end
 
     it 'renders the body' do
@@ -26,7 +26,7 @@ RSpec.describe UserMailer, type: :mailer do
     it 'renders the headers' do
       expect(mail.subject).to eq('Happy House - Reset Your Password')
       expect(mail.to).to eq([user.email])
-      expect(mail.from).to eq(['noreply@my-happy-house.herokuapp.com'])
+      expect(mail.from).to eq(['noreply@happyhouse.live'])
     end
 
     it 'renders the body' do

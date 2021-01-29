@@ -1,0 +1,11 @@
+<h1>Happy House</h1>
+
+<p>
+  Hello <%= @user.name %>,
+</p>
+
+<p>
+  Your property (<%= @property.display_name %>) has a lease that's about to expire!
+
+  To renew the lease, follow this link: <%= @url %>
+</p>

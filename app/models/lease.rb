@@ -33,6 +33,10 @@ class Lease < ApplicationRecord
     l
   end
 
+  def self.active(timestamp=DateTime.now)
+    where("start_date <= ? AND end_date >= ?", timestamp, timestamp)
+  end
+
   def expired?(date=nil)
     date = date || DateTime.now
     return unless self.end_date

@@ -88,4 +88,7 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'chartkick'
 gem 'groupdate'
 
+# https://sentry.io/organizations/my-happy-house/projects/my-happy-house/getting-started/ruby-rails/
 gem 'sentry-raven'
+gem 'sentry-ruby'
+gem 'sentry-rails'

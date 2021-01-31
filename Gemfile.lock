@@ -254,8 +254,18 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
+    sentry-rails (4.1.6)
+      rails (>= 5.0)
+      sentry-ruby-core (~> 4.1.2)
     sentry-raven (3.1.1)
       faraday (>= 1.0)
+    sentry-ruby (4.1.5)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      faraday (>= 1.0)
+      sentry-ruby-core (= 4.1.5)
+    sentry-ruby-core (4.1.5)
+      concurrent-ruby
+      faraday
     sidekiq (6.1.1)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
@@ -331,7 +341,9 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 6.0)
   selenium-webdriver
+  sentry-rails
   sentry-raven
+  sentry-ruby
   sidekiq
   sidekiq-cron
   spring

@@ -87,3 +87,5 @@ gem 'rack-cors', require: 'rack/cors'
 
 gem 'chartkick'
 gem 'groupdate'
+
+gem 'sentry-raven'

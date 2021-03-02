@@ -1,5 +1,5 @@
 class ExpenseItemsController < ApplicationController
-  before_action :correct_user,   only: [:index, :new, :create]
+  before_action :correct_user,   only: [:index, :new, :create, :show, :edit, :update]
 
   def index
     @expense_items ||= property.expense_items

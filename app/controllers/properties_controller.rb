@@ -1,5 +1,5 @@
 class PropertiesController < ApplicationController
-  before_action :correct_user, only: [:show, :upload_files]
+  before_action :correct_user, only: [:show, :upload_files, :update, :edit]
   def new
     @property = current_user.properties.new
   end

@@ -1,6 +1,6 @@
 require 'expense_item/one_off_uploaders'
 class ExpenseItem < ApplicationRecord
-  include OneOffUploaders
+  extend OneOffUploaders
 
   belongs_to :property
 

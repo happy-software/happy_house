@@ -3,7 +3,7 @@ module OneOffUploaders
 # These are one off methods I created to load things into the db through#
 # console instead of trying to create a UI for it.                      #
 #########################################################################
-  def self.create_yearly_mortgage_payments!(property, year, amount)
+  def create_yearly_mortgage_payments!(property, year, amount)
     (1..12).each do |month|
       name = "#{month}-#{year} Mortgage Payment"
       cost = amount
@@ -13,7 +13,7 @@ module OneOffUploaders
     end
   end
 
-  def self.create_yearly_hoa_payments!(property,  year, amount)
+  def create_yearly_hoa_payments!(property,  year, amount)
     (1..12).each do |month|
       name = "#{month}-#{year} HOA Payment"
       cost = amount

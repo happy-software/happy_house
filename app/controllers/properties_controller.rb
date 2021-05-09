@@ -49,16 +49,16 @@ class PropertiesController < ApplicationController
 
   private
 
-    def current_property
-      Property.find(params[:id])
-    end
+  def current_property
+    Property.find(params[:id])
+  end
 
-    def properties_params
-      params.require(:property).permit(:nickname, :id,
-                                       :property_type,
-                                       address: [:street_address, :city, :state, :zip_code],
-                                       documents: [])
-    end
+  def properties_params
+    params.require(:property).permit(:nickname, :id,
+                                     :property_type,
+                                     address: [:street_address, :city, :state, :zip_code],
+                                     documents: [])
+  end
 
   def correct_user
     redirect_to root_url unless Property.find(params[:id]).user == current_user

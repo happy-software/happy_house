@@ -31,10 +31,4 @@ Rails.application.routes.draw do
       get '/renew', to: 'leases#renew', as: 'renew_current_lease'
     end
   end
-
-  # namespace :api do
-  #   namespace :v1 do
-  #     resources :properties
-  #   end
-  # end
 end

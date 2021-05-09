@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_06_034035) do
+ActiveRecord::Schema.define(version: 2021_05_09_201334) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "hstore"
   enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -76,6 +77,13 @@ ActiveRecord::Schema.define(version: 2019_07_06_034035) do
     t.index ["property_id"], name: "index_leases_on_property_id"
   end
 
+  create_table "leases_tenants", force: :cascade do |t|
+    t.bigint "lease_id"
+    t.bigint "tenant_id"
+    t.index ["lease_id"], name: "index_leases_tenants_on_lease_id"
+    t.index ["tenant_id"], name: "index_leases_tenants_on_tenant_id"
+  end
+
   create_table "properties", force: :cascade do |t|
     t.jsonb "address"
     t.datetime "created_at", null: false
@@ -83,6 +91,7 @@ ActiveRecord::Schema.define(version: 2019_07_06_034035) do
     t.bigint "user_id"
     t.string "nickname"
     t.string "property_type"
+    t.string "zpid"
     t.index ["property_type"], name: "index_properties_on_property_type"
     t.index ["user_id"], name: "index_properties_on_user_id"
   end

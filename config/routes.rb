@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  require 'sidekiq/web'
-  require 'sidekiq/cron/web'
-  mount Sidekiq::Web => '/sidekiq'
-
   get 'password_resets/new'
   get 'password_resets/edit'
   root 'static_pages#home'
@@ -35,10 +31,4 @@ Rails.application.routes.draw do
       get '/renew', to: 'leases#renew', as: 'renew_current_lease'
     end
   end
-
-  # namespace :api do
-  #   namespace :v1 do
-  #     resources :properties
-  #   end
-  # end
 end

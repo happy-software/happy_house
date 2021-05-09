@@ -69,8 +69,6 @@ group :test do
   gem 'chromedriver-helper'
 end
 
-gem 'sidekiq'
-gem 'sidekiq-cron'
 gem 'pry-rails'
 
 gem 'wicked_pdf'

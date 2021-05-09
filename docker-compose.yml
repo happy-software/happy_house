@@ -21,10 +21,6 @@ services:
     volumes:
       - 'redis:/data'
 
-  sidekiq:
-    <<: *main
-    command: sidekiq
-
   website:
     <<: *main
     ports:

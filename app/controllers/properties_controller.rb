@@ -1,3 +1,5 @@
+require_relative '../services/price_history_service'
+
 class PropertiesController < ApplicationController
   before_action :correct_user, only: [:show, :upload_files, :update, :edit]
   def new
@@ -34,7 +36,8 @@ class PropertiesController < ApplicationController
   end
 
   def show
-    @property = current_user.properties.find(params[:id])
+    @property           = current_user.properties.find(params[:id])
+    @price_history_data = PriceHistoryService.new(@property.zpid).get_history
   end
   
   def upload_files

@@ -2,9 +2,18 @@
 
 <h1><%= @property.display_name %> - Dashboard</h1>
 
+<% unless @price_history_data.empty? %>
 <div class="row">
+  <div class="col-sm-12">
+    <%= line_chart(@price_history_data) %>
+  </div>
+</div>
+<div class="h-divider"></div>
+<% end %>
+
+<div class="row">
+  <!-- Cost Tracking -->
   <div class="col-md-4 col-sm-12">
-    <!-- Cost Tracking -->
     <div class="card mr-md-5" style="width: 18rem;">
       <div class="mx-auto">
         <span class="fas fa-money-bill-alt" style="font-size: 8rem; color: forestgreen;"></span>
@@ -27,8 +36,8 @@
     </div>
   </div>
 
+  <!-- Documents -->
   <div class="col-md-4 col-sm-12">
-    <!-- Documents -->
     <div class="card mr-md-5" style="width: 18rem;">
       <div class="mx-auto">
         <span class="fas fa-file-invoice pt-sm-1" style="font-size: 8rem; color: Salmon;"></span>
@@ -51,8 +60,8 @@
     </div>
   </div>
 
+  <!-- Reminders -->
   <div class="col-md-4 col-sm-12">
-    <!-- Reminders -->
     <div class="card mr-md-5" style="width: 18rem;">
       <div class="mx-auto">
         <span class="fas fa-clock" style="font-size: 8rem; color: MediumPurple;"></span>

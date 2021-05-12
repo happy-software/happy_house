@@ -18,13 +18,14 @@ class PriceHistoryService
   private
 
   def call_api
+    Rails.cache.fetch("#{Date.today.strftime("%Y-%m-%d")}-#{zpid}") do
+      uri = URI("#{ENV['PRICE_HISTORY_API']}/#{zpid}")
 
-    uri = URI("#{ENV['PRICE_HISTORY_API']}/#{zpid}")
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
 
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-
-    req = Net::HTTP::Get.new(uri.path)
-    http.request(req)
+      req = Net::HTTP::Get.new(uri.path)
+      http.request(req)
+    end
   end
 end

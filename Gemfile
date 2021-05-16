@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.1'
+gem 'rails', '~> 6.0'
 # Use PostgreSQL as the database for Active Record
 gem 'pg', '~> 1.1'
 # Use Puma as the app server
@@ -15,7 +15,7 @@ gem 'sass-rails', '~> 6.0'
 gem 'bootstrap'
 gem 'autoprefixer-rails'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier'
+gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 

@@ -15,7 +15,7 @@ gem 'sass-rails', '~> 6.0'
 gem 'bootstrap'
 gem 'autoprefixer-rails'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 

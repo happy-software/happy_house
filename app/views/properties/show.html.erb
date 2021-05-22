@@ -5,7 +5,11 @@
 <% unless @price_history_data.empty? %>
 <div class="row">
   <div class="col-sm-12">
-    <%= line_chart(@price_history_data) %>
+    <%= line_chart(
+            @price_history_data.transform_values { |v| number_to_currency(v, unit: '', delimiter: '')},
+            {thousands: ',', round: 2, zeros: true, prefix: '$'}
+        )
+    %>
   </div>
 </div>
 <div class="h-divider"></div>

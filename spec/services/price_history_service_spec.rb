@@ -25,7 +25,7 @@ describe PriceHistoryService do
         let(:response_code) { 200 }
         let(:response_body) { '{"data":{"2019-03-13": "303844.0", "2019-03-14":"303699.0"}}' }
         let(:expected_summary) do
-          {"2019-03" => 303771.5}
+          {'March 2019' => 303771.5}
         end
 
         before { allow(instance).to receive(:call_api).and_return(api_response) }

@@ -43,7 +43,10 @@ class PriceHistoryService
     end
 
     summarized = {}
-    totals_by_month.each { |month, amounts| summarized[month] = (amounts.sum / amounts.count).round(2) }
+    totals_by_month.each do |date, amounts|
+      display_month = "#{Date::MONTHNAMES[date.last(2).to_i]} #{date.first(4)}"
+      summarized[display_month] = (amounts.sum / amounts.count).round(2)
+    end
 
     summarized
   end

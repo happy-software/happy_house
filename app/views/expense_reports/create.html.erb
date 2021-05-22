@@ -6,7 +6,11 @@
       <h1>Expense Report - <%= @year %></h1>
 
       <h3>Overview</h3>
-      <%=  column_chart @year_summary, xtitle: 'Month', ytitle: 'Cost ($)' %>
+      <%=  column_chart(
+               @year_summary,
+               {xtitle: "Year", ytitle: "Cost", thousands: ',', round: 2, zeros: true, prefix: '$'}
+           )
+      %>
 
       <h3>Total Cost: <%= number_to_currency(@expense_report[:total_cost]) %></h3>
       <div>

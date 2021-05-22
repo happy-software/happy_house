@@ -6,7 +6,11 @@
       <h1>Expense Reports</h1>
 
       <h3>Overview</h3>
-      <%= column_chart @yearly_expense_summary, xtitle: "Year", ytitle: "Cost ($)" %>
+      <%= column_chart(
+              @yearly_expense_summary,
+              {xtitle: "Year", ytitle: "Cost", thousands: ',', round: 2, zeros: true, prefix: '$'}
+          )
+      %>
 
       <%= form_tag('expense_reports/create', method: 'get') do %>
         <span>

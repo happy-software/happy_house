@@ -23,11 +23,14 @@ describe PriceHistoryService do
       context 'with a proper response' do
         let(:api_response)  { OpenStruct.new(code: response_code, body: response_body) }
         let(:response_code) { 200 }
-        let(:response_body) { '{"data":"some_data"}' }
+        let(:response_body) { '{"data":{"2019-03-13": "303844.0", "2019-03-14":"303699.0"}}' }
+        let(:expected_summary) do
+          {"2019-03" => 303771.5}
+        end
 
         before { allow(instance).to receive(:call_api).and_return(api_response) }
 
-        it { is_expected.to eq(JSON.parse(response_body)['data']) }
+        it { is_expected.to eq(expected_summary) }
       end
     end
   end

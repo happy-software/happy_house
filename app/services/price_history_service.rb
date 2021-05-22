@@ -12,7 +12,8 @@ class PriceHistoryService
     resp = call_api
     return {} unless resp.code.to_i == 200
 
-    JSON.parse(resp.body).dig('data')
+    raw_data = JSON.parse(resp.body).dig('data')
+    monthly_summary(raw_data)
   end
 
   private
@@ -31,5 +32,19 @@ class PriceHistoryService
 
   def api_path
     ENV['PRICE_HISTORY_API']
+  end
+
+  def monthly_summary(raw_data)
+    totals_by_month = Hash.new.tap do |monthly|
+      raw_data.each do |date, amount|
+        monthly[date.first(7)] ||= []
+        monthly[date.first(7)] << amount.to_f
+      end
+    end
+
+    summarized = {}
+    totals_by_month.each { |month, amounts| summarized[month] = (amounts.sum / amounts.count).round(2) }
+
+    summarized
   end
 end

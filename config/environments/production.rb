@@ -103,12 +103,4 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-
-  # https://sentry.io/organizations/my-happy-house/projects/my-happy-house/getting-started/ruby-rails/
-  Sentry.init do |config|
-    config.dsn = ENV['SENTRY_DSN']
-    config.breadcrumbs_logger = [:active_support_logger]
-
-    config.traces_sample_rate = 0.5
-  end
 end

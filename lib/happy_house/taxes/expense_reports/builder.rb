@@ -29,7 +29,7 @@ module HappyHouse
         private
 
         def expense_items_in_year(year)
-          @expense_reports ||= property.expense_items.where("extract(year from expense_date) = ?", year).order(:expense_date)
+          @expense_reports ||= property.expense_items.for_year(year)
         end
       end
     end

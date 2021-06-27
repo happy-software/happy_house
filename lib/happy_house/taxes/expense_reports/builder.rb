@@ -29,7 +29,7 @@ module HappyHouse
         private
 
         def expense_items_in_year(year)
-          @expense_reports ||= property.expense_items.for_year(year)
+          property.expense_items.for_year(year)
         end
       end
     end

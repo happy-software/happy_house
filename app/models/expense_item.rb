@@ -10,5 +10,5 @@ class ExpenseItem < ApplicationRecord
 
   has_many_attached :attachments
 
-  scope :for_year, -> (year) { where("extract(year from expense_date) = ?", year).order(:expense_date) }
+  scope :for_year, -> (year) { where("extract(year from expense_date) = ?", year) }
 end

@@ -9,7 +9,7 @@ module HappyHouse
         end
 
         def build_for_year(year)
-          expenses = expense_items_in_year(year)
+          expenses = property.expense_items.for_year(year).order(:expense_date)
           total_cost = expenses.map { |e| e[:cost] }.sum
           items = expenses.map do |expense_item|
             {
@@ -24,12 +24,6 @@ module HappyHouse
               total_cost: total_cost,
               expenses: items,
           }
-        end
-
-        private
-
-        def expense_items_in_year(year)
-          @expense_reports ||= property.expense_items.where("extract(year from expense_date) = ?", year).order(:expense_date)
         end
       end
     end

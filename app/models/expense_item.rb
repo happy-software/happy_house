@@ -9,4 +9,6 @@ class ExpenseItem < ApplicationRecord
   validates :expense_date, presence: true
 
   has_many_attached :attachments
+
+  scope :for_year, -> (year) { where("extract(year from expense_date) = ?", year) }
 end

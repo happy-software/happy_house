@@ -1,24 +1,23 @@
-# Use an official Ruby runtime as a parent image
+# syntax=docker/dockerfile:1
 FROM ruby:2.5.1
-LABEL maintainer="Hebron George <hebrontgeorge@gmail.com>"
-# Run server when the container launches
-CMD puma -C config/puma.rb
-ENTRYPOINT ["bin/entrypoint.sh"]
-
-# Make port 3000 available to the world outside this container
-ENV PORT="3000" \
-    APP_DIR="/app/"
-EXPOSE $PORT
-RUN mkdir $APP_DIR
-WORKDIR $APP_DIR
-
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
-RUN apt-get update && apt-get upgrade -y
-RUN apt-get install -y libpq-dev nodejs jq
-
-# Try doing the bundle stuff first
-COPY Gemfile Gemfile.lock $APP_DIR
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+WORKDIR /myapp
+COPY Gemfile /myapp/Gemfile
+COPY Gemfile.lock /myapp/Gemfile.lock
+RUN gem install bundler -v 2.1.4
+ENV BUNDLER_VERSION="2.1.4"
 RUN bundle install
 
-# Copy the current directory contents into the container at /app
-COPY . $APP_DIR
+# Add a script to be executed every time the container starts.
+COPY bin/entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
+EXPOSE 3000
+
+ENV DB_USERNAME="postgres"
+ENV DB_PASSWORD="password"
+ENV DB_HOST="db"
+
+# Configure the main process to run when running the image
+CMD ["rails", "server", "-b", "0.0.0.0"]

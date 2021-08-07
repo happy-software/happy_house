@@ -1,32 +1,17 @@
-version: '3.4'
-
-x-main: &main
-  tty: true
-  stdin_open: true
-  build: .
-  volumes:
-    - '.:/app'
-  depends_on:
-    - postgres
-    - redis
-
+version: "3.9"
 services:
-  postgres:
-    image: 'postgres:10.3-alpine'
+  db:
+    image: postgres
     volumes:
-      - 'postgres:/var/lib/postgresql/data'
-
-  redis:
-    image: 'redis'
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
-      - 'redis:/data'
-
-  website:
-    <<: *main
+      - .:/myapp
     ports:
-      - '3000:3000'
-
-volumes:
-  postgres:
-  redis:
-
+      - "3000:3000"
+    depends_on:
+      - db

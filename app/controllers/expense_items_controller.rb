@@ -31,7 +31,7 @@ class ExpenseItemsController < ApplicationController
   def update
     @expense_item = property.expense_items.find(params[:id])
 
-    if @expense_item&.update_attributes(expense_item_params)
+    if @expense_item&.update(expense_item_params)
       flash[:success] = "Updated Expense Item: #{@expense_item.name}"
       redirect_to @expense_item.property
     else

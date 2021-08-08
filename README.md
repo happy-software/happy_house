@@ -19,6 +19,17 @@ docker-compose to accomplish this.
 ```bash
 docker-compose run --rm web rails db:create db:migrate db:seed
 ```
+
+### Debugging with pry
+
+To be able to hit breakpoints, you can run:
+```bash
+docker-compose up db
+docker-compose docker-compose run --service-ports web # in another terminal
+```
+
+See [this gist](https://gist.github.com/briankung/ebfb567d149209d2d308576a6a34e5d8#gistcomment-3186227) for more details.
+
 ### Testing
 
 Create a file called `.env.test.local`, and add the following environment

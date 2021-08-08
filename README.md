@@ -17,7 +17,7 @@ At first, you'll need to create a database and seed it. You can use
 docker-compose to accomplish this.
 
 ```bash
-docker-compose run --rm website rails db:create db:migrate db:seed
+docker-compose run --rm web rails db:create db:migrate db:seed
 ```
 ### Testing
 

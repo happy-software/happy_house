@@ -1,20 +1,17 @@
 class LeasesController < ApplicationController
   before_action :set_property
   before_action :set_lease, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in?
+  before_action :correct_user
 
-  # GET /properties/:property_id/leases
-  # GET /properties/:property_id/leases.json
   def index
     @leases = @property.leases.with_eager_loaded_contract
   end
 
-  # GET /properties/:property_id/leases/new
   def new
     @lease = Lease.new
   end
 
-  # POST /properties/:property_id/leases
-  # POST /properties/:property_id/leases.json
   def create
     @lease = @property.leases.new(lease_params)
 
@@ -29,8 +26,6 @@ class LeasesController < ApplicationController
     end
   end
 
-  # GET /properties/:property_id/leases/1
-  # GET /properties/:property_id/leases/1.json
   def show
     respond_to do |format|
       format.html
@@ -43,12 +38,9 @@ class LeasesController < ApplicationController
     end
   end
 
-  # GET /properties/:property_id/leases/1/edit
   def edit
   end
 
-  # PATCH/PUT /properties/:property_id/leases/1
-  # PATCH/PUT /properties/:property_id/leases/1.json
   def update
     respond_to do |format|
       if @lease.update(lease_params)
@@ -62,8 +54,7 @@ class LeasesController < ApplicationController
   end
 
   def renew
-    property = set_property
-    new_lease = property.property_interface.renew_lease!
+    new_lease = @property.property_interface.renew_lease!
 
     respond_to do |format|
       if new_lease
@@ -73,8 +64,6 @@ class LeasesController < ApplicationController
     end
   end
 
-  # DELETE /properties/:property_id/leases/1
-  # DELETE /properties/:property_id/leases/1.json
   def destroy
     @lease.destroy
     respond_to do |format|
@@ -84,7 +73,6 @@ class LeasesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_lease
       @lease = @property.leases.find(params[:id])
     end
@@ -93,12 +81,15 @@ class LeasesController < ApplicationController
       @property = Property.find(params[:property_id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def lease_params
       params.require(:lease).permit(:start_date,
                                     :end_date,
                                     :amount,
                                     :lease_frequency_id,
                                     :contract)
+    end
+
+    def correct_user
+      redirect_to root_url unless Property.find(params[:property_id]).user == current_user
     end
 end

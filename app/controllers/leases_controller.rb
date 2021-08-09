@@ -20,8 +20,8 @@ class LeasesController < ApplicationController
 
     respond_to do |format|
       if @lease.save
-        format.html { redirect_to [@property, @lease], notice: 'Lease was successfully created.' }
-        format.json { render :show, status: :created, location: [@property, @lease] }
+        format.html { redirect_to [@property.user, @property, @lease], notice: 'Lease was successfully created.' }
+        format.json { render :show, status: :created, location: [@property.user, @property, @lease] }
       else
         format.html { render :new }
         format.json { render json: @lease.errors, status: :unprocessable_entity }

@@ -1,5 +1,5 @@
 class ExpenseItemsController < ApplicationController
-  before_action :correct_user,   only: [:index, :new, :create, :show, :edit, :update]
+  before_action :correct_user
 
   def index
     @expense_items ||= property.expense_items
@@ -14,7 +14,7 @@ class ExpenseItemsController < ApplicationController
 
     if @expense_item.save
       flash[:info] = "Expense (#{@expense_item.name}) saved!"
-      redirect_to property_expense_items_url
+      redirect_to user_property_expense_items_url
     else
       render 'new'
     end
@@ -33,7 +33,7 @@ class ExpenseItemsController < ApplicationController
 
     if @expense_item&.update(expense_item_params)
       flash[:success] = "Updated Expense Item: #{@expense_item.name}"
-      redirect_to @expense_item.property
+      redirect_to user_property_url(property)
     else
       render 'edit'
     end

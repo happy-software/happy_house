@@ -20,13 +20,13 @@
               Add some expense items for <%= @property_name %> before creating an Expense Report.
             </p>
 
-            <%= link_to 'Add an Expense', new_property_expense_item_path(@property), class: 'btn btn-primary' %>
-            <%= link_to 'Cancel', property_path(@property), class: 'btn btn-danger' %>
+            <%= link_to 'Add an Expense', new_user_property_expense_item_path(@current_user, @property), class: 'btn btn-primary' %>
+            <%= link_to 'Cancel', user_property_path(@current_user, @property), class: 'btn btn-danger' %>
           <% else %>
             <p>Choose a year for details:</p>
             <%= select_tag(:expense_year, options_for_select(@available_years.map { |year| [year, year] })) %>
             <%= submit_tag('Create Report', class: 'btn btn-primary mt-sm-3') %>
-            <%= link_to 'Cancel', property_path(@property), class: 'btn btn-danger mt-sm-3' %>
+            <%= link_to 'Cancel', user_property_path(@current_user, @property), class: 'btn btn-danger mt-sm-3' %>
           <% end %>
         </span>
       <% end %>

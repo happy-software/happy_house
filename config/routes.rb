@@ -11,24 +11,25 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
 
-  # expense reports
-  get    '/properties/:id/expense_reports/',       to: 'expense_reports#index',  as: 'new_expense_report'
-  get    '/properties/:id/expense_reports/create', to: 'expense_reports#create', as: 'create_expense_report'
-  get    '/properties/:id/mortgage_expenses/',     to: 'mortgage_expenses#index', as: 'new_mortgage_expense'
-  post   '/properties/:id/mortgage_expenses/',     to: 'mortgage_expenses#create', as: 'create_yearly_mortgage_expense'
-  get    '/properties/:id/hoa_expenses/',          to: 'hoa_expenses#index',  as: 'new_hoa_expense'
-  post   '/properties/:id/hoa_expenses/',          to: 'hoa_expenses#create', as: 'create_yearly_hoa_expense'
+  resources :users,               except: [:index, :destroy] do
+    resources :properties,          only: [:new, :create, :edit, :update, :index, :show] do
+      # expense reports
+      get  '/expense_reports/',       to: 'expense_reports#index',    as: 'new_expense_report'
+      get  '/expense_reports/create', to: 'expense_reports#create',   as: 'create_expense_report'
+      get  '/mortgage_expenses/',     to: 'mortgage_expenses#index',  as: 'new_mortgage_expense'
+      post '/mortgage_expenses/',     to: 'mortgage_expenses#create', as: 'create_yearly_mortgage_expense'
+      get  '/hoa_expenses/',          to: 'hoa_expenses#index',       as: 'new_hoa_expense'
+      post '/hoa_expenses/',          to: 'hoa_expenses#create',      as: 'create_yearly_hoa_expense'
 
-  # property documents
-  patch  'properties/:id/upload_files',            to: 'properties#upload_files', as: 'upload_property_documents'
+      # property documents
+      patch '/upload_files',          to: 'properties#upload_files',  as: 'upload_property_documents'
 
-  resources :users,               except: [:index, :destroy]
-  resources :account_activations, only: [:edit]
-  resources :password_resets,     only: [:new, :create, :edit, :update]
-  resources :properties,          only: [:new, :create, :edit, :update, :index, :show] do
-    resources :expense_items
-    resources :leases do
-      get '/renew', to: 'leases#renew', as: 'renew_current_lease'
+      resources :expense_items
+      resources :leases do
+        get '/renew', to: 'leases#renew', as: 'renew_current_lease'
+      end
     end
   end
+  resources :account_activations, only: [:edit]
+  resources :password_resets,     only: [:new, :create, :edit, :update]
 end

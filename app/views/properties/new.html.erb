@@ -3,7 +3,7 @@
 
 <h1>Add Property</h1>
 
-<%= form_for([@property.user, @property]) do |f| %>
+<%= form_for([@current_user, @property]) do |f| %>
   <div class="row">
     <div class="col-sm-6">
         <%= render 'shared/error_messages', object: @property %>

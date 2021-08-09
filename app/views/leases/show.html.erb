@@ -56,5 +56,5 @@
   </tbody>
 </table>
 
-<%= link_to 'Edit', edit_user_property_lease_path(@property.user, @property, @lease) %> |
+<%= link_to 'Edit', edit_user_property_lease_path(@current_user, @property, @lease) %> |
 <%= link_to 'Back', user_property_leases_path %>

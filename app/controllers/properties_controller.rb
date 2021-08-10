@@ -47,7 +47,7 @@ class PropertiesController < ApplicationController
       flash[:danger] = 'Error: Could not upload your documents!'
     end
 
-    redirect_to property_path(current_property)
+    redirect_to user_property_path(@current_user, current_property)
   end
 
   private

@@ -2,7 +2,7 @@
 <% if @lease.expiring_soon? %>
 <div class="renew_section">
   <h2>Expiring Soon... </h2>
-  <%= link_to "Renew Lease", property_lease_renew_current_lease_path(@property.id, @lease.id, id: @lease.id), id: @lease.id , class: 'btn btn-danger'%>
+  <%= link_to "Renew Lease", user_property_lease_renew_current_lease_path(@current_user, @property.id, @lease.id, id: @lease.id), id: @lease.id , class: 'btn btn-danger'%>
 </div>
 <% end %>
 

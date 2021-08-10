@@ -22,7 +22,7 @@ class PropertiesController < ApplicationController
 
   def update
     @property = Property.find_by(id: params[:id])
-    if @property.update_attributes(properties_params)
+    if @property.update(properties_params)
       flash[:success] = 'Updated: ' + @property.display_name
       redirect_to current_user
     else
@@ -41,7 +41,7 @@ class PropertiesController < ApplicationController
   end
   
   def upload_files
-    if current_property.update_attributes(properties_params)
+    if current_property.update(properties_params)
       flash[:info] = 'Successfully uploaded your documents!'
     else
       flash[:danger] = 'Error: Could not upload your documents!'

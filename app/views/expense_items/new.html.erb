@@ -5,8 +5,7 @@
 <div class="row">
   <div class="col-sm-6">
     <%= render 'shared/error_messages', object: @expense_item %>
-
-    <%= form_for(@expense_item, url: property_expense_items_path) do |f| %>
+    <%= form_for([@current_user, @property, @expense_item], url: user_property_expense_items_path) do |f| %>
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control' %>
 
@@ -20,7 +19,7 @@
       <%= f.file_field(:attachments, multiple: true) %>
 
       <%= f.submit 'Add Expense', class: 'btn btn-primary mt-sm-3' %>
-      <%= link_to 'Cancel', property_path(@property), class: 'btn btn-danger mt-sm-3' %>
+      <%= link_to 'Cancel', user_property_path(@current_user, @property), class: 'btn btn-danger mt-sm-3' %>
     <% end %>
   </div>
 </div>

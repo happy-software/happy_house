@@ -17,7 +17,7 @@
           <div class="card-body text-center">
             <h4 class="card-title"><%= property.display_name %></h4>
             <h1>
-              <%= link_to 'Open', property_path(property), class: 'btn btn-primary' %>
+              <%= link_to 'Open', user_property_path(current_user, property), class: 'btn btn-primary' %>
             </h1>
           </div>
         </div>
@@ -26,6 +26,6 @@
   </div>
 
   <div class="mt-sm-2">
-    <%= link_to 'Add another property', new_property_url, class: 'btn btn-primary' %>
+    <%= link_to 'Add another property', new_user_property_url, class: 'btn btn-primary' %>
   </div>
 <% end %>

@@ -17,11 +17,11 @@
             <% property_name = property.nickname.empty? ? property.address['street_address'] : property.nickname %>
             <% property_with_index = (index + 1).to_s + '. ' + (property_name) %>
 
-            <p><%= link_to property_with_index, edit_property_path(property)%></p>
+            <p><%= link_to property_with_index, edit_user_property_path(current_user, property)%></p>
           <% end %>
 
           <div>
-            <%= link_to 'Add another property', new_property_url, class: 'btn btn-primary' %>
+            <%= link_to 'Add another property', new_user_property_url(@current_user), class: 'btn btn-primary' %>
           </div>
       <% end %>
       </div>

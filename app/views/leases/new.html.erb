@@ -2,4 +2,4 @@
 
 <%= render 'form', lease: @lease %>
 
-<%= link_to 'Back', property_leases_path(@property, @lease) %>
+<%= link_to 'Back', user_property_leases_path(@current_user, @property, @lease) %>

@@ -5,7 +5,7 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <% provide(:button_text, 'Save') %>
-    <%= form_for(@property) do |f| %>
+    <%= form_for([@current_user, @property]) do |f| %>
       <%= render 'shared/error_messages', object: @property %>
 
       <%= f.label :nickname, 'Nickname for this property' %>
@@ -31,27 +31,12 @@
         </div>
       <% end %>
 
+      <div>
       <%= f.label :property_type, 'What kind of property is this?' %>
       <%= f.select :property_type, Property::PROPERTY_TYPES.map(&:to_s).map(&:titleize), include_blank: true, class: 'form-control'%>
-
-      <div class="document_uploader">
-        <div class="alert alert-info">
-          <h1>Documents</h1>
-          <p>
-            Make that mountain of documents more managable!
-            <br>
-            You can upload them below and keep them all in one place.
-          </p>
-        </div>
-
-        <ul class="list-group">
-          <%= render partial: 'properties/property_documents/existing_document', collection: @property.property_documents %>
-        </ul>
-        <%= link_to_add_fields 'Add Another Document', f, :property_documents %>
       </div>
-
       <%= f.submit yield(:button_text), class: 'btn btn-primary' %>
-      <%= link_to 'Cancel', property_path(@property), class: 'btn btn-danger' %>
+      <%= link_to 'Cancel', user_property_path(@current_user, @property), class: 'btn btn-danger' %>
     <% end %>
 
 

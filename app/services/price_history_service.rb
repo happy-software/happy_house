@@ -23,7 +23,7 @@ class PriceHistoryService
       uri = URI("#{api_path}/#{zpid}")
 
       http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
+      http.use_ssl = Rails.env.production? # Turn SSL off for local testing
 
       req = Net::HTTP::Get.new(uri.path)
       http.request(req)

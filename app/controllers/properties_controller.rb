@@ -37,7 +37,7 @@ class PropertiesController < ApplicationController
 
   def show
     @property           = current_user.properties.find(params[:id])
-    @price_history_data = PriceHistoryService.new(@property.zpid).get_history
+    @price_history_data = PriceHistoryService.new(@property).get_history
   end
   
   def upload_files

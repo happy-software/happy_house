@@ -19,7 +19,8 @@ class HappyHoodService
     when :valuations
       Rails.cache.fetch("#{Date.today.strftime("%Y-%m-%d")}-#{zpid}") do
         uri = URI("#{api_path}/#{zpid}")
-        Net::HTTP.get(uri)
+        response = Net::HTTP.get(uri)
+        JSON.parse(response).dig('data')
       end
     else
       raise StandardError.new("Unexpected endpoint: #{endpoint}")

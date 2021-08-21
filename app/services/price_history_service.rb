@@ -10,15 +10,11 @@ class PriceHistoryService
 
   def get_history
     return {} unless zpid
-
-    resp = call_api
-    return {} unless resp.code.to_i == 200
-
-    raw_data = JSON.parse(resp.body).dig('data')
-    monthly_summary(raw_data)
+    monthly_summary(call_api)
   end
 
   private
+
   def call_api
     HappyHoodService.new(property).get_history
   end
@@ -26,8 +22,8 @@ class PriceHistoryService
   def monthly_summary(raw_data)
     totals_by_month = Hash.new.tap do |monthly|
       raw_data.each do |date, amount|
-        monthly[date.first(7)] ||= []
-        monthly[date.first(7)] << amount.to_f
+        monthly[date.to_s.first(7)] ||= []
+        monthly[date.to_s.first(7)] << amount.to_f
       end
     end
 

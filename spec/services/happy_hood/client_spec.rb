@@ -20,9 +20,15 @@ describe HappyHoodService do
     end
 
     context 'with an api endpoint defined' do
-      before { allow(instance).to receive(:api_path).and_return('http://somepath.wtf') }
+      let(:stubbed_response) { '{"data":{"2019-03-13": "303844.0", "2019-03-14":"303699.0"}}' }
+
+      before do
+        allow(instance).to receive(:api_path).and_return('http://somepath.wtf')
+        Rails.cache.delete("#{Date.today.strftime("%Y-%m-%d")}-#{zpid}")
+      end
+
       it 'tries to make a request' do
-        expect(Net::HTTP).to receive(:get).with(URI("http://somepath.wtf/#{zpid}"))
+        expect(Net::HTTP).to receive(:get).with(URI("http://somepath.wtf/#{zpid}")).and_return(stubbed_response)
         subject
       end
     end

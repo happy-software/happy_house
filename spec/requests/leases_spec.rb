@@ -10,7 +10,7 @@ RSpec.describe "Leases", type: :request do
   end
 
   describe "GET /leases" do
-    it "works! (now write some real specs)" do
+    it "works!" do
       post login_path, params: {"session": {"email": mock_user.email, "password": mock_user.password}}
       get user_property_leases_path(user_id: mock_user.id, property_id: mock_property.id)
       expect(response).to have_http_status(200)

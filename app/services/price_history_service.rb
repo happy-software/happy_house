@@ -1,7 +1,7 @@
 require 'happy_hood/client'
 
 class PriceHistoryService
-  attr_reader :zpid
+  attr_reader :zpid, :property
 
   def initialize(property)
     @property = property

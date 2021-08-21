@@ -1,4 +1,10 @@
 version: "3.9"
+
+networks:
+  default:
+    external:
+      name: happy_software_network
+
 services:
   db:
     image: 'postgres:13.2-alpine'

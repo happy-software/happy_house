@@ -10,8 +10,6 @@ services:
     environment:
       POSTGRES_PASSWORD: password
       PGPASSWORD: password
-    networks:
-      - happy_software
     volumes:
       - 'postgres:/var/lib/postgresql/data'
   web:
@@ -24,6 +22,7 @@ services:
       DB_PASSWORD: password
       DB_HOST: db
     networks:
+      - default
       - happy_software
     volumes:
       - '.:/myapp'

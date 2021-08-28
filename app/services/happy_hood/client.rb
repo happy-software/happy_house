@@ -19,8 +19,11 @@ class HappyHoodService
     when :valuations
       Rails.cache.fetch("#{Date.today.strftime("%Y-%m-%d")}-#{zpid}") do
         uri = URI("#{api_path}/#{zpid}")
-        response = Net::HTTP.get(uri)
-        JSON.parse(response).dig('data')
+        req = Net::HTTP::Get.new(uri)
+        req['Authorization'] = "Bearer token=\"#{ENV['HAPPY_HOOD_API_TOKEN']}\""
+        response = Net::HTTP.start(uri.hostname, uri.port) { |http| http.request(req) }
+        return {} unless response.code.to_i >= 200 && response.code.to_i < 300
+        JSON.parse(response.body).dig('data')
       end
     else
       raise StandardError.new("Unexpected endpoint: #{endpoint}")

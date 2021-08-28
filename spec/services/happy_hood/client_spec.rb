@@ -20,15 +20,16 @@ describe HappyHoodService do
     end
 
     context 'with an api endpoint defined' do
-      let(:stubbed_response) { '{"data":{"2019-03-13": "303844.0", "2019-03-14":"303699.0"}}' }
-
+      let(:stubbed_response) { double('response', code: '200', body: stubbed_body) }
+      let(:stubbed_body) { '{"data":{"2019-03-13": "303844.0", "2019-03-14":"303699.0"}}' }
+      let(:uri) { URI("http://somepath.wtf/#{zpid}") }
       before do
         allow(instance).to receive(:api_path).and_return('http://somepath.wtf')
         Rails.cache.delete("#{Date.today.strftime("%Y-%m-%d")}-#{zpid}")
       end
 
       it 'tries to make a request' do
-        expect(Net::HTTP).to receive(:get).with(URI("http://somepath.wtf/#{zpid}")).and_return(stubbed_response)
+        expect(Net::HTTP).to receive(:start).with(uri.hostname, uri.port).and_return(stubbed_response)
         subject
       end
     end

@@ -21,8 +21,10 @@ class HappyHoodService
         uri = URI("#{api_path}/#{zpid}")
         req = Net::HTTP::Get.new(uri)
         req['Authorization'] = "Bearer token=\"#{ENV['HAPPY_HOOD_API_TOKEN']}\""
-        response = Net::HTTP.start(uri.hostname, uri.port) { |http| http.request(req) }
+
+        response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: Rails.env.production?) { |http| http.request(req) }
         return {} unless response.code.to_i >= 200 && response.code.to_i < 300
+
         JSON.parse(response.body).dig('data')
       end
     else

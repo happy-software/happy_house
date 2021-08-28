@@ -3,7 +3,7 @@
 <h1>Your Happy Homes</h1>
 
 <% if @properties.count.zero? %>
-  <h1><%= link_to 'Add your first property!', new_property_url, class: 'btn btn-primary' %></h1>
+  <h1><%= link_to 'Add your first property!', new_user_property_url, class: 'btn btn-primary' %></h1>
 <% else %>
   <div class="row">
     <% @user.properties.sort_by(&:created_at).each_with_index do |property, index| %>

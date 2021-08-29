@@ -29,7 +29,7 @@ describe HappyHoodService do
       end
 
       it 'tries to make a request' do
-        expect(Net::HTTP).to receive(:start).with(uri.hostname, uri.port).and_return(stubbed_response)
+        expect(Net::HTTP).to receive(:start).with(uri.hostname, uri.port, use_ssl: false).and_return(stubbed_response)
         subject
       end
     end

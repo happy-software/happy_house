@@ -1,5 +1,6 @@
 require 'happy_hood/client'
 
+# Gets you the price history for a give property
 class PriceHistoryService
   attr_reader :zpid, :property
 
@@ -22,8 +23,9 @@ class PriceHistoryService
   def monthly_summary(raw_data)
     totals_by_month = Hash.new.tap do |monthly|
       raw_data.each do |date, amount|
-        monthly[date.to_s.first(7)] ||= []
-        monthly[date.to_s.first(7)] << amount.to_f
+        clean_date = date.to_s.first(7)
+        monthly[clean_date] ||= []
+        monthly[clean_date] << amount.to_f
       end
     end
 

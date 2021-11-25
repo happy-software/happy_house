@@ -67,7 +67,7 @@ class LeasesController < ApplicationController
   def destroy
     @lease.destroy
     respond_to do |format|
-      format.html { redirect_to property_leases_url, notice: 'Lease was successfully destroyed.' }
+      format.html { redirect_to user_property_leases_url, notice: 'Lease was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

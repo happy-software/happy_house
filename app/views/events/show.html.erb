@@ -1,0 +1,8 @@
+Start Time: <%= @event.starts_at %>
+<br />
+End Time: <%= @event.ends_at %>
+<br />
+Details: <%= @event.content %>
+<br />
+<%= link_to 'Edit', edit_user_property_event_path(@event.property.user, @event.property, @event) %> |
+<%= link_to 'Back to Calendar', user_property_events_path([@current_user, @property]) %>

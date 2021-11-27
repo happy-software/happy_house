@@ -4,6 +4,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
+    @events = @property.events
   end
 
   def show
@@ -14,6 +15,20 @@ class EventsController < ApplicationController
 
   def new
     @event = @property.events.new
+  end
+
+  def create
+    @event = @property.events.new(event_params)
+
+    respond_to do |format|
+      if @event.save
+        format.html { redirect_to [@current_user, @property, @event], notice: 'Event was successfully created.' }
+        format.json { render :show, status: :created, location: [@current_user, @property, event] }
+      else
+        format.html { render :new }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def update
@@ -47,7 +62,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:starts_at, :ends_at, :content)
+    params.require(:event).permit(:title, :starts_at, :ends_at, :content)
   end
 
   def correct_user

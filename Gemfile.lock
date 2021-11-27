@@ -246,6 +246,8 @@ GEM
     sentry-ruby-core (4.4.2)
       concurrent-ruby
       faraday
+    simple_calendar (2.4.3)
+      rails (>= 3.0)
     spring (2.1.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -316,6 +318,7 @@ DEPENDENCIES
   sentry-rails
   sentry-raven
   sentry-ruby
+  simple_calendar (~> 2.4)
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)

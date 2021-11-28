@@ -24,5 +24,7 @@ module HappyHouse
         resource '*', headers: :any, methods: [:get, :post, :put, :delete, :options]
       end
     end
+
+    config.time_zone = 'Eastern Time (US & Canada)'
   end
 end

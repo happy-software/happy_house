@@ -44,8 +44,8 @@ class LeasesController < ApplicationController
   def update
     respond_to do |format|
       if @lease.update(lease_params)
-        format.html { redirect_to [@property, @lease], notice: 'Lease was successfully updated.' }
-        format.json { render :show, status: :ok, location: [@property, @lease] }
+        format.html { redirect_to [current_user, @property, @lease], notice: 'Lease was successfully updated.' }
+        format.json { render :show, status: :ok, location: [current_user, @property, @lease] }
       else
         format.html { render :edit }
         format.json { render json: @lease.errors, status: :unprocessable_entity }
@@ -58,8 +58,8 @@ class LeasesController < ApplicationController
 
     respond_to do |format|
       if new_lease
-        format.html { redirect_to [@property, new_lease], notice: 'New Lease created!' }
-        format.json { render :show, status: :ok, location: [@property, new_lease] }
+        format.html { redirect_to [current_user, @property, new_lease], notice: 'New Lease created!' }
+        format.json { render :show, status: :ok, location: [current_user, @property, new_lease] }
       end
     end
   end
@@ -67,7 +67,7 @@ class LeasesController < ApplicationController
   def destroy
     @lease.destroy
     respond_to do |format|
-      format.html { redirect_to property_leases_url, notice: 'Lease was successfully destroyed.' }
+      format.html { redirect_to user_property_leases_url, notice: 'Lease was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

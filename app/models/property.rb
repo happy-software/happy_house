@@ -7,6 +7,7 @@ class Property < ApplicationRecord
   has_many :tenants, through: :leases
   has_many :utility_accounts
   has_many :expense_items
+  has_many :events
 
   accepts_nested_attributes_for :leases, allow_destroy: true
   # has_many_attached :documents

@@ -52,8 +52,7 @@
         <p class="card-text">Find all your documents in one place.</p>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item"><a href="#" data-toggle="modal" data-target=".bd-example-modal-lg">Search Documents</a></li>
-        <li class="list-group-item"><a href="#" data-toggle="modal" data-target="#uploadDocumentModal">Add a Document</a></li>
+        <li class="list-group-item"><%= link_to 'Leases', user_property_leases_path(@current_user, @property) %></li>
       </ul>
       <div class="card-body">
         <a href="#" data-toggle="modal" data-target="#documentLearnMore" class="btn btn-secondary">Learn More</a>
@@ -77,8 +76,8 @@
       </div>
 
       <ul class="list-group list-group-flush">
-      <li class="list-group-item"><%= link_to 'Leases', user_property_leases_path(@current_user, @property) %></li>
-    </ul>
+        <li class="list-group-item"><%= link_to 'Events Calendar', user_property_events_path(@current_user, @property) %></li>
+      </ul>
     </div>
   </div>
 </div>

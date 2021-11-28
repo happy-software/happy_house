@@ -1,0 +1,12 @@
+<h2>Event Calendar</h2>
+
+<%= link_to "Add an Event", new_user_property_event_path(@current_user, @property) %>
+<%= month_calendar(attribute: :starts_at, end_attribute: :ends_at, events: @events) do |date, events| %>
+  <%= date.day %>
+
+  <% events.each do |event| %>
+    <div>
+      <%= link_to(event.title, event_path(event)) %>
+    </div>
+  <% end %>
+<% end %>

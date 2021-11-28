@@ -10,11 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_16_121744) do
+ActiveRecord::Schema.define(version: 2021_11_27_213001) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "hstore"
   enable_extension "plpgsql"
+
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -42,6 +51,16 @@ ActiveRecord::Schema.define(version: 2021_05_16_121744) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.bigint "property_id", null: false
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "title"
+    t.index ["property_id"], name: "index_events_on_property_id"
   end
 
   create_table "expense_items", force: :cascade do |t|
@@ -82,13 +101,6 @@ ActiveRecord::Schema.define(version: 2021_05_16_121744) do
     t.index ["lease_frequency_id"], name: "index_leases_on_lease_frequency_id"
     t.index ["property_document_id"], name: "index_leases_on_property_document_id"
     t.index ["property_id"], name: "index_leases_on_property_id"
-  end
-
-  create_table "leases_tenants", force: :cascade do |t|
-    t.bigint "lease_id"
-    t.bigint "tenant_id"
-    t.index ["lease_id"], name: "index_leases_tenants_on_lease_id"
-    t.index ["tenant_id"], name: "index_leases_tenants_on_tenant_id"
   end
 
   create_table "properties", force: :cascade do |t|
@@ -152,6 +164,7 @@ ActiveRecord::Schema.define(version: 2021_05_16_121744) do
   end
 
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "events", "properties"
   add_foreign_key "expense_items", "properties"
   add_foreign_key "lease_tenants", "leases"
   add_foreign_key "lease_tenants", "tenants"

@@ -1,0 +1,11 @@
+<h2><%= @event.title %></h2>
+<br />
+<p><%= event_time(@event.starts_at) %> - <%= event_time(@event.ends_at) %></p>
+<br />
+
+<%= @event.content %>
+
+<br />
+
+<%= link_to 'Edit', edit_user_property_event_path(@event.property.user, @event.property, @event) %> |
+<%= link_to 'Back to Calendar', user_property_events_path([@current_user, @property]) %>

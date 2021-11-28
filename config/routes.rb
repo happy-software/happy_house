@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       resources :leases do
         get '/renew', to: 'leases#renew', as: 'renew_current_lease'
       end
+      resources :events
     end
   end
   resources :account_activations, only: [:edit]

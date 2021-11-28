@@ -36,6 +36,10 @@ jobs:
           # runs 'bundle install' and caches installed gems automatically
           bundler-cache: true
 
+      - uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: install
+
       - name: Install dependencies
         run: bundle install
 

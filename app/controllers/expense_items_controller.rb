@@ -3,6 +3,9 @@ class ExpenseItemsController < ApplicationController
 
   def index
     @expense_items ||= property.expense_items
+    @yearly_expense_summary = interface.yearly_expense_summary
+    @available_years        = property.expense_years
+    @property_name          = property.display_name
   end
 
   def new
@@ -39,10 +42,20 @@ class ExpenseItemsController < ApplicationController
     end
   end
 
+  def report
+    @year     = params[:expense_year]
+    @expense_report = interface.build_expense_report(year: @year)
+    @year_summary   = interface.monthly_expense_summary(@year)
+  end
+
   private
 
   def property
     @property ||= Property.find(params[:property_id])
+  end
+
+  def interface
+    @interface ||= property.property_interface
   end
 
   def expense_item_params

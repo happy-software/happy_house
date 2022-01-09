@@ -1,15 +1,39 @@
 <% provide(:title, @property.display_name) %>
 
 <div class="row">
-  <aside class="col-md-4">
+  <aside class="col">
     <section class="user_info">
-      <h1>
-        Expense Items
-      </h1>
-
+      <h1>Expenses</h1>
       <div>
         <%= link_to 'Add Expense Item', new_user_property_expense_item_path %>
       </div>
+
+      <h3>Overview</h3>
+      <%= column_chart(
+            @yearly_expense_summary,
+            {xtitle: "Year", ytitle: "Cost", thousands: ',', round: 2, zeros: true, prefix: '$'}
+          )
+      %>
+
+      <%= form_tag('expense_items/report', method: 'get') do %>
+        <span>
+
+          <% if @available_years.count.zero? %>
+            <p>
+              Add some expense items for <%= @property_name %> before creating an Expense Report.
+            </p>
+
+            <%= link_to 'Add an Expense', new_user_property_expense_item_path(@current_user, @property), class: 'btn btn-primary' %>
+            <%= link_to 'Cancel', user_property_path(@current_user, @property), class: 'btn btn-danger' %>
+          <% else %>
+            <p>Choose a year for details:</p>
+            <%= select_tag(:expense_year, options_for_select(@available_years.map { |year| [year, year] })) %>
+            <%= submit_tag('Create Report', class: 'btn btn-primary mt-sm-3') %>
+            <%= link_to 'Cancel', user_property_path(@current_user, @property), class: 'btn btn-danger mt-sm-3' %>
+          <% end %>
+        </span>
+      <% end %>
+
     </section>
   </aside>
 </div>

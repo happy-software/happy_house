@@ -33,4 +33,8 @@ class Property < ApplicationRecord
     @property_interface ||= HappyHouse::PropertyInterface.new(self)
   end
 
+  def expense_years
+    expense_items.pluck(:expense_date).map(&:year).uniq.sort.reverse!
+  end
+
 end

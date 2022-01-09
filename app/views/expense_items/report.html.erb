@@ -7,23 +7,23 @@
 
       <h3>Overview</h3>
       <%=  column_chart(
-               @year_summary,
-               {xtitle: "Year", ytitle: "Cost", thousands: ',', round: 2, zeros: true, prefix: '$'}
+             @year_summary,
+             {xtitle: "Year", ytitle: "Cost", thousands: ',', round: 2, zeros: true, prefix: '$'}
            )
       %>
 
       <h3>Total Cost: <%= number_to_currency(@expense_report[:total_cost]) %></h3>
       <div>
         <table class="table table-striped table-hover table-bordered">
-        <thead class="thead-dark">
+          <thead class="thead-dark">
           <tr>
             <th>Name</th>
             <th>Date</th>
             <th>Cost</th>
           </tr>
-        </thead>
+          </thead>
 
-        <tbody>
+          <tbody>
           <% @expense_report[:expenses].each do |e| %>
             <tr>
               <td><%= link_to e[:name], edit_user_property_expense_item_path(@current_user, @property, e[:id]) %></td>
@@ -31,8 +31,8 @@
               <td><%= number_to_currency(e[:cost]) %></td>
             </tr>
           <% end %>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
       </div>
     </section>
   </aside>

@@ -28,7 +28,7 @@
         <p class="card-text">Keep your expenses updated & organized here.</p>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item"><%= link_to 'Expense Reports', user_property_new_expense_report_path(@current_user, @property) %></li>
+        <li class="list-group-item"><%= link_to 'Expense Reports', user_property_expense_items_path(@current_user, @property) %></li>
         <li class="list-group-item"><%= link_to 'Add an Expense', new_user_property_expense_item_path(@current_user, @property) %></li>
         <li class="list-group-item disabled"><%= link_to 'Mortgage Payments (beta)', user_property_new_mortgage_expense_path(@current_user, @property) %></li>
         <li class="list-group-item disabled"><%= link_to 'HOA Payments (beta)', user_property_new_hoa_expense_path(@current_user, @property) %></li>

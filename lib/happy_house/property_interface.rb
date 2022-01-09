@@ -37,10 +37,6 @@ module HappyHouse
       HappyHouse::Expenses::YearlyMortgage.create_new_mortgage_payments!(property, year, monthly_amount)
     end
 
-    def expense_years
-      property.expense_items.map { |e| e.expense_date.year }.uniq.sort.reverse
-    end
-
     def yearly_expense_summary
       s = property.expense_items.group_by_year(:expense_date, format: "%Y").sum(:cost)
       s.update(s) { |_,v| "%.2f" % v }

@@ -43,7 +43,7 @@ class ExpenseItemsController < ApplicationController
   end
 
   def report
-    @year     = params[:expense_year]
+    @year           = params[:expense_year]
     @expense_report = interface.build_expense_report(year: @year)
     @year_summary   = interface.monthly_expense_summary(@year)
   end

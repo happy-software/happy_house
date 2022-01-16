@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM ruby:2.5.1
+FROM ruby:3.0.3
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
 
@@ -11,8 +11,8 @@ RUN apt update && apt install yarn
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
-RUN gem install bundler -v 2.1.4
-ENV BUNDLER_VERSION="2.1.4"
+RUN gem install bundler
+RUN bundler config set --global force_ruby_platform true
 RUN bundle install
 
 # Add a script to be executed every time the container starts.

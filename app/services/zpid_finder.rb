@@ -1,4 +1,6 @@
-require 'happy_hood/client'
+# frozen_string_literal: true
+
+require "happy_hood/client"
 
 class ZpidFinder
   def initialize(property)
@@ -6,7 +8,7 @@ class ZpidFinder
   end
 
   def get_zpid
-    call_api.dig('zpid')
+    call_api["zpid"]
   end
 
   private
@@ -17,10 +19,10 @@ class ZpidFinder
 
   def property_details
     {
-      street_address: @property.address.dig("street_address"),
-      state:          @property.address.dig("state"),
-      city:           @property.address.dig("city"),
-      zip_code:       @property.address.dig("zip_code"),
+      street_address: @property.address["street_address"],
+      state: @property.address["state"],
+      city: @property.address["city"],
+      zip_code: @property.address["zip_code"]
     }
   end
 end

@@ -1,4 +1,6 @@
-require 'expense_item_helpers/one_off_uploaders'
+# frozen_string_literal: true
+
+require "expense_item_helpers/one_off_uploaders"
 class ExpenseItem < ApplicationRecord
   extend ExpenseItemHelpers::OneOffUploaders
 
@@ -10,5 +12,5 @@ class ExpenseItem < ApplicationRecord
 
   has_many_attached :attachments
 
-  scope :for_year, -> (year) { where("extract(year from expense_date) = ?", year) }
+  scope :for_year, ->(year) { where("extract(year from expense_date) = ?", year) }
 end

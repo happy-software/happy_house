@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateUtilityAccounts < ActiveRecord::Migration[5.2]
   def change
     create_table :utility_accounts do |t|

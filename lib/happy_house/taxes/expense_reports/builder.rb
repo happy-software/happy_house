@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module HappyHouse
   module Taxes
     module ExpenseReports
@@ -13,16 +15,16 @@ module HappyHouse
           total_cost = expenses.map { |e| e[:cost] }.sum
           items = expenses.map do |expense_item|
             {
-              id:   expense_item.id,
+              id: expense_item.id,
               name: expense_item.name,
               cost: expense_item.cost,
-              date: expense_item.expense_date,
+              date: expense_item.expense_date
             }
           end
 
           {
-              total_cost: total_cost,
-              expenses: items,
+            total_cost: total_cost,
+            expenses: items
           }
         end
       end

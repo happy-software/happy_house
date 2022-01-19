@@ -1,17 +1,17 @@
+# frozen_string_literal: true
+
 class EventsController < ApplicationController
   before_action :correct_user
   before_action :set_property
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: %i[show edit update destroy]
 
   def index
     @events = @property.events
   end
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def new
     @event = @property.events.new
@@ -22,7 +22,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to [@current_user, @property, @event], notice: 'Event was successfully created.' }
+        format.html { redirect_to [@current_user, @property, @event], notice: "Event was successfully created." }
         format.json { render :show, status: :created, location: [@current_user, @property, event] }
       else
         format.html { render :new }
@@ -34,7 +34,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to [current_user, @event.property, @event], notice: 'Event was successfully updated.' }
+        format.html { redirect_to [current_user, @event.property, @event], notice: "Event was successfully updated." }
         format.json { render :show, status: :ok, location: [current_user, @event.property, @event] }
       else
         format.html { render :edit }
@@ -46,7 +46,7 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to user_property_events_url, notice: 'Event was successfully removed.' }
+      format.html { redirect_to user_property_events_url, notice: "Event was successfully removed." }
       format.json { head :no_content }
     end
   end

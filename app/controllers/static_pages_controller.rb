@@ -1,16 +1,13 @@
+# frozen_string_literal: true
+
 class StaticPagesController < ApplicationController
   def home
-    if logged_in?
-      redirect_to user_properties_path(current_user)
-    end
+    redirect_to user_properties_path(current_user) if logged_in?
   end
 
-  def help
-  end
+  def help; end
 
-  def about
-  end
+  def about; end
 
-  def contact
-  end
+  def contact; end
 end

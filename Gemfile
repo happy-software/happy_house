@@ -51,6 +51,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'dotenv-rails'
   gem 'dotenv'
+  gem "rubocop", "~> 1.7"
 end
 
 group :development do

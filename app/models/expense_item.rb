@@ -1,6 +1,6 @@
-require 'expense_item/one_off_uploaders'
+require 'expense_item_helpers/one_off_uploaders'
 class ExpenseItem < ApplicationRecord
-  extend OneOffUploaders
+  extend ExpenseItemHelpers::OneOffUploaders
 
   belongs_to :property
 

@@ -12,7 +12,7 @@ class ZpidFinder
   private
 
   def call_api
-    HappyHoodService.new(@property).get_zpid(property_details)
+    HappyHood::Client.new(@property).get_zpid(property_details)
   end
 
   def property_details

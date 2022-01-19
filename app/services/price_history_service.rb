@@ -17,7 +17,7 @@ class PriceHistoryService
   private
 
   def call_api
-    HappyHoodService.new(property).get_history
+    HappyHood::Client.new(property).get_history
   end
 
   def monthly_summary(raw_data)

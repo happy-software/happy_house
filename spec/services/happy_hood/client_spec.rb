@@ -1,7 +1,7 @@
 require 'rails_helper'
 require_relative '../../../app/services/happy_hood/client'
 
-describe HappyHoodService do
+describe HappyHood::Client do
   let(:instance) { described_class.new(property) }
   let(:property) { double('property', zpid: zpid) }
   let(:zpid)     { 'some-zpid-value' }

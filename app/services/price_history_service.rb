@@ -1,4 +1,6 @@
-require 'happy_hood/client'
+# frozen_string_literal: true
+
+require "happy_hood/client"
 
 # Gets you the price history for a give property
 class PriceHistoryService
@@ -11,6 +13,7 @@ class PriceHistoryService
 
   def get_history
     return {} unless zpid
+
     monthly_summary(call_api)
   end
 
@@ -21,7 +24,7 @@ class PriceHistoryService
   end
 
   def monthly_summary(raw_data)
-    totals_by_month = Hash.new.tap do |monthly|
+    totals_by_month = {}.tap do |monthly|
       raw_data.each do |date, amount|
         clean_date = date.to_s.first(7)
         monthly[clean_date] ||= []

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PropertyDocument < ApplicationRecord
   belongs_to :property
   belongs_to :property_document_type

@@ -1,7 +1,9 @@
-require_relative '../services/price_history_service'
+# frozen_string_literal: true
+
+require_relative "../services/price_history_service"
 
 class PropertiesController < ApplicationController
-  before_action :correct_user, only: [:show, :upload_files, :update, :edit]
+  before_action :correct_user, only: %i[show upload_files update edit]
   def new
     @property = current_user.properties.new
   end
@@ -9,10 +11,10 @@ class PropertiesController < ApplicationController
   def create
     @property = current_user.properties.new(properties_params)
     if @property.save
-      flash[:success] = 'New Happy Home added!'
+      flash[:success] = "New Happy Home added!"
       redirect_to root_url
     else
-      render 'new'
+      render "new"
     end
   end
 
@@ -23,10 +25,10 @@ class PropertiesController < ApplicationController
   def update
     @property = Property.find_by(id: params[:id])
     if @property.update(properties_params)
-      flash[:success] = 'Updated: ' + @property.display_name
+      flash[:success] = "Updated: #{@property.display_name}"
       redirect_to current_user
     else
-      render 'edit'
+      render "edit"
     end
   end
 
@@ -39,12 +41,12 @@ class PropertiesController < ApplicationController
     @property           = current_user.properties.find(params[:id])
     @price_history_data = PriceHistoryService.new(@property).get_history
   end
-  
+
   def upload_files
     if current_property.update(properties_params)
-      flash[:info] = 'Successfully uploaded your documents!'
+      flash[:info] = "Successfully uploaded your documents!"
     else
-      flash[:danger] = 'Error: Could not upload your documents!'
+      flash[:danger] = "Error: Could not upload your documents!"
     end
 
     redirect_to user_property_path(@current_user, current_property)
@@ -59,7 +61,7 @@ class PropertiesController < ApplicationController
   def properties_params
     params.require(:property).permit(:nickname, :id,
                                      :property_type,
-                                     address: [:street_address, :city, :state, :zip_code],
+                                     address: %i[street_address city state zip_code],
                                      documents: [])
   end
 

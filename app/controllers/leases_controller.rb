@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class LeasesController < ApplicationController
   before_action :set_property
-  before_action :set_lease, only: [:show, :edit, :update, :destroy]
+  before_action :set_lease, only: %i[show edit update destroy]
   before_action :logged_in?
   before_action :correct_user
 
@@ -17,7 +19,7 @@ class LeasesController < ApplicationController
 
     respond_to do |format|
       if @lease.save
-        format.html { redirect_to [@current_user, @property, @lease], notice: 'Lease was successfully created.' }
+        format.html { redirect_to [@current_user, @property, @lease], notice: "Lease was successfully created." }
         format.json { render :show, status: :created, location: [@current_user, @property, @lease] }
       else
         format.html { render :new }
@@ -30,21 +32,20 @@ class LeasesController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render :pdf => "Lease #{@lease.start_date.year} - #{@lease.property.display_name}",
-               :layout => "pdf.html",
-               :page_size => 'A4',
-               :template => "leases/show.html.erb"
+        render pdf: "Lease #{@lease.start_date.year} - #{@lease.property.display_name}",
+               layout: "pdf.html",
+               page_size: "A4",
+               template: "leases/show.html.erb"
       end
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     respond_to do |format|
       if @lease.update(lease_params)
-        format.html { redirect_to [current_user, @property, @lease], notice: 'Lease was successfully updated.' }
+        format.html { redirect_to [current_user, @property, @lease], notice: "Lease was successfully updated." }
         format.json { render :show, status: :ok, location: [current_user, @property, @lease] }
       else
         format.html { render :edit }
@@ -58,7 +59,7 @@ class LeasesController < ApplicationController
 
     respond_to do |format|
       if new_lease
-        format.html { redirect_to [current_user, @property, new_lease], notice: 'New Lease created!' }
+        format.html { redirect_to [current_user, @property, new_lease], notice: "New Lease created!" }
         format.json { render :show, status: :ok, location: [current_user, @property, new_lease] }
       end
     end
@@ -67,29 +68,30 @@ class LeasesController < ApplicationController
   def destroy
     @lease.destroy
     respond_to do |format|
-      format.html { redirect_to user_property_leases_url, notice: 'Lease was successfully destroyed.' }
+      format.html { redirect_to user_property_leases_url, notice: "Lease was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    def set_lease
-      @lease = @property.leases.find(params[:id])
-    end
 
-    def set_property
-      @property = Property.find(params[:property_id])
-    end
+  def set_lease
+    @lease = @property.leases.find(params[:id])
+  end
 
-    def lease_params
-      params.require(:lease).permit(:start_date,
-                                    :end_date,
-                                    :amount,
-                                    :lease_frequency_id,
-                                    :contract)
-    end
+  def set_property
+    @property = Property.find(params[:property_id])
+  end
 
-    def correct_user
-      redirect_to root_url unless Property.find(params[:property_id]).user == current_user
-    end
+  def lease_params
+    params.require(:lease).permit(:start_date,
+                                  :end_date,
+                                  :amount,
+                                  :lease_frequency_id,
+                                  :contract)
+  end
+
+  def correct_user
+    redirect_to root_url unless Property.find(params[:property_id]).user == current_user
+  end
 end

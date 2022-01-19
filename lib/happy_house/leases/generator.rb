@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module HappyHouse
   module Leases
     class Generator
@@ -18,11 +20,11 @@ module HappyHouse
         # templates stored in:
         # app/views/leases/templates/lease_type_state.html.erb
 
-        File.open(Rails.root.join('app',
-                                  'views',
-                                  'leases',
-                                  'templates',
-                                  "#{lease_type}_#{state}.html.erb")).read
+        File.read(Rails.root.join("app",
+                                  "views",
+                                  "leases",
+                                  "templates",
+                                  "#{lease_type}_#{state}.html.erb"))
       end
 
       def create_pdf!
@@ -36,7 +38,7 @@ module HappyHouse
 
       def lease_type
         # Hard coding this for now to work with just standard residential leases
-        'standard_residential'
+        "standard_residential"
       end
     end
   end

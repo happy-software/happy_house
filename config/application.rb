@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "boot"
 
 require "rails/all"
@@ -20,11 +22,11 @@ module HappyHouse
     # config.eager_load_paths << Rails.root.join("extras")
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'http://localhost:3000'
-        resource '*', headers: :any, methods: [:get, :post, :put, :delete, :options]
+        origins "http://localhost:3000"
+        resource "*", headers: :any, methods: %i[get post put delete options]
       end
     end
 
-    config.time_zone = 'Eastern Time (US & Canada)'
+    config.time_zone = "Eastern Time (US & Canada)"
   end
 end

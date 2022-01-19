@@ -1,7 +1,8 @@
-require 'happy_house/property_interface'
+# frozen_string_literal: true
+
+require "happy_house/property_interface"
 
 class Property < ApplicationRecord
-
   belongs_to :user
   has_many :leases
   has_many :tenants, through: :leases
@@ -14,19 +15,18 @@ class Property < ApplicationRecord
 
   # accepts_nested_attributes_for :property_documents, allow_destroy: true
 
-  PROPERTY_TYPES = [:townhome, :single_family_home, :apartment, :condo, :commercial]
+  PROPERTY_TYPES = %i[townhome single_family_home apartment condo commercial].freeze
   validates :property_type, presence: true
-  validates_inclusion_of :property_type, :in => PROPERTY_TYPES.map(&:to_s).map(&:titleize)
+  validates_inclusion_of :property_type, in: PROPERTY_TYPES.map(&:to_s).map(&:titleize)
 
-  scope :townhomes,           -> { where(property_type: 'Townhome') }
-  scope :single_family_homes, -> { where(property_type: 'Single Family Home') }
-  scope :apartments,          -> { where(property_type: 'Apartment') }
-  scope :condos,              -> { where(property_type: 'Condo') }
-  scope :commercials,         -> { where(property_type: 'Commercial') }
-
+  scope :townhomes,           -> { where(property_type: "Townhome") }
+  scope :single_family_homes, -> { where(property_type: "Single Family Home") }
+  scope :apartments,          -> { where(property_type: "Apartment") }
+  scope :condos,              -> { where(property_type: "Condo") }
+  scope :commercials,         -> { where(property_type: "Commercial") }
 
   def display_name
-    self.nickname.blank? ? self.address['street_address'] : self.nickname
+    nickname.blank? ? address["street_address"] : nickname
   end
 
   def property_interface
@@ -36,5 +36,4 @@ class Property < ApplicationRecord
   def expense_years
     expense_items.pluck(:expense_date).map(&:year).uniq.sort.reverse!
   end
-
 end

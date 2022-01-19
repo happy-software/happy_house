@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ExpenseItemsController < ApplicationController
   before_action :correct_user
 
@@ -19,7 +21,7 @@ class ExpenseItemsController < ApplicationController
       flash[:info] = "Expense (#{@expense_item.name}) saved!"
       redirect_to user_property_expense_items_url
     else
-      render 'new'
+      render "new"
     end
   end
 
@@ -38,7 +40,7 @@ class ExpenseItemsController < ApplicationController
       flash[:success] = "Updated Expense Item: #{@expense_item.name}"
       redirect_to user_property_url(property)
     else
-      render 'edit'
+      render "edit"
     end
   end
 

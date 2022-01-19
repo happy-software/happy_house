@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MortgageExpensesController < ApplicationController
   before_action :correct_user
 
@@ -10,11 +12,10 @@ class MortgageExpensesController < ApplicationController
     mortgage_payments = @property.property_interface.build_yearly_mortgage_payment(create_mortgage_params)
     if mortgage_payments.present?
       flash[:success] = "Created 12 mortgage expense items for #{create_mortgage_params[:year]}"
-      redirect_to property_path
     else
       flash[:danger] = "Could not create 12 mortgage expense items for #{create_mortgage_params[:year]}"
-      redirect_to property_path
     end
+    redirect_to property_path
   end
 
   private

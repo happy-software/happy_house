@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HoaExpensesController < ApplicationController
   before_action :correct_user
 
@@ -10,11 +12,10 @@ class HoaExpensesController < ApplicationController
     hoa_payments = @property.property_interface.build_yearly_hoa_payments(create_hoa_expenses_params)
     if hoa_payments.present?
       flash[:success] = "Created 12 home owner's association expense items for #{create_hoa_expenses_params[:year]}"
-      redirect_to property_path
     else
       flash[:danger] = "Could not create 12 home owner's association items for #{create_hoa_expenses_params[:year]}"
-      redirect_to property_path
     end
+    redirect_to property_path
   end
 
   private

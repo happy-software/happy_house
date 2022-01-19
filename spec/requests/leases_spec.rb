@@ -1,7 +1,9 @@
-require 'rails_helper'
+# frozen_string_literal: true
+
+require "rails_helper"
 
 RSpec.describe "Leases", type: :request do
-  let(:mock_user)     { User.new(id: 1, password: 'password', email: 'test@test.com', activated: true) }
+  let(:mock_user)     { User.new(id: 1, password: "password", email: "test@test.com", activated: true) }
   let(:mock_property) { Property.new(id: 1, user: mock_user) }
 
   before do
@@ -11,7 +13,7 @@ RSpec.describe "Leases", type: :request do
 
   describe "GET /leases" do
     it "works!" do
-      post login_path, params: {"session": {"email": mock_user.email, "password": mock_user.password}}
+      post login_path, params: { session: { email: mock_user.email, password: mock_user.password } }
       get user_property_leases_path(user_id: mock_user.id, property_id: mock_property.id)
       expect(response).to have_http_status(200)
     end

@@ -40,6 +40,7 @@ class PropertiesController < ApplicationController
   def show
     @property           = current_user.properties.find(params[:id])
     @price_history_data = PriceHistoryService.new(@property).get_history
+    fresh_when(@property)
   end
 
   def upload_files

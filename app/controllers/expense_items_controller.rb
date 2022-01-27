@@ -27,6 +27,7 @@ class ExpenseItemsController < ApplicationController
 
   def show
     @expense_item = property.expense_items.find(params[:id])
+    fresh_when(@expense_item)
   end
 
   def edit

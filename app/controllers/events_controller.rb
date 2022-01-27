@@ -9,7 +9,9 @@ class EventsController < ApplicationController
     @events = @property.events
   end
 
-  def show; end
+  def show
+    fresh_when(@event)
+  end
 
   def edit; end
 

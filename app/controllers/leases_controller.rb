@@ -7,7 +7,7 @@ class LeasesController < ApplicationController
   before_action :correct_user
 
   def index
-    @leases = @property.leases.with_eager_loaded_contract
+    @leases = @property.leases.with_eager_loaded_contract.order(start_date: :desc)
   end
 
   def new

@@ -21,6 +21,8 @@
             <span class="text-danger">Expired</span>
           <% elsif lease.expiring_soon? %>
             <span class="text-warning">Expiring Soon!</span>
+          <% elsif lease.upcoming? %>
+            <span class="text-success">Upcoming</span>
           <% else %>
             <span class="text-success">Current</span>
           <% end %>

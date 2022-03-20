@@ -48,12 +48,22 @@ class Lease < ApplicationRecord
   end
 
   def expiring_soon?
+    return false unless started?
     !expired? && expired?(Date.today + 3.months)
+  end
+
+  def started?(date = Date.today)
+    (self.start_date <= date) && !expired?
+  end
+
+  def upcoming?(date = Date.today)
+    self.start_date > date
   end
 
   def expiration_status
     return :expired if expired?
     return :expiring_soon if expiring_soon?
+    return :upcoming if upcoming?
 
     :current
   end

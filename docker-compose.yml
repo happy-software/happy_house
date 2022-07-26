@@ -1,9 +1,5 @@
 version: "3.9"
 
-networks:
-  happy_software:
-    name: happy_network
-
 services:
   db:
     image: 'postgres:13.2-alpine'
@@ -23,7 +19,6 @@ services:
       DB_HOST: db
     networks:
       - default
-      - happy_software
     volumes:
       - '.:/myapp'
     depends_on:

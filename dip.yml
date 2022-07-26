@@ -20,6 +20,9 @@ interaction:
   psql:
     service: db
     command: psql -h db -U postgres
+  ruby:
+    service: web
+    command: ruby
 
 provision:
   - dip compose down --volumes

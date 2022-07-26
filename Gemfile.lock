@@ -269,8 +269,6 @@ GEM
     sentry-rails (4.9.1)
       railties (>= 5.0)
       sentry-ruby-core (~> 4.9.1)
-    sentry-raven (3.1.2)
-      faraday (>= 1.0)
     sentry-ruby (4.9.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       faraday (~> 1.0)
@@ -346,7 +344,6 @@ DEPENDENCIES
   rubocop (~> 1.7)
   sass-rails (~> 6.0)
   sentry-rails
-  sentry-raven
   sentry-ruby
   simple_calendar (~> 2.4)
   turbolinks (~> 5)
@@ -362,4 +359,4 @@ RUBY VERSION
    ruby 3.0.3p157
 
 BUNDLED WITH
-   2.3.8
+   2.3.18

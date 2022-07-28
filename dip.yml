@@ -23,6 +23,12 @@ interaction:
   ruby:
     service: web
     command: ruby
+  be:
+    service: web
+    command: bundle exec
+  ber:
+    service: web
+    command: bundle exec rspec
 
 provision:
   - dip compose down --volumes

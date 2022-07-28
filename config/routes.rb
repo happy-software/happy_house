@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       end
       resources :leases do
         get "/renew", to: "leases#renew", as: "renew_current_lease"
+        get "/new_renewal", to: "leases#new_renewal", as: "new_renewal"
       end
       resources :events
     end

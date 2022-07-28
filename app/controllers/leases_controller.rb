@@ -2,7 +2,7 @@
 
 class LeasesController < ApplicationController
   before_action :set_property
-  before_action :set_lease, only: %i[show edit update destroy]
+  before_action :set_lease, only: %i[show edit update destroy new_renewal]
   before_action :logged_in?
   before_action :correct_user
 
@@ -54,6 +54,16 @@ class LeasesController < ApplicationController
     end
   end
 
+  # New Renewal is used to display a form to fill out with
+  # info to renew a lease against.
+  def new_renewal
+    @new_lease = Lease.new
+    @default_start_date = @lease.end_date
+    @default_end_date = @default_start_date + 1.year
+    @default_amount = @lease.amount
+  end
+
+  # Generate a new lease
   def renew
     new_lease = @property.property_interface.renew_lease!
 
@@ -76,7 +86,7 @@ class LeasesController < ApplicationController
   private
 
   def set_lease
-    @lease = @property.leases.find(params[:id])
+    @lease = @property.leases.find(params[:lease_id] || params[:id])
   end
 
   def set_property

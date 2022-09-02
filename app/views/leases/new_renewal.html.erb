@@ -1,0 +1,25 @@
+<h1>Renew Lease</h1>
+
+<%= form_with(model: [@current_user, @property, @new_lease], url: user_property_lease_create_renewal_url, class: 'form') do |form| %>
+
+<div class="field form-group">
+  <%= form.label :start_date %>
+  <%= form.datetime_field :start_date, value: @default_start_date, class: "form-control" %>
+</div>
+
+<div class="field form-group">
+  <%= form.label :end_date %>
+  <%= form.datetime_field :end_date, value: @default_end_date, class: "form-control" %>
+</div>
+
+<div class="field form-group">
+  <%= form.label :amount %>
+  <%= form.number_field :amount, value: @default_amount, class: "form-control" %>
+  <%= form.collection_select :lease_frequency_id, LeaseFrequency.order(:frequency), :id, :frequency,allow_blank: true %>
+</div>
+
+<div class="actions">
+  <%= form.submit("Renew Lease", class: "btn btn-primary") %>
+</div>
+
+<% end %>

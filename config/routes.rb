@@ -28,7 +28,8 @@ Rails.application.routes.draw do
         get :report, on: :collection
       end
       resources :leases do
-        get "/renew", to: "leases#renew", as: "renew_current_lease"
+        get "/new_renewal", to: "leases#new_renewal", as: "new_renewal"
+        post "/create_renewal", to: "leases#create_renewal", as: "create_renewal"
       end
       resources :events
     end

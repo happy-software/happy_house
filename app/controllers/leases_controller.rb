@@ -2,7 +2,7 @@
 
 class LeasesController < ApplicationController
   before_action :set_property
-  before_action :set_lease, only: %i[show edit update destroy new_renewal]
+  before_action :set_lease, only: %i[show edit update destroy new_renewal create_renewal]
   before_action :logged_in?
   before_action :correct_user
 
@@ -58,20 +58,26 @@ class LeasesController < ApplicationController
   # info to renew a lease against.
   def new_renewal
     @new_lease = Lease.new
-    @default_start_date = @lease.end_date
-    @default_end_date = @default_start_date + 1.year
+    @default_start_date = @lease.end_date.strftime("%Y-%m-%dT%k:%M")
+    @default_end_date = (@lease.end_date. + 1.year).strftime("%Y-%m-%dT%k:%M")
     @default_amount = @lease.amount
   end
 
-  # Generate a new lease
-  def renew
-    new_lease = @property.property_interface.renew_lease!
-
-    respond_to do |format|
-      if new_lease
-        format.html { redirect_to [current_user, @property, new_lease], notice: "New Lease created!" }
-        format.json { render :show, status: :ok, location: [current_user, @property, new_lease] }
-      end
+  def create_renewal
+    # Get params
+    lease_details = params.merge({
+                                   property: @property,
+                                   original_lease: @lease,
+                                 })
+    # Attempt to create a new lease
+    lease = Leases::Renewer.new(lease_details).call
+    if lease.success?
+      # if successful, redirect to newly crated lease
+      redirect_to [@current_user, @property, lease.payload], notice: "Lease was successfully renewed."
+    else
+      raise StandardError.new("Could not renew lease successfully! Lease details: #{lease_details}")
+      # else, render new_renewal
+      # render :new_renewal, notice: "Error creating a lease renewal."
     end
   end
 

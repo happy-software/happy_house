@@ -14,6 +14,7 @@ COPY Gemfile.lock /myapp/Gemfile.lock
 RUN gem install bundler
 RUN bundler config set --global force_ruby_platform true
 RUN bundle install
+RUN yarn install
 
 # Add a script to be executed every time the container starts.
 COPY bin/entrypoint.sh /usr/bin/

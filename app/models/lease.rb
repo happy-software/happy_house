@@ -4,9 +4,11 @@ class Lease < ApplicationRecord
   belongs_to :property
   belongs_to :lease_frequency
 
-  has_one_attached :contract
   has_many :lease_tenants
   has_many :tenants, through: :lease_tenants
+
+  has_one_attached :contract
+  has_one_attached :signed_contract
 
   accepts_nested_attributes_for :lease_tenants
 

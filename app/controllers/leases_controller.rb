@@ -2,7 +2,7 @@
 
 class LeasesController < ApplicationController
   before_action :set_property
-  before_action :set_lease, only: %i[show edit update destroy new_renewal create_renewal]
+  before_action :set_lease, only: %i[show edit update destroy new_renewal create_renewal upload_signed_lease]
   before_action :logged_in?
   before_action :correct_user
 
@@ -52,6 +52,16 @@ class LeasesController < ApplicationController
         format.json { render json: @lease.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def upload_signed_lease
+    if @lease.update(signed_lease_params)
+      flash[:success] = "Attached signed lease!"
+    else
+      flash[:error] = "Error when attempting to attach lease!"
+    end
+
+    redirect_to [current_user, @property, @lease]
   end
 
   # New Renewal is used to display a form to fill out with
@@ -105,6 +115,10 @@ class LeasesController < ApplicationController
                                   :amount,
                                   :lease_frequency_id,
                                   :contract)
+  end
+
+  def signed_lease_params
+    params.require(:lease).permit(:signed_contract)
   end
 
   def correct_user

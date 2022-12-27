@@ -30,6 +30,9 @@ Rails.application.routes.draw do
       resources :leases do
         get "/new_renewal", to: "leases#new_renewal", as: "new_renewal"
         post "/create_renewal", to: "leases#create_renewal", as: "create_renewal"
+        member do
+          patch "/upload_signed_lease", to: "leases#upload_signed_lease", as: "upload_signed_lease"
+        end
       end
       resources :events
     end

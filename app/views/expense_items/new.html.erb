@@ -16,7 +16,7 @@
       <%= f.number_field :cost, class: 'form-control', step: :any %>
 
       <%= f.label :attachments %>
-      <%= f.file_field(:attachments, multiple: true) %>
+      <%= f.file_field(:attachments, multiple: true, class: "form-control form-control-md") %>
 
       <%= f.submit 'Add Expense', class: 'btn btn-primary mt-sm-3' %>
       <%= link_to 'Cancel', user_property_path(@current_user, @property), class: 'btn btn-danger mt-sm-3' %>

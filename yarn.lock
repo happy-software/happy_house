@@ -994,7 +994,7 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
-"@rails/actiontext@^6.1.4-1":
+"@rails/actiontext@^6.1.7":
   version "6.1.7"
   resolved "https://registry.yarnpkg.com/@rails/actiontext/-/actiontext-6.1.7.tgz#62997bda1d938743ed36bb802885592b01bc6782"
   integrity sha512-o3TYFeFzDQKR22EGqE9qqJ6SD4DM+cATw8nioPtrRkIlAsBIHeaV0h4Kok1sDXyNjXiJztCr89CsfV7YXnYFmw==

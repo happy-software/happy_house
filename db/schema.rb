@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_211_127_213_001) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_15_190920) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,9 +19,9 @@ ActiveRecord::Schema.define(version: 20_211_127_213_001) do
     t.text "body"
     t.string "record_type", null: false
     t.bigint "record_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index %w[record_type record_id name], name: "index_action_text_rich_texts_uniqueness", unique: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
   end
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -31,10 +29,9 @@ ActiveRecord::Schema.define(version: 20_211_127_213_001) do
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
-    t.index %w[record_type record_id name blob_id], name: "index_active_storage_attachments_uniqueness",
-                                                    unique: true
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
   create_table "active_storage_blobs", force: :cascade do |t|
@@ -43,8 +40,8 @@ ActiveRecord::Schema.define(version: 20_211_127_213_001) do
     t.string "content_type"
     t.text "metadata"
     t.bigint "byte_size", null: false
-    t.string "checksum", null: false
-    t.datetime "created_at", null: false
+    t.string "checksum"
+    t.datetime "created_at", precision: nil, null: false
     t.string "service_name", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
@@ -52,15 +49,15 @@ ActiveRecord::Schema.define(version: 20_211_127_213_001) do
   create_table "active_storage_variant_records", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
-    t.index %w[blob_id variation_digest], name: "index_active_storage_variant_records_uniqueness", unique: true
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
   create_table "events", force: :cascade do |t|
     t.bigint "property_id", null: false
-    t.datetime "starts_at"
-    t.datetime "ends_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "starts_at", precision: nil
+    t.datetime "ends_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "title"
     t.index ["property_id"], name: "index_events_on_property_id"
   end
@@ -68,35 +65,35 @@ ActiveRecord::Schema.define(version: 20_211_127_213_001) do
   create_table "expense_items", force: :cascade do |t|
     t.string "name"
     t.float "cost"
-    t.datetime "expense_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "expense_date", precision: nil
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.bigint "property_id"
     t.index ["property_id"], name: "index_expense_items_on_property_id"
   end
 
   create_table "lease_frequencies", force: :cascade do |t|
     t.string "frequency"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "lease_tenants", force: :cascade do |t|
     t.bigint "tenant_id"
     t.bigint "lease_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["lease_id"], name: "index_lease_tenants_on_lease_id"
     t.index ["tenant_id"], name: "index_lease_tenants_on_tenant_id"
   end
 
   create_table "leases", force: :cascade do |t|
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.datetime "start_date", precision: nil
+    t.datetime "end_date", precision: nil
     t.jsonb "details"
     t.bigint "property_document_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.decimal "amount"
     t.bigint "lease_frequency_id"
     t.bigint "property_id"
@@ -107,8 +104,8 @@ ActiveRecord::Schema.define(version: 20_211_127_213_001) do
 
   create_table "properties", force: :cascade do |t|
     t.jsonb "address"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.bigint "user_id"
     t.string "nickname"
     t.string "property_type"
@@ -119,15 +116,15 @@ ActiveRecord::Schema.define(version: 20_211_127_213_001) do
 
   create_table "property_document_types", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "property_documents", force: :cascade do |t|
     t.string "name"
     t.bigint "property_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.bigint "property_document_type_id"
     t.index ["property_document_type_id"], name: "index_property_documents_on_property_document_type_id"
     t.index ["property_id"], name: "index_property_documents_on_property_id"
@@ -137,31 +134,31 @@ ActiveRecord::Schema.define(version: 20_211_127_213_001) do
     t.string "name"
     t.string "email"
     t.string "phone_number"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "password_digest"
     t.string "remember_digest"
     t.boolean "admin", default: false
     t.string "activation_digest"
     t.boolean "activated", default: false
-    t.datetime "activated_at"
+    t.datetime "activated_at", precision: nil
     t.string "reset_digest"
-    t.datetime "reset_sent_at"
+    t.datetime "reset_sent_at", precision: nil
   end
 
   create_table "utility_accounts", force: :cascade do |t|
     t.string "name"
     t.jsonb "details"
     t.bigint "property_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["property_id"], name: "index_utility_accounts_on_property_id"
   end
 

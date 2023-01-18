@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM ruby:3.0.3
+FROM ruby:3.1.3
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
 
@@ -10,7 +10,7 @@ RUN apt update && apt install yarn
 
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
-COPY Gemfile.lock /myapp/Gemfile.lock
+#COPY Gemfile.lock /myapp/Gemfile.lock
 RUN gem install bundler
 RUN bundler config set --global force_ruby_platform true
 RUN bundle install

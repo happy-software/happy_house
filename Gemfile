@@ -13,6 +13,7 @@ gem "pg", "~> 1.1"
 gem "puma"
 # Use SCSS for stylesheets
 gem "sass-rails", "~> 6.0"
+gem "sprockets-rails"
 
 gem "autoprefixer-rails"
 gem "bootstrap", "~> 4"

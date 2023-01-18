@@ -347,6 +347,7 @@ DEPENDENCIES
   sentry-ruby
   simple_calendar (~> 2.4)
   slim-rails
+  sprockets-rails
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)

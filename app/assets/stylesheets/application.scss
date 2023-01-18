@@ -1,7 +1,6 @@
-//= require actiontext
 @import "custom";
-@import "bootstrap";
+@import "bootstrap"; // Comes from the bootstrap gem
 @import "leases";
 @import "properties";
-@import "actiontext.scss";
-@import "simple_calendar";
+@import "actiontext";
+@import "simple_calendar"; // Comes from the simple_calendar gem

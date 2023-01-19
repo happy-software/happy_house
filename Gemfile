@@ -45,7 +45,7 @@ gem "mini_magick", "~> 4.8"
 gem "bootsnap", ">= 1.1.0", require: false
 
 # For Amazon S3 storage
-gem "aws-sdk-s3", require: false
+gem "aws-sdk-s3"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

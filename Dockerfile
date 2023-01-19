@@ -9,11 +9,8 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources
 RUN apt update && apt install yarn
 
 WORKDIR /myapp
-COPY Gemfile /myapp/Gemfile
-#COPY Gemfile.lock /myapp/Gemfile.lock
-RUN gem install bundler
-RUN bundler config set --global force_ruby_platform true
-RUN bundle install
+COPY Gemfile* /myapp/
+RUN gem install bundler && bundle install --jobs=3 --retry=3
 RUN yarn install
 
 # Add a script to be executed every time the container starts.

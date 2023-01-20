@@ -36,6 +36,9 @@ jobs:
           # runs 'bundle install' and caches installed gems automatically
           bundler-cache: true
 
+      - name: Install yarn
+        run: bin/yarn install
+
       - name: Install dependencies
         run: bundle install
 
@@ -51,12 +54,6 @@ jobs:
           DB_PASSWORD: postgres
           POSTGRES_PASSWORD: postgres
           POSTGRES_USER: postgres
-
-      - name: Install yarn
-        run: bin/yarn install
-
-      - name: Compile webpacker assets
-        run: bin/rails webpacker:compile
 
       - name: Run rspec tests
         run: bundle exec rspec

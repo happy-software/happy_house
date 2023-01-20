@@ -55,6 +55,9 @@ jobs:
       - name: Install yarn
         run: bin/yarn install
 
+      - name: Compile webpacker assets
+        run: bin/rails webpacker:compile
+
       - name: Run rspec tests
         run: bundle exec rspec
         env:

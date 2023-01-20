@@ -14,8 +14,8 @@
     <% @leases.each do |lease| %>
       <tr>
         <td><%= link_to(lease&.contract&.blob&.filename, [@current_user, @property, lease]) %></td>
-        <td><%= lease.start_date&.to_s(:long) %></td>
-        <td><%= lease.end_date&.to_s(:long) %></td>
+        <td><%= lease.start_date&.to_fs(:long) %></td>
+        <td><%= lease.end_date&.to_fs(:long) %></td>
         <td>
           <% if lease.expired?  %>
             <span class="text-danger">Expired</span>

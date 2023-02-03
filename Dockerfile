@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 FROM ruby:3.1.3
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+RUN apt update -qq && apt install -y nodejs postgresql-client libvips
 
 # Install Yarn
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -

@@ -90,6 +90,7 @@ gem "groupdate"
 
 # For Events calendar
 gem "simple_calendar", "~> 2.4"
+gem 'image_processing', '~> 1.2'
 
 # https://sentry.io/organizations/my-happy-house/projects/my-happy-house/getting-started/ruby-rails/
 gem "sentry-rails"

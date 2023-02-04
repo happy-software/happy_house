@@ -348,6 +348,7 @@ DEPENDENCIES
   rails (~> 7.0)
   rspec-rails
   rubocop (~> 1.7)
+  ruby-vips
   sass-rails (~> 6.0)
   sentry-rails
   sentry-ruby

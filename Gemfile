@@ -91,6 +91,16 @@ gem "groupdate"
 # For Events calendar
 gem "simple_calendar", "~> 2.4"
 gem 'image_processing', '~> 1.2'
+# ruby-vips is for rendering images in the Events ActionText rich text area on Heroku
+# if you ever move off of Heroku, you should consider removing this gem after making sure attachments still properly
+# render. I followed this post: https://stackoverflow.com/questions/70849182/could-not-open-library-vips-42-could-not-open-library-libvips-42-dylib/70849216#70849216
+# to get this working. I also added the following build packs to Heroku:
+# - heroku-community/apt
+# - https://github.com/brandoncc/heroku-buildpack-vips
+#
+# Along with
+# ./Aptfile # in the project root
+gem "ruby-vips"
 
 # https://sentry.io/organizations/my-happy-house/projects/my-happy-house/getting-started/ruby-rails/
 gem "sentry-rails"

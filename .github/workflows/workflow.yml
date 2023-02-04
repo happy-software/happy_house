@@ -30,6 +30,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Install Image Processing related libs
+        run: sudo apt install -y libvips
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -44,7 +47,7 @@ jobs:
 
       - name: Run database setup
         run: |
-          sudo apt-get install libpq-dev
+          sudo apt install libpq-dev
           bundler exec rails db:create RAILS_ENV=test
           bundler exec rails db:migrate RAILS_ENV=test
         env:

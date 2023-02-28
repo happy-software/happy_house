@@ -58,6 +58,9 @@ jobs:
           POSTGRES_PASSWORD: postgres
           POSTGRES_USER: postgres
 
+      - name: Run webpacker:compile
+        run: bundle exec rails webpack:compile
+
       - name: Run rspec tests
         run: bundle exec rspec
         env:

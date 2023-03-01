@@ -58,8 +58,11 @@ jobs:
           POSTGRES_PASSWORD: postgres
           POSTGRES_USER: postgres
 
+      - name: Run webpacker:compile
+        run: NODE_OPTIONS=--openssl-legacy-provider bundle exec rails webpacker:compile
+
       - name: Run rspec tests
-        run: bundle exec rspec
+        run: NODE_OPTIONS=--openssl-legacy-provider bundle exec rspec
         env:
           POSTGRES_HOST: localhost
           POSTGRES_PORT: 5432

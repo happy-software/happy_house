@@ -39,7 +39,7 @@ class ExpenseItemsController < ApplicationController
 
     if @expense_item&.update(expense_item_params)
       flash[:success] = "Updated Expense Item: #{@expense_item.name}"
-      redirect_to user_property_url(property)
+      redirect_to user_property_expense_items_url(property_id: @expense_item.property.id)
     else
       render "edit"
     end

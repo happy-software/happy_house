@@ -1,0 +1,20 @@
+h1 Insurance Documents
+
+= form_with(model: [@current_user, @property, @insurance_document]) do |form|
+  - if @insurance_document.errors.any?
+    #error_explanation
+      label.text-danger #{pluralize(@insurance_document.errors.count, "error")} prohibited this document from being saved:
+      ul
+        - @insurance_document.errors.full_messages.each do |message|
+          li #{message}
+
+  .field
+    = form.label :title, class: 'form-label'
+    = form.text_field :title, class: 'form-control'
+
+  .field
+    = form.label :document, class: 'form-label'
+    = form.file_field :document, class: 'form-control-file'
+
+  .actions
+    = form.submit("Submit", class: 'btn btn-primary mt-3')

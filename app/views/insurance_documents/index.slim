@@ -1,0 +1,20 @@
+h1 Insurance Documents
+
+div.float-right
+  = link_to "Upload Document", new_user_property_insurance_document_path(@current_user, @property), class: 'btn btn-primary'
+
+- if @insurance_documents.present?
+  table.table.table-striped.table-hover.table-bordered style="width: 60%"
+    thead.thead-dark
+      tr
+        th scope="col" Title
+
+    tbody
+      - @insurance_documents.each do |document|
+        tr
+          td
+            = link_to document.title, url_for(document.document), target: "_blank", rel: "noopener noreferrer"
+
+- else
+  p It looks like you haven't uploaded any Insurance Documents for this Property.
+  p Add one with the upload button.

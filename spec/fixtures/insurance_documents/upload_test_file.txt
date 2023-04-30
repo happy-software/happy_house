@@ -1,0 +1,1 @@
+this is just a random file to upload in the spec/features/insurance_documents_spec test

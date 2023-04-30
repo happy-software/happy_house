@@ -34,9 +34,12 @@ Rails.application.routes.draw do
           patch "/upload_signed_lease", to: "leases#upload_signed_lease", as: "upload_signed_lease"
         end
       end
+
+      resources :insurance_documents, except: %i[update destroy]
       resources :events
     end
   end
+
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: %i[new create edit update]
 end

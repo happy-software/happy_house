@@ -51,7 +51,7 @@ class Lease < ApplicationRecord
 
   def expiring_soon?
     return false unless started?
-    !expired? && expired?(Date.today + 3.months)
+    !expired? && expired?(Date.today + 4.months)
   end
 
   def started?(date = Date.today)

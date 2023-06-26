@@ -67,10 +67,10 @@ class LeasesController < ApplicationController
   # New Renewal is used to display a form to fill out with
   # info to renew a lease against.
   def new_renewal
-    @new_lease = Lease.new
-    @default_start_date = @lease.end_date.strftime("%Y-%m-%dT%k:%M")
-    @default_end_date = (@lease.end_date. + 1.year).strftime("%Y-%m-%dT%k:%M")
-    @default_amount = @lease.amount
+    @new_lease          = Lease.new
+    @default_start_date = @lease.end_date.strftime("%Y-%m-%dT%k:%M").gsub(" ", "0")
+    @default_end_date   = (@lease.end_date + 1.year).strftime("%Y-%m-%dT%k:%M").gsub(" ", "0")
+    @default_amount     = @lease.amount
   end
 
   def create_renewal

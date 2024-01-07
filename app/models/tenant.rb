@@ -6,9 +6,7 @@ class Tenant < ApplicationRecord
   has_many :property_documents, through: :leases
 
   def current_leases
-    leases.select do |lease|
-      lease.start_date >= Time.now && lease.end_date <= Time.now
-    end
+    leases.select(&:started?)
   end
 
   def current_properties

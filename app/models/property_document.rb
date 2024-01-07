@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# TODO: Can delete this model, it's not actually used anywhere
 class PropertyDocument < ApplicationRecord
   belongs_to :property
   belongs_to :property_document_type

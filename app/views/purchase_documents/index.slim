@@ -1,0 +1,20 @@
+h1 Purchase Documents
+
+div.float-right
+  = link_to "Upload Document", new_user_property_purchase_document_path(@current_user, @property), class: 'btn btn-primary'
+
+- if @purchase_documents.present?
+  table.table.table-striped.table-hover.table-bordered style="width: 60%"
+    thead.thead-dark
+      tr
+        th scope="col" Title
+
+    tbody
+      - @purchase_documents.each do |document|
+        tr
+          td
+            = link_to document.title, user_property_purchase_document_path(@current_user, @property, document)
+
+- else
+  p It looks like you haven't uploaded any Purchase Documents for this Property.
+  p Add one with the upload button.

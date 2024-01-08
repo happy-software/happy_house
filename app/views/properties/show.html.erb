@@ -52,6 +52,7 @@
         <p class="card-text">Find all your documents in one place.</p>
       </div>
       <ul class="list-group list-group-flush">
+        <li class="list-group-item"><%= link_to 'Purchase', user_property_purchase_documents_path(@current_user, @property) %></li>
         <li class="list-group-item"><%= link_to 'Leases', user_property_leases_path(@current_user, @property) %></li>
         <li class="list-group-item"><%= link_to 'Insurance', user_property_insurance_documents_path(@current_user, @property) %></li>
       </ul>

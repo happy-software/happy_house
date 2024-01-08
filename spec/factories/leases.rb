@@ -5,6 +5,6 @@ FactoryBot.define do
     start_date { "2019-06-15 16:51:51" }
     end_date { "2019-06-15 16:51:51" }
     details { "" }
-    property_document_id { 1 }
+    lease_frequency { FactoryBot.create(:lease_frequency) }
   end
 end

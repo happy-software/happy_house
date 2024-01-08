@@ -36,6 +36,7 @@ Rails.application.routes.draw do
       end
 
       resources :insurance_documents, except: %i[update destroy]
+      resources :purchase_documents, except: %i[destroy]
       resources :events
     end
   end

@@ -7,6 +7,7 @@ class Property < ApplicationRecord
   has_many :leases
   has_many :tenants, through: :leases
   has_many :insurance_documents
+  has_many :purchase_documents
   has_many :utility_accounts
   has_many :expense_items
   has_many :events

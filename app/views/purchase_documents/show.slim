@@ -1,0 +1,26 @@
+h2 Documents
+table.table.table-striped.table-hover.table-bordered
+  thead.thead-dark
+    tr.text-center
+      th scope="col" #{@purchase_document.title}
+
+  tbody
+    tr
+      td
+        span.fas.fa-regular.fa-file-signature style="font-size: 8rem; display: flex; justify-content: center;"
+        div.text-center
+          - if @purchase_document.document.attached?
+            = link_to "Download", url_for(@purchase_document.document), class: "btn btn-primary mt-3", target: "_blank", rel: "noopener noreferrer"
+          - else
+            p.text-danger Missing Document!
+
+h3 Notes
+br
+
+== @purchase_document.notes
+
+br
+
+= link_to 'Edit', edit_user_property_purchase_document_path(@current_user, @property, @purchase_document)
+= " | "
+= link_to 'Back', user_property_purchase_documents_path

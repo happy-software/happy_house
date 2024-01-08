@@ -1,0 +1,24 @@
+h1 Purchase Documents
+
+= form_with(model: [@current_user, @property, @purchase_document]) do |form|
+  - if @purchase_document.errors.any?
+    #error_explanation
+      label.text-danger #{pluralize(@purchase_document.errors.count, "error")} prohibited this document from being saved:
+      ul
+        - @purchase_document.errors.full_messages.each do |message|
+          li #{message}
+
+  .field.mt-3
+    = form.label :title, class: 'form-label h3'
+    = form.text_field :title, class: 'form-control'
+
+  .field.mt-3
+    = form.label :document, class: 'form-label h3'
+    = form.file_field :document, class: 'form-control-file'
+
+  .field.mt-3
+    = form.label :notes, class: 'form-label h3'
+    = form.rich_text_area :notes, class: 'form-control'
+
+  .actions
+    = form.submit("Submit", class: 'btn btn-primary mt-3')

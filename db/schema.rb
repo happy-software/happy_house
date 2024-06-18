@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_30_155609) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_07_213833) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -138,6 +138,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_155609) do
     t.index ["property_id"], name: "index_property_documents_on_property_id"
   end
 
+  create_table "purchase_documents", force: :cascade do |t|
+    t.bigint "property_id", null: false
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_purchase_documents_on_property_id"
+  end
+
   create_table "tenants", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -180,5 +188,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_155609) do
   add_foreign_key "leases", "property_documents"
   add_foreign_key "properties", "users"
   add_foreign_key "property_documents", "properties"
+  add_foreign_key "purchase_documents", "properties"
   add_foreign_key "utility_accounts", "properties"
 end

@@ -5,6 +5,7 @@ class ExpenseItem < ApplicationRecord
   extend ExpenseItemHelpers::OneOffUploaders
 
   belongs_to :property
+  has_rich_text :notes
 
   validates :name,  presence: true
   validates :cost,  presence: true

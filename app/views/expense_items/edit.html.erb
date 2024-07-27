@@ -3,20 +3,20 @@
 <h1>Update An Expense Item</h1>
 
 <div class="row">
-  <div class="col-sm-6">
+  <div class="col-sm-6 col-md-12">
     <%= render 'shared/error_messages', object: @expense_item %>
     
     <%= form_for([@current_user, @expense_item.property, @expense_item]) do |f| %>
-      <%= f.label :name %>
+      <%= f.label :name, class: 'mt-2' %>
       <%= f.text_field :name, class: 'form-control' %>
 
-      <%= f.label :expense_date %>
+      <%= f.label :expense_date, class: 'mt-2' %>
       <%= f.date_field :expense_date, class: 'form-control' %>
 
-      <%= f.label :cost %>
+      <%= f.label :cost, class: 'mt-2' %>
       <%= f.number_field :cost, class: 'form-control', step: :any %>
 
-      <h3>Attachments</h3>
+      <h3 class="mt-2">Attachments</h3>
       <ul>
         <% @expense_item.attachments.each do |f| %>
           <li>
@@ -25,6 +25,9 @@
         <% end %>
         <%= f.file_field(:attachments, multiple: true) %>
       </ul>
+
+      <%= f.label :notes, class: 'mt-2' %>
+      <%= f.rich_text_area :notes %>
 
       <%= f.submit 'Update Expense', class: 'btn btn-primary mt-sm-3' %>
       <%= link_to 'Cancel', user_property_path(@current_user, @property), class: 'btn btn-danger mt-sm-3' %>

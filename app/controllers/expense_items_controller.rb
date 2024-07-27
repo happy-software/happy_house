@@ -62,7 +62,7 @@ class ExpenseItemsController < ApplicationController
   end
 
   def expense_item_params
-    params.require(:expense_item).permit(:name, :cost, :expense_date, :property_id, attachments: [])
+    params.require(:expense_item).permit(:name, :cost, :expense_date, :property_id, :notes, attachments: [])
   end
 
   def correct_user

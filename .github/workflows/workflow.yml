@@ -30,6 +30,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Run apt update
+        run: sudo apt update
+
       - name: Install Image Processing related libs
         run: sudo apt install -y libvips
 

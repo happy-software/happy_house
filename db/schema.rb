@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_07_213833) do
+ActiveRecord::Schema[7.0].define(version: 2024_10_05_054200) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -110,6 +110,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_07_213833) do
     t.index ["property_id"], name: "index_leases_on_property_id"
   end
 
+  create_table "mortgage_statements", force: :cascade do |t|
+    t.bigint "property_id", null: false
+    t.string "title", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_mortgage_statements_on_property_id"
+  end
+
   create_table "properties", force: :cascade do |t|
     t.jsonb "address"
     t.datetime "created_at", precision: nil, null: false
@@ -186,6 +194,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_07_213833) do
   add_foreign_key "lease_tenants", "tenants"
   add_foreign_key "leases", "properties"
   add_foreign_key "leases", "property_documents"
+  add_foreign_key "mortgage_statements", "properties"
   add_foreign_key "properties", "users"
   add_foreign_key "property_documents", "properties"
   add_foreign_key "purchase_documents", "properties"

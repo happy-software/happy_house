@@ -1,0 +1,20 @@
+h1 Mortgage Statements
+
+= form_with(model: [@current_user, @property, @mortgage_statement]) do |form|
+  - if @mortgage_statement.errors.any?
+    #error_explanation
+      label.text-danger #{pluralize(@mortgage_statement.errors.count, "error")} prohibited this document from being saved:
+      ul
+        - @mortgage_statement.errors.full_messages.each do |message|
+          li #{message}
+
+  .field
+    = form.label :title, class: 'form-label'
+    = form.text_field :title, class: 'form-control'
+
+  .field
+    = form.label :document, class: 'form-label'
+    = form.file_field :document, class: 'form-control-file'
+
+  .actions
+    = form.submit("Submit", class: 'btn btn-primary mt-3')

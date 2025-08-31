@@ -6,7 +6,15 @@
 
   <% events.each do |event| %>
     <div>
-      <%= link_to(event.title, event_path(event)) %>
+      <% if event.is_a?(Event) %>
+        <%= link_to(event.title, event_path(event)) %>
+      <% elsif event.is_a?(OpenStruct) %>
+        <% if event.actual_object.is_a?(ExpenseItem) %>
+          <%= link_to(event.title, edit_user_property_expense_item_path(@current_user, @property, event.actual_object)) %>
+        <% else %>
+          <% raise StandardError.new("#{event.actual_object.class} hasn't been mapped in the event calendar display") %>
+        <% end %>
+      <% end %>
     </div>
   <% end %>
 <% end %>

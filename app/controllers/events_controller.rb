@@ -6,7 +6,22 @@ class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
 
   def index
-    @events = @property.events
+    expense_items = @property.expense_items.map do |expense_item|
+      # Transform the expense item in the shape of an Event so that
+      # the calendar can treat it as an event without having to update
+      # the calendar code too much.
+      OpenStruct.new(
+        id:        expense_item.id,
+        title:     expense_item.name,
+        starts_at: expense_item.expense_date,
+        ends_at:   expense_item.expense_date,
+        content:   expense_item.notes,
+        property:  @property,
+        actual_object: expense_item,
+      )
+    end
+
+    @events = @property.events + expense_items
   end
 
   def show

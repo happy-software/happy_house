@@ -21,7 +21,7 @@ class ExpenseItemsController < ApplicationController
       flash[:info] = "Expense (#{@expense_item.name}) saved!"
       redirect_to user_property_expense_items_url
     else
-      render "new"
+      render "new", status: :unprocessable_entity
     end
   end
 
@@ -41,7 +41,7 @@ class ExpenseItemsController < ApplicationController
       flash[:success] = "Updated Expense Item: #{@expense_item.name}"
       redirect_to user_property_expense_items_url(property_id: @expense_item.property.id)
     else
-      render "edit"
+      render "edit", status: :unprocessable_entity
     end
   end
 

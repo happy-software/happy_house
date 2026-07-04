@@ -78,7 +78,7 @@ RSpec.describe "Password resets", type: :request do
       patch password_reset_path(token, email: user.email),
             params: { user: { password: "", password_confirmation: "" } }
 
-      expect(response).to have_http_status(200) # re-renders edit
+      expect(response).to have_http_status(422) # re-renders edit
       expect(session[:user_id]).to be_nil
     end
 
@@ -87,7 +87,7 @@ RSpec.describe "Password resets", type: :request do
       patch password_reset_path(token, email: user.email),
             params: { user: { password: "newpassword1", password_confirmation: "different1" } }
 
-      expect(response).to have_http_status(200) # re-renders edit
+      expect(response).to have_http_status(422) # re-renders edit
       expect(session[:user_id]).to be_nil
     end
 

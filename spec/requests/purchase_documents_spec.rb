@@ -45,7 +45,7 @@ RSpec.describe "Purchase documents", type: :request do
              params: { purchase_document: { title: "No File" } }
       end.to_not change(PurchaseDocument, :count)
 
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(422)
     end
   end
 
@@ -76,7 +76,7 @@ RSpec.describe "Purchase documents", type: :request do
             params: { purchase_document: { title: "" } }
 
       expect(document.reload.title).to eq("Closing Docs")
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(422)
     end
   end
 end

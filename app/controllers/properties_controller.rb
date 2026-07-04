@@ -14,7 +14,7 @@ class PropertiesController < ApplicationController
       flash[:success] = "New Happy Home added!"
       redirect_to root_url
     else
-      render "new"
+      render "new", status: :unprocessable_entity
     end
   end
 
@@ -28,7 +28,7 @@ class PropertiesController < ApplicationController
       flash[:success] = "Updated: #{@property.display_name}"
       redirect_to current_user
     else
-      render "edit"
+      render "edit", status: :unprocessable_entity
     end
   end
 

@@ -44,7 +44,7 @@ RSpec.describe "Insurance documents", type: :request do
              params: { insurance_document: { title: "No File" } }
       end.to_not change(InsuranceDocument, :count)
 
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(422)
     end
   end
 

@@ -42,7 +42,7 @@ RSpec.describe "Signup and account activation", type: :request do
         invalid = { user: valid_params[:user].merge(password: "short", password_confirmation: "short") }
         expect { post users_path, params: invalid }.to_not change(User, :count)
 
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(422)
         expect(ActionMailer::Base.deliveries).to be_empty
       end
     end

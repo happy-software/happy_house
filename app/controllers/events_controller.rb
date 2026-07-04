@@ -42,7 +42,7 @@ class EventsController < ApplicationController
         format.html { redirect_to [@current_user, @property, @event], notice: "Event was successfully created." }
         format.json { render :show, status: :created, location: [@current_user, @property, event] }
       else
-        format.html { render :new }
+        format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
@@ -54,7 +54,7 @@ class EventsController < ApplicationController
         format.html { redirect_to [current_user, @event.property, @event], notice: "Event was successfully updated." }
         format.json { render :show, status: :ok, location: [current_user, @event.property, @event] }
       else
-        format.html { render :edit }
+        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end

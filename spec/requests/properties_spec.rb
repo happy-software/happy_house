@@ -57,7 +57,7 @@ RSpec.describe "Properties", type: :request do
       expect { post user_properties_path(user), params: invalid }
         .to_not change(Property, :count)
 
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(422)
     end
   end
 
@@ -89,7 +89,7 @@ RSpec.describe "Properties", type: :request do
       patch user_property_path(user, property), params: { property: { property_type: "Castle" } }
 
       expect(property.reload.property_type).to_not eq("Castle")
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(422)
     end
   end
 

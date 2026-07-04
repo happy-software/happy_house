@@ -60,7 +60,7 @@ RSpec.describe "Leases CRUD", type: :request do
       expect { post user_property_leases_path(user, property), params: invalid }
         .to_not change(Lease, :count)
 
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(422)
     end
   end
 
@@ -94,7 +94,7 @@ RSpec.describe "Leases CRUD", type: :request do
             params: { lease: { lease_frequency_id: nil } }
 
       expect(lease.reload.lease_frequency_id).to eq(lease_frequency.id)
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(422)
     end
   end
 

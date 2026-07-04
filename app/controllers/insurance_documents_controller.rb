@@ -16,7 +16,7 @@ class InsuranceDocumentsController < ApplicationController
     if @insurance_document.save
       redirect_to(user_property_insurance_documents_path([@current_user, @property]), notice: "Successfully Uploaded")
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

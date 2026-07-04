@@ -2,8 +2,10 @@
 
 FactoryBot.define do
   factory :lease do
-    start_date { "2019-06-15 16:51:51" }
-    end_date { "2019-06-15 16:51:51" }
+    property
+    start_date { 1.month.ago }
+    end_date { 11.months.from_now }
+    amount { 1500.00 }
     details { "" }
     lease_frequency { FactoryBot.create(:lease_frequency) }
   end

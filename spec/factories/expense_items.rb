@@ -2,8 +2,9 @@
 
 FactoryBot.define do
   factory :expense_item do
+    property
     name { "MyString" }
     cost { "9.99" }
-    expense_date { "2018-11-09 21:44:30" }
+    expense_date { Date.new(2024, 6, 15) }
   end
 end

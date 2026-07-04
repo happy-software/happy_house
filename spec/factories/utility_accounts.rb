@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :utility_account do
+    property
     name { "MyString" }
     details { "" }
-    property { nil }
   end
 end

@@ -110,4 +110,67 @@ RSpec.describe Lease, type: :model do
       it { is_expected.to eq(true) }
     end
   end
+
+  describe '.active' do
+    let!(:past_lease)    { FactoryBot.create(:lease, start_date: 2.years.ago, end_date: 1.year.ago) }
+    let!(:current_lease) { FactoryBot.create(:lease, start_date: 1.month.ago, end_date: 11.months.from_now) }
+    let!(:future_lease)  { FactoryBot.create(:lease, start_date: 1.month.from_now, end_date: 13.months.from_now) }
+
+    it 'returns only leases active right now by default' do
+      expect(Lease.active).to match_array([current_lease])
+    end
+
+    it 'accepts an explicit timestamp' do
+      expect(Lease.active(18.months.ago)).to match_array([past_lease])
+    end
+  end
+
+  describe '.build_lease / .build_lease!' do
+    let(:property) { FactoryBot.create(:property) }
+    let(:tenant)   { FactoryBot.create(:tenant) }
+    let(:lease_details) do
+      {
+        tenants: [tenant],
+        starting_date: "2024-01-01",
+        ending_date: "2025-01-01",
+        rent_amount: 1000,
+      }
+    end
+    let(:fake_pdf) { "%PDF-1.4 fake" }
+
+    before { LeaseFrequency.find_or_create_by!(id: 1) { |lf| lf.frequency = "monthly" } }
+
+    it 'builds an unsaved lease with mapped attributes and an attached contract' do
+      lease = Lease.build_lease(property, lease_details, fake_pdf)
+
+      expect(lease).to_not be_persisted
+      expect(lease.property).to eq(property)
+      expect(lease.tenants).to eq([tenant])
+      expect(lease.start_date.to_date).to eq(Date.new(2024, 1, 1))
+      expect(lease.end_date.to_date).to eq(Date.new(2025, 1, 1))
+      expect(lease.amount).to eq(1000)
+      expect(lease.lease_frequency_id).to eq(1)
+      expect(lease.contract).to be_attached
+      expect(lease.contract.content_type).to eq("application/pdf")
+    end
+
+    it 'build_lease! persists the lease' do
+      expect { Lease.build_lease!(property, lease_details, fake_pdf) }
+        .to change(Lease, :count).by(1)
+    end
+  end
+
+  describe '.with_eager_loaded_contract' do
+    before { LeaseFrequency.find_or_create_by!(id: 1) { |lf| lf.frequency = "monthly" } }
+
+    it 'includes leases and their attached contracts without raising' do
+      lease_with_contract = Lease.build_lease!(FactoryBot.create(:property),
+                                               { tenants: [], starting_date: "2024-01-01",
+                                                 ending_date: "2025-01-01", rent_amount: 1 },
+                                               "%PDF-1.4 fake")
+
+      results = Lease.with_eager_loaded_contract.to_a
+      expect(results).to include(lease_with_contract)
+    end
+  end
 end

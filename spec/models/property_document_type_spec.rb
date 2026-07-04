@@ -2,6 +2,9 @@
 
 require "rails_helper"
 
+# Dead code along with PropertyDocument — see that spec's note.
 RSpec.describe PropertyDocumentType, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "instantiates" do
+    expect(PropertyDocumentType.new).to be_a(PropertyDocumentType)
+  end
 end

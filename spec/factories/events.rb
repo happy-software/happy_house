@@ -2,7 +2,8 @@
 
 FactoryBot.define do
   factory :event do
-    property { nil }
+    property
+    title { "MyEvent" }
     starts_at { "2021-11-25 17:59:47" }
     ends_at { "2021-11-25 17:59:47" }
   end

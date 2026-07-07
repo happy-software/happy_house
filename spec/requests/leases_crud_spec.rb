@@ -70,14 +70,15 @@ RSpec.describe "Leases CRUD", type: :request do
       expect(response).to have_http_status(200)
     end
 
-    # The PDF download is currently broken: the controller asks wicked_pdf for
-    # template "leases/show.html.erb" but only show.slim exists, so template
-    # lookup fails. See TEST_COVERAGE_PLAN.md BUG-9 — the planned PDF-renderer
-    # replacement should FIX this rather than preserve it. (Real PDF generation
-    # is still covered by spec/happy_house/leases/generator_spec.rb.)
-    it "raises MissingTemplate for the .pdf format (BUG-9)" do
-      expect { get user_property_lease_path(user, property, lease, format: :pdf) }
-        .to raise_error(ActionView::MissingTemplate)
+    # PDF-generation upgrade canary — renders a real PDF via ferrum_pdf and
+    # headless Chromium; do not stub. (This route was broken under wicked_pdf —
+    # BUG-9 in TEST_COVERAGE_PLAN.md — and was fixed by the renderer swap.)
+    it "renders a PDF for the .pdf format" do
+      get user_property_lease_path(user, property, lease, format: :pdf)
+
+      expect(response).to have_http_status(200)
+      expect(response.content_type).to include("application/pdf")
+      expect(response.body).to start_with("%PDF")
     end
   end
 

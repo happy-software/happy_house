@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM ruby:3.1.3
+FROM ruby:3.4.10
 RUN apt update -qq && apt install -y postgresql-client libvips
 
 WORKDIR /myapp

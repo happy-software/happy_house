@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby file: ".ruby-version"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 7.0"
+gem "rails", "~> 7.2.2"
 # Use PostgreSQL as the database for Active Record
 gem "pg", "~> 1.1"
 # Use Puma as the app server
@@ -102,9 +102,5 @@ gem 'image_processing', '~> 1.2'
 # Along with
 # ./Aptfile # in the project root
 gem "ruby-vips"
-
-# https://sentry.io/organizations/my-happy-house/projects/my-happy-house/getting-started/ruby-rails/
-gem "sentry-rails"
-gem "sentry-ruby"
 
 gem "slim-rails"

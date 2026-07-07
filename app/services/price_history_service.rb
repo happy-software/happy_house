@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "happy_hood/client"
 
 # Gets you the price history for a give property
 class PriceHistoryService

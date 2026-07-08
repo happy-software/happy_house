@@ -398,7 +398,6 @@ DEPENDENCIES
   importmap-rails
   jbuilder (~> 2.5)
   listen (~> 3.9)
-  mini_magick (~> 4.8)
   observer
   pg (~> 1.1)
   pry-rails

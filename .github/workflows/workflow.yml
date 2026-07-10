@@ -9,9 +9,7 @@ on:
 jobs:
   test:
 
-    # Pinned to 22.04 because wkhtmltopdf-binary ships no Ubuntu 24.04 build.
-    # Remove the pin once wicked_pdf is replaced (ferrum_pdf, step 2).
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     services:
       postgres:

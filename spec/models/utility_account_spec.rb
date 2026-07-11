@@ -3,5 +3,10 @@
 require "rails_helper"
 
 RSpec.describe UtilityAccount, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "has a valid factory belonging to a property" do
+    utility_account = FactoryBot.create(:utility_account)
+
+    expect(utility_account).to be_persisted
+    expect(utility_account.property).to be_a(Property)
+  end
 end

@@ -16,7 +16,7 @@ class PurchaseDocumentsController < ApplicationController
     if @purchase_document.save
       redirect_to(user_property_purchase_documents_path([@current_user, @property]), notice: "Successfully Uploaded")
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -33,7 +33,7 @@ class PurchaseDocumentsController < ApplicationController
     if @purchase_document.update(purchase_document_params)
       redirect_to [@current_user, @property, @purchase_document], notice: "Document details updated successfully."
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

@@ -29,7 +29,7 @@ RSpec.describe "Sessions", type: :request do
         log_in_as(user, password: "not-the-password")
 
         expect(session[:user_id]).to be_nil
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(422)
         expect(flash[:danger]).to match(/invalid email and password/i)
       end
     end
@@ -39,7 +39,7 @@ RSpec.describe "Sessions", type: :request do
         post login_path, params: { session: { email: "ghost@example.com", password: "password" } }
 
         expect(session[:user_id]).to be_nil
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(422)
         expect(flash[:danger]).to match(/invalid email and password/i)
       end
     end

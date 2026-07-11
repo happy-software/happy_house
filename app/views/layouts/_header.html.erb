@@ -1,26 +1,26 @@
-<header class="navbar navbar-expand-sm navbar-dark bg-dark">
+<header class="navbar navbar-expand-sm navbar-dark bg-dark" data-controller="collapse">
   <%= link_to 'Happy House', root_path, id: 'logo', class: 'navbar-brand' %>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-action="collapse#toggle" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="navbar-collapse collapse" id="navbarSupportedContent">
+  <div class="navbar-collapse collapse" id="navbarSupportedContent" data-collapse-target="content">
     <ul class="nav navbar-nav ml-auto navbar-right">
       <li class="nav-item"><%= link_to 'Home', root_path, class: 'nav-link' %></li>
       <li class="nav-item"><%= link_to 'Help', help_path, class: 'nav-link' %></li>
 
       <% if logged_in? %>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <li class="nav-item dropdown" data-controller="dropdown" data-action="click@window->dropdown#hide">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-action="dropdown#toggle" aria-haspopup="true" aria-expanded="false">
             My Account <b class="caret"></b>
           </a>
 
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown" data-dropdown-target="menu">
             <%= link_to 'My Homes', user_properties_path(current_user), class: 'dropdown-item' %>
             <%= link_to 'Settings', edit_user_path(current_user), class: 'dropdown-item' %>
             <div class="dropdown-divider"></div>
-            <%= link_to 'Log Out', logout_path, method: :delete, class: 'dropdown-item' %>
+            <%= button_to 'Log Out', logout_path, method: :delete, class: 'dropdown-item' %>
           </div>
         </li>
       <% else %>

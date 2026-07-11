@@ -44,9 +44,6 @@ jobs:
           # runs 'bundle install' and caches installed gems automatically
           bundler-cache: true
 
-      - name: Install yarn
-        run: bin/yarn install
-
       - name: Install dependencies
         run: bundle install
 
@@ -63,11 +60,8 @@ jobs:
           POSTGRES_PASSWORD: postgres
           POSTGRES_USER: postgres
 
-      - name: Run webpacker:compile
-        run: NODE_OPTIONS=--openssl-legacy-provider bundle exec rails webpacker:compile
-
       - name: Run rspec tests
-        run: NODE_OPTIONS=--openssl-legacy-provider bundle exec rspec
+        run: bundle exec rspec
         env:
           POSTGRES_HOST: localhost
           POSTGRES_PORT: 5432

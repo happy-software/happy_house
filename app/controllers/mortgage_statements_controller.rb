@@ -17,7 +17,7 @@ class MortgageStatementsController < ApplicationController
     if @mortgage_statement.save
       redirect_to(user_property_mortgage_statements_path([@current_user, @property]), notice: "Successfully Uploaded")
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -34,7 +34,7 @@ class MortgageStatementsController < ApplicationController
     if @mortgage_statement.update(mortgage_statement_params)
       redirect_to [@current_user, @property, @mortgage_statement], notice: "Document details updated successfully."
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
   

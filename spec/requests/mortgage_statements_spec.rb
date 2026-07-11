@@ -49,7 +49,7 @@ RSpec.describe "Mortgage statements", type: :request do
              params: { mortgage_statement: { title: "No File" } }
       end.to_not change(MortgageStatement, :count)
 
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(422)
     end
   end
 

@@ -1,5 +1,5 @@
 @import "custom";
-@import "bootstrap"; // Comes from the bootstrap gem
+@import "bootstrap"; // Vendored Bootstrap 4.6.2 dist CSS (vendor/assets/stylesheets)
 @import "leases";
 @import "properties";
 @import "actiontext";

@@ -15,21 +15,17 @@ gem "puma"
 gem "sass-rails", "~> 6.0"
 gem "sprockets-rails"
 
-gem "autoprefixer-rails"
-gem "bootstrap", "~> 4"
-# Use Uglifier as compressor for JavaScript assets
-gem "uglifier", ">= 1.3.0"
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'mini_racer', platforms: :ruby
+# Bootstrap 4 is vendored as compiled CSS (vendor/assets/stylesheets/_bootstrap.scss).
+# The bootstrap gem (and its autoprefixer-rails dependency) required a JavaScript
+# runtime at boot, which went away along with webpacker/Node.
 
-# Use CoffeeScript for .coffee assets and views
-gem "coffee-rails", "~> 5.0.0"
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem "turbolinks", "~> 5"
+# Modern Rails front end: import maps + Hotwire (no Node/yarn needed)
+gem "importmap-rails"
+gem "stimulus-rails"
+gem "turbo-rails"
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "jbuilder", "~> 2.5"
-gem "jquery-rails"
-gem "webpacker"
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password

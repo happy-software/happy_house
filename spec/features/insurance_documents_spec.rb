@@ -22,7 +22,9 @@ RSpec.feature "Insurance Documents", type: :feature do
     expect(page).to have_text("Add one with the upload button.")
 
     click_on "Upload Document"
-    within('form') do
+    # Scoped to the upload form: the header's Log Out button_to adds a second
+    # form to every logged-in page.
+    within('form[action*="insurance_documents"]') do
       fill_in 'Title', with: "Test Title 1"
     end
     click_button "Submit"

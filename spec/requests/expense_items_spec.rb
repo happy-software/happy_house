@@ -46,7 +46,7 @@ RSpec.describe "Expense items", type: :request do
       expect { post user_property_expense_items_path(user, property), params: invalid }
         .to_not change(ExpenseItem, :count)
 
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(422)
     end
   end
 
@@ -83,7 +83,7 @@ RSpec.describe "Expense items", type: :request do
             params: { expense_item: { name: "" } }
 
       expect(item.reload.name).to eq("Old Name")
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(422)
     end
   end
 

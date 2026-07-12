@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "happy_hood/client"
 
 class ZpidFinder
   def initialize(property)

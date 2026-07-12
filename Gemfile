@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby file: ".ruby-version"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 7.0"
+gem "rails", "~> 7.2.2"
 # Use PostgreSQL as the database for Active Record
 gem "pg", "~> 1.1"
 # Use Puma as the app server
@@ -104,9 +104,5 @@ gem 'image_processing', '~> 1.2'
 # require: false so booting the app doesn't need libvips installed (e.g. dev
 # machines without it); Active Storage loads it on demand when processing a variant.
 gem "ruby-vips", require: false
-
-# https://sentry.io/organizations/my-happy-house/projects/my-happy-house/getting-started/ruby-rails/
-gem "sentry-rails"
-gem "sentry-ruby"
 
 gem "slim-rails"

@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "expense_item_helpers/one_off_uploaders"
 class ExpenseItem < ApplicationRecord
   extend ExpenseItemHelpers::OneOffUploaders
 

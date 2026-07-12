@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.1.3"
+ruby file: ".ruby-version"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails", "~> 7.0"
@@ -55,7 +55,7 @@ end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem "listen", ">= 3.0.5", "< 3.2"
+  gem "listen", "~> 3.9"
   gem "web-console", ">= 3.3.0"
 end
 
@@ -66,12 +66,16 @@ group :test do
   # gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   # gem 'chromedriver-helper'
+
+  gem "observer"
 end
 
 gem "pry-rails"
 
-gem "wicked_pdf"
-gem "wkhtmltopdf-binary"
+# HTML-to-PDF via headless Chromium (CDP). Replaced wicked_pdf/wkhtmltopdf:
+# wkhtmltopdf is dead upstream and ships no binaries for Ubuntu 24.04+ or ARM
+# (the Raspberry Pi target). Requires a chromium/chrome binary on the host.
+gem "ferrum_pdf"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "bcrypt"

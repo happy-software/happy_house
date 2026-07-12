@@ -29,7 +29,7 @@ module HappyHouse
 
       def create_pdf!
         @output = ERB.new(@template).result(binding)
-        @pdf ||= WickedPdf.new.pdf_from_string(@output)
+        @pdf ||= FerrumPdf.render_pdf(html: @output)
       end
 
       def state

@@ -32,10 +32,13 @@ class LeasesController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "Lease #{@lease.start_date.year} - #{@lease.property.display_name}",
-               layout: "pdf.html",
-               page_size: "A4",
-               template: "leases/show.html.erb"
+        render ferrum_pdf: {
+                 pdf_options: { paper_width: 8.27, paper_height: 11.69 }, # A4
+               },
+               template: "leases/show",
+               layout: "pdf",
+               filename: "Lease #{@lease.start_date.year} - #{@lease.property.display_name}.pdf",
+               disposition: :inline
       end
     end
   end

@@ -101,7 +101,9 @@ gem 'image_processing', '~> 1.2'
 #
 # Along with
 # ./Aptfile # in the project root
-gem "ruby-vips"
+# require: false so booting the app doesn't need libvips installed (e.g. dev
+# machines without it); Active Storage loads it on demand when processing a variant.
+gem "ruby-vips", require: false
 
 # https://sentry.io/organizations/my-happy-house/projects/my-happy-house/getting-started/ruby-rails/
 gem "sentry-rails"

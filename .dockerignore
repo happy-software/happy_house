@@ -1,7 +1,31 @@
-.git
-.dockerignore
+# Version control / editor / CI
+/.git
+/.github
+/.idea
+/.claude
+/.dockerignore
+/Dockerfile
+
+# Never bake secrets into the image
+/.env*
+/config/master.key
+/config/credentials/*.key
+
+# Heroku leftovers
+/Aptfile
+
+# Test suite and artifacts
+/spec
+/test
+/coverage
+/TEST_COVERAGE_PLAN.md
+.rspec
+
+# Local state
+/log/*
+/tmp/*
+/storage/*
+/public/assets
 .byebug_history
 .pry*
-log/*
-tmp/*
-
+.bundle

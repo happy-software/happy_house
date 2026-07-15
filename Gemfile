@@ -67,8 +67,6 @@ group :test do
   gem "observer"
 end
 
-gem "pry-rails"
-
 # HTML-to-PDF via headless Chromium (CDP). Replaced wicked_pdf/wkhtmltopdf:
 # wkhtmltopdf is dead upstream and ships no binaries for Ubuntu 24.04+ or ARM
 # (the Raspberry Pi target). Requires a chromium/chrome binary on the host.

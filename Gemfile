@@ -101,3 +101,5 @@ gem 'image_processing', '~> 1.2'
 gem "ruby-vips", require: false
 
 gem "slim-rails"
+
+gem "honeybadger", "~> 6.9"

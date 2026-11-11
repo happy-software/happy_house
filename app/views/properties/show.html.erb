@@ -33,10 +33,11 @@
         <li class="list-group-item disabled"><%= link_to 'Mortgage Payments (beta)', user_property_new_mortgage_expense_path(@current_user, @property) %></li>
         <li class="list-group-item disabled"><%= link_to 'HOA Payments (beta)', user_property_new_hoa_expense_path(@current_user, @property) %></li>
       </ul>
-      <div class="card-body">
-        <a href="#" data-toggle="modal" data-target="#exampleModalLong" class="btn btn-secondary">Learn More</a>
-        <%= render 'properties/cost_tracking/learn_more' %>
-      </div>
+<!--      Not sure if this Learn More Button works anymore-->
+<!--      <div class="card-body">-->
+<!--        <a href="#" data-toggle="modal" data-target="#exampleModalLong" class="btn btn-secondary">Learn More</a>-->
+        <%#= render 'properties/cost_tracking/learn_more' %>
+<!--      </div>-->
     </div>
   </div>
 
@@ -57,10 +58,11 @@
         <li class="list-group-item"><%= link_to 'Insurance', user_property_insurance_documents_path(@current_user, @property) %></li>
         <li class="list-group-item"><%= link_to 'Mortgage Statements', user_property_mortgage_statements_path(@current_user, @property) %></li>
       </ul>
-      <div class="card-body">
-        <a href="#" data-toggle="modal" data-target="#documentLearnMore" class="btn btn-secondary">Learn More</a>
-        <%= render 'properties/property_documents/learn_more' %>
-      </div>
+<!--      Not sure if this Learn More Button works anymore-->
+<!--      <div class="card-body">-->
+<!--        <a href="#" data-toggle="modal" data-target="#documentLearnMore" class="btn btn-secondary">Learn More</a>-->
+        <%#= render 'properties/property_documents/learn_more' %>
+<!--      </div>-->
     </div>
   </div>
 

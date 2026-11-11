@@ -406,6 +406,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   listen (~> 3.9)
   observer
+  ostruct
   pg (~> 1.1)
   puma
   rack-cors
@@ -429,4 +430,4 @@ RUBY VERSION
   ruby 4.0.9
 
 BUNDLED WITH
-  4.0.15
+  4.0.20

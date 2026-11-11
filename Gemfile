@@ -14,6 +14,7 @@ gem "puma"
 # Use SCSS for stylesheets
 gem "sass-rails", "~> 6.0"
 gem "sprockets-rails"
+gem "ostruct" # OpenStruct no longer comes pre-packaged with Ruby 4+ so explicitly require it here
 
 # Bootstrap 4 is vendored as compiled CSS (vendor/assets/stylesheets/_bootstrap.scss).
 # The bootstrap gem (and its autoprefixer-rails dependency) required a JavaScript
